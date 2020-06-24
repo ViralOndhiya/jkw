@@ -1,0 +1,27 @@
+<p>slider-admin Images !</p>
+<!-- <input type="file" (change)=" SliderPhotoSelected($event)" accept=".png,.jpg,.jpeg"/> -->
+
+
+<div class="ui-g" >
+    <div class="ui-g-12 ui-md-6 ui-lg-12" *ngFor="let img of sliders;let i=index;">
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <input type="file" [disabled]="img.mainImage"
+                (change)="upload($event, 'siders', img.id, i)" accept=".png,.jpg,.mp4" />
+            </div>
+            <div class="ui-g-4">
+                <img src="{{img.mainImage}}" style="width: 100px;" *ngIf="img.type === 'image'"/>
+               
+                <video autoplay loop style="width: 100px;" *ngIf="img.type !== 'image'">
+                    <source src="{{img.mainImage}}" type="video/mp4">  
+                </video>
+      
+            </div>
+            <div class="ui-g-2">
+                <input type="button" *ngIf="img.mainImage" (click)="deleteMainImage(img)" value="Delete"
+                label="delete">
+            </div>
+        </div>
+    </div>
+    </div>
+
