@@ -1,0 +1,122 @@
+<section fxLayout="column" fxFlexAlign="stretch">
+    <div style="text-align: center;">
+        
+        <p> Product Detail </p>
+       
+    </div>
+    </section>
+    <br>
+    <p-card styleClass="ui-card-shadow">
+    
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-12">
+                <div class="ui-g">
+    
+                    <div class="ui-g-12" style="text-align:center">
+                        <input type="button" value="Add New" (click)="addNew()">
+                    </div>
+    
+                    <div class="ui-g-4 ui-lg-6">
+                        <h6>Product Name :</h6>
+                    </div>
+    
+    
+                    <div class="ui-g-8 ui-lg-6">
+                            <h5> <input type="text" pInputText [(ngModel)]="product_name" style="width: 100%;" /></h5>   
+                    </div>
+    
+    
+                    <div class="ui-g-4 ui-lg-6">
+                        <h6>Price :</h6>
+                    </div>
+                    <div class="ui-g-8 ui-lg-6">
+                        <h5>
+                            <h5> <input type="text" pInputText [(ngModel)]="price" 
+                                style="width: 100%;" /></h5>  
+                            <!-- <p-dropdown [options]="productList" [(ngModel)]="selectedProduct" placeholder="Select Product"
+                                optionLabel="name"></p-dropdown> -->
+                        </h5>
+                    </div>
+    
+                    <!-- <div class="ui-g-4 ui-lg-6" *ngIf="selectedProduct?.mainImage">
+                        <h6>Product Image :</h6>
+                    </div>
+                    <div class="ui-g-8 ui-lg-6" *ngIf="selectedProduct?.mainImage">
+                        <img [src]="selectedProduct?.mainImage" style="width: 100px;">
+                    </div> -->
+    
+    
+                    <div class="ui-g-4 ui-lg-6">
+                        <h6>Material :</h6>
+                    </div>
+                    <div class="ui-g-8 ui-lg-6">
+                        <h5><textarea pInputTextarea type="text" pInputText [(ngModel)]="material"
+                                style="width: 100%;"></textarea></h5>
+                    </div>
+    
+                    <!-- <div class="ui-g-4">
+                        <input type="file" #minImageInput
+                            [disabled]="!selectedCategory?.id || (selectedCategory?.id && mainImage) "
+                            (change)="upload($event, 'categories')" accept=".png,.jpg" />
+                    </div>
+                    <div class="ui-g-6">
+                        <img style="width: 200px;" src="{{mainImage}}" />
+                    </div>
+    
+                    <div class="ui-g-2">
+                        <input type="button" *ngIf="selectedCategory?.id && mainImage" (click)="deleteMainImage()"
+                            value="Delete" label="delete">
+                    </div>
+                    <div class="ui-g-12">
+                        <progress max="100" [value]="(uploadProgress | async)"></progress>
+                    </div> -->
+                    <div class="ui-g-12" style="text-align:center">
+                        <input type="button" value="Save" label="Save" 
+                            (click)="selectedCategory?.id ? updateCategory() : saveCategory()">
+                    </div>
+    
+    
+                </div>
+            </div>
+        </div>
+    
+    </p-card>
+    
+    
+    <div>
+        <!-- <p-table [columns]="cols" [value]="categories" autoLayout="true" [responsive]="true" sortMode="multiple">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                    <th style="width:4em"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns" [style.width]="col.columnWidth">
+                        <div *ngIf="(col.header).indexOf('Image') == -1">{{rowData[col.field]}}</div>
+                        <div *ngIf="(col.header).indexOf('Image') > -1">
+                            <img style="width: 100px;" src="{{rowData[col.field]}}" /></div>
+                    </td>
+                    <td>
+    
+                        <div class="ui-g">
+                            <div class="ui-g-6 ui-lg-12" style="text-align: -webkit-center; ">
+    
+                                <button pButton type="button" class="ui-button-raised ui-button-secondary" label="Edit"
+                                    (click)="editCategory(rowData)"></button>
+                            </div>
+                            <div class="ui-g-6 ui-lg-12" style="text-align: -webkit-center;">
+    
+                                <button pButton type="button" class="ui-button-raised ui-button-secondary" label="Delete"
+                                    (click)="deleteCategory(rowData)"></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table> -->
+    </div>

@@ -25,6 +25,7 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import {CarouselModule} from 'primeng/carousel';
+import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import {CarouselModule} from 'primeng/carousel';
     NotFoundComponent,
     HeaderComponent,
     SidenavListComponent,
-    SliderAdminComponent
+    SliderAdminComponent,
+    ProductAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import {CarouselModule} from 'primeng/carousel';
       { path: '404', component: NotFoundComponent },
       { path: '**', redirectTo: '/404', pathMatch: 'full' },
       { path: 'admin/slider', component: SliderAdminComponent},
+      { path: 'admin/product', component: ProductAdminComponent},
 
       
     ]),
