@@ -2,7 +2,7 @@
    
 
 
-    <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
+    <!-- <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
         <mat-tab label="Women"> 
           <p>Women Cloths !</p> 
         </mat-tab>
@@ -12,21 +12,26 @@
         <mat-tab label="Kids">
            <p>Kids Cloth !</p>
           </mat-tab>
-      </mat-tab-group>
+           
+            <mat-tab label="Contact Us"  >
+           </mat-tab>
+      </mat-tab-group> -->
+
+     
 
     
  
     <!--20200312 START LOGIC PORTION FOR IMAGE AND VIDEO SLIDER -->
    
     <p-carousel [value]="sliders" styleClass="custom-carousel" [numVisible]="1" 
-    [numScroll]="1" [circular]="true" [autoplayInterval]="6000" style="margin-top: 10px;">
+    [numScroll]="1" [circular]="true" [autoplayInterval]="6000" [responsiveOptions]="responsiveOptions">
    
     <ng-template let-car pTemplate="item">
         <div class="car-details">            
             <div class="p-grid p-nogutter">
                 <div class="p-col-12 p-md-6 p-lg-3" style="overflow:hidden">
                     <img src="{{car.mainImage}}" class="imgresponsive" *ngIf="car.type === 'image'"/>
-                    <!-- style="height: 90vh; width: 100vw;" -->
+                  
                     <video autoplay loop *ngIf="car.type !== 'image'"  class="imgresponsive" >
                         <source src="{{car.mainImage}}" type="video/mp4">  
                     </video>
@@ -39,8 +44,8 @@
   <div fxFlexAlign="center">
       <p>JALIYAN</p>
       <h1 class="subheading">KIDZS WEAR</h1>
-    </div> 
+    </div>  
    
-    <!-- <p>In this application we are going to work with:</p> -->
+   <!-- <p>In this application we are going to work with:</p> -->
 
   </section>

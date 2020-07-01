@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { SliderAdminService } from '../admin/slider-admin/slider-admin.service';
+import { ShareButtons } from '@ngx-share/core';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ import { SliderAdminService } from '../admin/slider-admin/slider-admin.service';
       margin: 0.25em 0 2em 0;
   }
   .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button {
-      margin-left: 0.0em;
+      margin-left: 0.5em;
   }
   .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button:first-child {
       margin-left: 0;
@@ -36,20 +36,28 @@ import { SliderAdminService } from '../admin/slider-admin/slider-admin.service';
       border-radius: 50%;
   }
   .carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
-      margin-left: 0.1em;
+      margin-left: 0.6em;
   }
   .carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
-      margin-right: 0.1em;
+      margin-right: 0.6em;
   }
 `]
 })
 export class HomeComponent implements OnInit {
   sliders: any[]; // // FOR SLIDER IMAGE 20200312
   responsiveOptions; // // FOR SLIDER IMAGE 20200312
+
+
   
-  constructor( private router: Router, private sliderService: SliderAdminService) { 
-     // FOR SLIDER IMAGE 20200312
+  constructor( private router: Router, private sliderService: SliderAdminService,
+    public share: ShareButtons) { 
+    
      this.responsiveOptions = [
+        {
+            breakpoint: '1366px',
+            numVisible: 1,
+            numScroll: 1
+        },
       {
           breakpoint: '1024px',
           numVisible: 1,
@@ -66,6 +74,7 @@ export class HomeComponent implements OnInit {
           numScroll: 1
       }
   ];
+ 
   }
 
   ngOnInit(): void {
@@ -80,6 +89,8 @@ export class HomeComponent implements OnInit {
       });
       console.log("slider on home page:", this.sliders)
   })
+
+  
   
   }
   public executeSelectedChange = (event) => {

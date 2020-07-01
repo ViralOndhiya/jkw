@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 
 import { ProductAdminService } from './product-admin.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-product-admin',
   templateUrl: './product-admin.component.html',
@@ -51,7 +52,7 @@ export class ProductAdminComponent implements OnInit {
     this.material = ""    
 }
 
-deleteCategory(data) {
+deleteProduct(data) {
   this.selectProduct = data
   if (data.mainImage)
       //this.deleteMainImage()
@@ -59,7 +60,7 @@ deleteCategory(data) {
  
 }
 
-saveCategory() {
+saveProduct() {
   var product = { product_name: this.product_name, price: this.price, material: this.material }
   var id = this.productAdminService.createProduct(product)
   console.log("saved obj:", id)
@@ -67,7 +68,7 @@ saveCategory() {
   this.addNew()
 }
 
-editCategory(data) {
+editProduct(data) {
   this.productList = []
   this.selectProduct = data
   this.product_name = data.name
@@ -86,6 +87,14 @@ editCategory(data) {
       console.log("Product list based on pro id:", this.productList)
       this.selectedProduct = data.product ? this.productList.find(e => e.id === data.product.id) : ''
     })
+}
+
+updateProduct() {
+  this.productAdminService.updateCategory(this.selectedProduct.id, { product_name: this.product_name, price: this.price, material: this.material, product: this.selectedProduct })
+  // var index = this.categories.findIndex(e => e.id == this.selectedCategory.id)
+  // this.categories[index].name = this.name
+  // this.categories[index].description = this.description
+  this.addNew()
 }
 
 

@@ -24,8 +24,51 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
-import {CarouselModule} from 'primeng/carousel';
+import { CarouselModule } from 'primeng/carousel';
 import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
+import { CardModule } from 'primeng/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotifyService } from './common/notify.service';
+import { CommonService } from './common/common.service';
+import { ContactusComponent } from './contactus/contactus.component';
+
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs'
+
+import { AgmCoreModule } from '@agm/core';
+import { FooterComponent } from './navigation/footer/footer.component';
+import { ShareModule } from '@ngx-share/core';
+import { ProductComponent } from './product/product.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { DropzoneDirective } from './dropzone.directive';
+import { UploaderComponent } from './uploader/uploader.component';
+import { UploadTaskComponent } from './upload-task/upload-task.component';
+
+// import {
+//   SocialLoginModule,
+//   AuthServiceConfig,
+//   GoogleLoginProvider,
+//   FacebookLoginProvider,
+// } from "angularx-social-login";
+
+// const config = new AuthServiceConfig([
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     // provider: new FacebookLoginProvider('866153103835233')
+//     provider: new FacebookLoginProvider('192438435494204')
+//   },
+//   {
+//     id: GoogleLoginProvider.PROVIDER_ID,
+//     // provider: new GoogleLoginProvider('401109795446-qjvv0pm1rb27hriafttqhi6dletig8oa.apps.googleusercontent.com')
+//     provider: new GoogleLoginProvider('427405871684-a8b099lefrcluprnllgcke345pk35s2e.apps.googleusercontent.com')
+
+
+//   }
+// ]);
+
+// export function provideConfig() {
+//   return config;
+// }
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +79,14 @@ import { ProductAdminComponent } from './admin/product-admin/product-admin.compo
     HeaderComponent,
     SidenavListComponent,
     SliderAdminComponent,
-    ProductAdminComponent
+    ProductAdminComponent,
+    ContactusComponent,
+    FooterComponent,
+    ProductComponent,
+    ProductDetailComponent,
+    DropzoneDirective,
+    UploaderComponent,
+    UploadTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -51,19 +101,33 @@ import { ProductAdminComponent } from './admin/product-admin/product-admin.compo
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     CarouselModule,
-
+    CardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatTabsModule,
+    
+    ShareModule.forRoot(),
+   // SocialLoginModule,
+   AgmCoreModule.forRoot({
+    apiKey: 'AIzaSyCYTFor6RFV5hofjBPrk3NEgsV-1o1b8HQ'
+  }),
     RouterModule.forRoot([      
       { path: '', component: HomeComponent },
       { path: '404', component: NotFoundComponent },
       { path: '**', redirectTo: '/404', pathMatch: 'full' },
       { path: 'admin/slider', component: SliderAdminComponent},
       { path: 'admin/product', component: ProductAdminComponent},
-
+      { path: 'contactus', component: ContactusComponent},
+      { path: 'uploader', component: UploaderComponent},
       
     ]),
     
   ],
-  providers: [],
+  // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
+  //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
+  providers: [
+    AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
