@@ -1,21 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { ProductAdminService } from './admin/product-admin/product-admin.service';
+//import { ProductService } from './product/product.service';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ProductAdminService],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'Jaliyan Kids Wear';
   navLinks: any[];
   activeLinkIndex = -1;
- 
-  constructor(private router: Router) {
+  genders: any[] = [];
+  constructor(private router: Router, private productAdminService: ProductAdminService) {
+
+    this.productAdminService.getGenders().subscribe(data => {
+      this.genders = []
+      data.map(e => {
+        var dt: any = e.payload.doc.data()
+        this.genders.push({id: e.payload.doc.id, gender: dt.gender })
+      });
+
+      console.log("list of genders:", this.genders)
+    })
+
     this.navLinks = [
         {
-            label: 'Women',
-            link: './first',
+            label: 'Female',
+            link: './product',              
             index: 0
         }, {
             label: 'Men',
@@ -23,7 +40,7 @@ export class AppComponent {
             index: 1
         },    {
           label: 'Kids',
-          link: './second',
+          link: './admin/product',
           index: 2
       }, {
         label: 'Others',
@@ -36,10 +53,20 @@ export class AppComponent {
             index: 4
         }, 
     ];
+
+   
 }
 ngOnInit(): void {
   this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
   });
+ 
 }
+gotoGenderof(itm){
+  console.log('itm',itm);
+  //this.router.navigate(['product/', itm.id ]);
+ 
+  console.log('genObj.id',itm.id);
+}
+
 }

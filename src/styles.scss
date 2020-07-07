@@ -3,7 +3,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* html, body { margin: 0; height: 100%; } */
 body {  font-family: Roboto, "Helvetica Neue", sans-serif; 
-      background-color: white;
+      
 }
 
  /* in image slider make responsive sliderr */
@@ -17,7 +17,7 @@ body {  font-family: Roboto, "Helvetica Neue", sans-serif;
   align-items: center;
   justify-content: center;
   flex-direction: column; 
-  min-width: 80vw;
+  min-width: 50vw;
   font-weight: 200;
   height: 300px;
   border: 2px dashed #f16624;
@@ -39,3 +39,20 @@ progress::-webkit-progress-value {
   transition: width 0.1s ease;
 }
   /* END FOLLOWING TAG USE FOR DROPZONE */
+
+  // ADMIN PANEL HEADING 
+h6{   
+    
+  font-size: 15px;
+  color: black;
+  font-family: 'Segoe UI';
+  text-align: right;    
+}
+// ADMIN PANEL INPUT TEXT
+h5{   
+  
+  font-size: 13px;
+  color: black;
+  font-family: 'Segoe UI';
+  text-align: left;    
+}

@@ -1,1 +1,26 @@
-<p>product works!</p>
+<p-dataView #dv [value]="productList" filterBy="name" layout="grid">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+
+                <div class="ui-g-6 ui-md-4 filter-container">
+                    <div style="position:relative;">
+                        <input type="search" pInputText placeholder="Search by name"
+                            (keyup)="dv.filter($event.target.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-product pTemplate="gridItem">
+        <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
+            <p-panel>
+                <img [src]="product.mainImage ? product.mainImage : '../../../../assets/img/no_image_available.jpeg'" style="width: 50%">
+                <div class="car-detail">
+                    <h1>{{product.product_name}} </h1>
+                </div>
+               
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>

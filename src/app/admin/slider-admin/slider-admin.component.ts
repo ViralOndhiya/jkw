@@ -72,7 +72,7 @@ upload(event, tableName, tableId, index) {
     this['uploadProgress'+index] = this.task.percentageChanges();
     this.storage.upload(tableName, event.target.files[0]).then(async (result) => {
         this.mainImage = await ref.getDownloadURL().toPromise();
-        console.log("Slider main image:", this.mainImage)
+       // console.log("Slider main image:", this.mainImage)
        
 
         this.sliderAdminService.updateSliderMainImagePath(tableId, this.mainImage, path)

@@ -38,11 +38,16 @@ import {MatTabsModule} from '@angular/material/tabs'
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { ShareModule } from '@ngx-share/core';
-import { ProductComponent } from './product/product.component';
+
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { DropzoneDirective } from './dropzone.directive';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { DataViewModule } from 'primeng/dataview';
+import { PanelModule } from 'primeng/panel';
+import { ProductComponent } from './product/product.component';
 
 // import {
 //   SocialLoginModule,
@@ -82,11 +87,12 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
     ProductAdminComponent,
     ContactusComponent,
     FooterComponent,
-    ProductComponent,
+    
     ProductDetailComponent,
     DropzoneDirective,
     UploaderComponent,
-    UploadTaskComponent
+    UploadTaskComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +112,11 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
     ReactiveFormsModule,
     MatToolbarModule,
     MatTabsModule,
-    
+    TableModule,
+    DropdownModule,
+    DataViewModule,
+    PanelModule,
+    ShareModule,  
     ShareModule.forRoot(),
    // SocialLoginModule,
    AgmCoreModule.forRoot({
@@ -120,6 +130,7 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
       { path: 'admin/product', component: ProductAdminComponent},
       { path: 'contactus', component: ContactusComponent},
       { path: 'uploader', component: UploaderComponent},
+      { path: 'product', component: ProductComponent},
       
     ]),
     
@@ -127,7 +138,7 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
   // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
   //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   providers: [
-    AngularFirestore, AngularFireStorage, NotifyService, CommonService],
+    AngularFirestore, AngularFireStorage, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

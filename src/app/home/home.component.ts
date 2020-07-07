@@ -53,11 +53,7 @@ export class HomeComponent implements OnInit {
     public share: ShareButtons) { 
     
      this.responsiveOptions = [
-        {
-            breakpoint: '1366px',
-            numVisible: 1,
-            numScroll: 1
-        },
+    
       {
           breakpoint: '1024px',
           numVisible: 1,
@@ -87,7 +83,7 @@ export class HomeComponent implements OnInit {
                 id: e.payload.doc.id, mainImage: dt.mainImage, type: this.checkType(dt.mainImage) ? 'image' : 'video'
             })
       });
-      console.log("slider on home page:", this.sliders)
+     // console.log("slider on home page:", this.sliders)
   })
 
   

@@ -12,9 +12,7 @@ import { finalize, tap } from 'rxjs/operators';
 export class UploadTaskComponent implements OnInit {
 
   @Input() file: File;
-
   task: AngularFireUploadTask;
-
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
@@ -26,7 +24,7 @@ export class UploadTaskComponent implements OnInit {
   }
 
   startUpload() {
-
+    var exitingproduct = localStorage.getItem("STORE_IMG_NAME");
     // The storage path
     const path = `test/${Date.now()}_${this.file.name}`;
 
@@ -45,7 +43,9 @@ export class UploadTaskComponent implements OnInit {
       finalize( async() =>  {
         this.downloadURL = await ref.getDownloadURL().toPromise();
 
-        this.db.collection('files').add( { downloadURL: this.downloadURL, path });
+      ///  this.db.collection('files').add( { downloadURL: this.downloadURL, path });
+     // console.log('exitingproduct',exitingproduct);
+        this.db.collection('files').doc(exitingproduct).set( { downloadURL: this.downloadURL, path , exitingproduct}, {merge: true});
       }),
     );
   }

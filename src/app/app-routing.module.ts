@@ -6,6 +6,7 @@ import { SliderAdminComponent } from './admin/slider-admin/slider-admin.componen
 import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { UploaderComponent } from './uploader/uploader.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'admin/product', component: ProductAdminComponent},
   { path: 'contactus', component: ContactusComponent},
   { path: 'uploader', component: UploaderComponent},
+  { path: 'product', component: ProductComponent},
 ];
 export const appRouting = RouterModule.forRoot(routes);
 @NgModule({
