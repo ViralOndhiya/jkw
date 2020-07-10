@@ -7,6 +7,9 @@
                     <div style="position:relative;">
                         <input type="search" pInputText placeholder="Search by name"
                             (keyup)="dv.filter($event.target.value)">
+                            <!-- <input type="text" icon="fa fa-search" pInputText size="20"
+                             placeholder="Global Filter"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" > -->
                     </div>
                 </div>
             </div>
@@ -15,12 +18,17 @@
     <ng-template let-product pTemplate="gridItem">
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
             <p-panel>
-                <img [src]="product.mainImage ? product.mainImage : '../../../../assets/img/no_image_available.jpeg'" style="width: 50%">
+                <img [src]="product.mainImage ? product.mainImage : '../../../../assets/img/no_image_available.jpeg'" 
+                style="cursor: pointer; width: 200px; height:200px;" class="hide_all" 
+                (click)="selectProduct($event, product)">
                 <div class="car-detail">
-                    <h1>{{product.product_name}} </h1>
-                </div>
-               
+                    <h3>{{product.product_name}} </h3>
+                    <h3>Rs. {{product.price}} </h3>
+                </div>               
             </p-panel>
         </div>
     </ng-template>
 </p-dataView>
+<p-dialog header="Product Details" [(visible)]="displayDialog">
+    <app-productdetail [selectedProduct]="selectedProduct"></app-productdetail>
+</p-dialog>

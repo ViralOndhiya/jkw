@@ -1,59 +1,25 @@
-<!-- <app-layout>
-  <app-home></app-home>
-</app-layout> -->
-
-<!-- <div class="container">
-  <div class="row">
-      <div class="col">
-        <app-menu></app-menu>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div> -->
-
 <app-layout>
   <mat-sidenav-container>
     <app-header></app-header>
     <mat-sidenav #sidenav role="navigation">
       <!--this is a place for us to add side-nav code-->
-     
-        <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
-      </mat-sidenav>
-   
+
+      <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
+    </mat-sidenav>
+
     <mat-sidenav-content>
       <!--in here all the content must reside. We will add a navigation header as well-->
       <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
       <main>
-        <!-- <nav mat-tab-nav-bar>
-          <a mat-tab-link
-          *ngFor="let link of navLinks"
-          [routerLink]="link.link"
-          routerLinkActive #rla="routerLinkActive"
-          [active]="rla.isActive"
-       
-          (click)="gotoGenderof(link)">
-         {{link.label}}
-        </a>
-        </nav> -->
-          <nav mat-tab-nav-bar>
-          <a mat-tab-link
-          *ngFor="let item of genders" 
-          [routerLink]="['/product',item.id]">
-         {{item.gender}}
-        </a>
+
+        <nav mat-tab-nav-bar>
+          <a mat-tab-link *ngFor="let item of genders" (click)="gotoGenderof(item)">
+            {{item.gender}}
+          </a>
         </nav>
         <router-outlet></router-outlet>
       </main>
-      <app-footer></app-footer> 
+      <app-footer></app-footer>
     </mat-sidenav-content>
-
-   
-    <!-- <router-outlet></router-outlet> -->
-
-
-  </mat-sidenav-container> 
+  </mat-sidenav-container>
 </app-layout>

@@ -39,7 +39,7 @@ import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { ShareModule } from '@ngx-share/core';
 
-import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductDetailComponent } from './productdetail/productdetail.component';
 import { DropzoneDirective } from './dropzone.directive';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
@@ -48,7 +48,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import { ProductComponent } from './product/product.component';
-
+import {DialogModule} from 'primeng/dialog';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import {
 //   SocialLoginModule,
 //   AuthServiceConfig,
@@ -117,8 +118,10 @@ import { ProductComponent } from './product/product.component';
     DataViewModule,
     PanelModule,
     ShareModule,  
+    FontAwesomeModule,
     ShareModule.forRoot(),
    // SocialLoginModule,
+   DialogModule,
    AgmCoreModule.forRoot({
     apiKey: 'AIzaSyCYTFor6RFV5hofjBPrk3NEgsV-1o1b8HQ'
   }),

@@ -4,13 +4,14 @@ import { ShareButtons } from '@ngx-share/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 //import { NotifyService } from '../common/notify.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
-  providers: [ProductService],
-   styles: [`      
+  providers: [ProductService],   
+    styles: [`      
   .filter-container {
       text-align: center;
   }
@@ -118,49 +119,64 @@ import { Subscription } from 'rxjs';
 `]
 })
 export class ProductComponent implements OnInit {
- 
+
     cols: any[];
     displayDialog: boolean = false;
     genderId: any;
+    productId: any;
+    //selectProduct: any;
     productList: any[] = []
+    productImgList: any[] = []
     selectedProduct: any;
     userLikedProducts: any[] = []
     currentUser;
     subscription: Subscription;
-  constructor(private productService: ProductService, public share: ShareButtons,
+    constructor(private productService: ProductService, public share: ShareButtons,
+        private _activatedRoute: ActivatedRoute, private commonService: CommonService,
+        private router : Router) {
+
+        this._activatedRoute.params.subscribe((params: any) => {
+            this.genderId = params['genId']
+           // console.log("in product by gender page:", this.genderId)
+            this.getProductListByGender()           
+        })       
+    }
+
+    ngOnInit(): void {
+    }
+    getProductListByGender() {
+        console.log('in getProductListByGender')
+        this.productService.getAllProductByGender(this.genderId).subscribe(data => {
+            //    this.productService.getAllProductByGender('x0cLujwyq4SEVCGL8Ai5').subscribe(data => {
+            this.productList = []
+           // console.log("get ref products:", data)            
+            data.map(e => {
+                var dt: any = e.payload.doc.data();
+                this.productList.push({
+                    id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
+                    material: dt.material, mainImage: dt.mainImage, pathImage: dt.pathImage,
+                    gender: dt.gender.id
+                })
+            });
+            console.log("Product list based on cat id:", this.productList);
+        })
     
-    private _activatedRoute: ActivatedRoute, private commonService: CommonService) {
+    }
 
-      this._activatedRoute.params.subscribe((params: any) => {
-        this.genderId = params['genId']
-        console.log("in product by gender page:", this.genderId)
+    // openProduct(product){
+    //     //console.log("e. open proecut:", product)
+    //      this.selectProduct=product       
+    //      console.log("e. open proecut:", this.selectProduct)           
+    //     this.router.navigate(['productdetail/', this.selectProduct ]);        
+    //   }
+      selectProduct(event, product) {
+        this.selectedProduct = product
+        this.displayDialog = true;
+    }
+    
+    }
 
-        this.getProductListByGender()
-    })
-     }
 
-  ngOnInit(): void {
-  }
-  getProductListByGender() {
-    this.productService.getAllProductByGender('this.genderId').subscribe(data => {
-        this.productList = []
-        console.log("get ref products:", data)
-        data.map(e => {
-            var dt: any = e.payload.doc.data();
-            this.productList.push({
-                id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
-                 material: dt.material,
-               gender: dt.gender.id
-                
-            })
-           
-        });
-        console.log("Product list based on cat id:", this.productList);
-       
-    })
-  }
-  
-  
 
-  
-}
+
+

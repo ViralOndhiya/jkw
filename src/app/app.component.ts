@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { ProductAdminService } from './admin/product-admin/product-admin.service';
-//import { ProductService } from './product/product.service';
+import { ProductService } from './product/product.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class AppComponent {
         this.genders.push({id: e.payload.doc.id, gender: dt.gender })
       });
 
-      console.log("list of genders:", this.genders)
+    //  console.log("list of genders:", this.genders)
     })
 
     this.navLinks = [
@@ -63,10 +63,10 @@ ngOnInit(): void {
  
 }
 gotoGenderof(itm){
-  console.log('itm',itm);
-  //this.router.navigate(['product/', itm.id ]);
+  //console.log('itm',itm);
+  this.router.navigate(['app/', itm.id ]);
  
-  console.log('genObj.id',itm.id);
+ // console.log('genObj.id',itm.id);
 }
 
 }

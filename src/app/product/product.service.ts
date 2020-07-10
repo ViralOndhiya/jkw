@@ -11,6 +11,23 @@ export class ProductService {
 
     getAllProductByGender(genId) {
         const genObj = this.firestore.doc('genders/' + genId);
+       // console.log('genObj in service', genObj)
         return this.firestore.collection('product_detail', ref => ref.where('gender', '==', genObj.ref)).snapshotChanges()
-    }    
+    }  
+
+    getAllProductByProId(proId) {
+        const proObj = this.firestore.doc('product_detail/' + proId);     
+        return this.firestore.collection('product_detail', ref => ref.where('product_name', '==', 'T - Shirt White Female')).snapshotChanges()
+    }  
+    
+    getProductById(product){
+        return this.firestore.collection('product_detail').doc(product.id).valueChanges();
+        //return this.firestore.doc('product_detail/' + product);
+    }
+    // getAllProductImgByGender(proId) {
+    //     const proObj = this.firestore.doc('product_detail/' + proId);
+    //     //const proObj = this.firestore.collection('product_detail').doc(proId.id);
+    //     console.log('proObj in service', proObj.ref)
+    //     return this.firestore.collection('files', ref => ref.where('product_id', '==', proObj.ref)).snapshotChanges()
+    // } 
 }
