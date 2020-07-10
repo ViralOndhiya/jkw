@@ -149,12 +149,13 @@ export class ProductComponent implements OnInit {
         this.productService.getAllProductByGender(this.genderId).subscribe(data => {
             //    this.productService.getAllProductByGender('x0cLujwyq4SEVCGL8Ai5').subscribe(data => {
             this.productList = []
-           // console.log("get ref products:", data)            
+           //console.log("get ref products:", data)            
             data.map(e => {
                 var dt: any = e.payload.doc.data();
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, mainImage: dt.mainImage, pathImage: dt.pathImage,
+                    proImages: dt.proImages, 
                     gender: dt.gender.id
                 })
             });

@@ -26,6 +26,27 @@
                     width="350" height="350">
             </div>
         </div>
+        <div class="ui-g-12 ui-md-6 ui-lg-6">
+            <p-carousel [value]="selectedProduct">
+                <p-header>
+                    <h3>Basic</h3>
+                </p-header>
+                <ng-template let-car pTemplate="item">
+                    <div class="car-details">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12 p-md-6 p-lg-3" style="overflow:hidden">
+                                <img src="{{car.proImages}}" class="imgresponsive" *ngIf="car.type === 'image'"/>
+                              
+                                <video autoplay loop *ngIf="car.type !== 'image'"  class="imgresponsive" >
+                                    <source src="{{car.proImages}}" type="video/mp4">  
+                                </video>
+                            </div> 
+                           
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
         <div class="ui-g-12 ui-md-6 ui-lg-6" style="margin-top: 20px; ">
 
             <div class="ui-g-12">
