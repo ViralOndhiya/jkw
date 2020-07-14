@@ -102,9 +102,9 @@ export class ProductAdminComponent implements OnInit {
     var product = {
       product_name: this.product_name,
       price: this.price, material: this.material, genderId: this.selectedGender.id }
-    //  console.log('save...',this.selectedGender.id);
+     console.log('save...',this.selectedGender.id);
     var id = this.productAdminService.createProduct(product)
-  //  console.log("saved obj:", id)
+    console.log("saved obj:", id)
     this.addNew() 
   }
 

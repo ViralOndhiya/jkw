@@ -9,7 +9,7 @@
 
   {{ snap.bytesTransferred }} of {{ snap.totalBytes }} 
 
-  <div *ngIf="downloadURL as url">
+  <div *ngIf="ProdownloadURL as url">
     <h3>Results!</h3>
     <img [src]="url"><br>
     <a [href]="url" target="_blank" rel="noopener">Download Me!</a>

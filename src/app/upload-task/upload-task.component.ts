@@ -15,22 +15,23 @@ export class UploadTaskComponent implements OnInit {
   task: AngularFireUploadTask;
   percentage: Observable<number>;
   snapshot: Observable<any>;
-  downloadURL: string;
-
+ // downloadURL: Observable<any>;
+ ProdownloadURL: any;
   constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
 
   ngOnInit() {
+
     this.startUpload();
   }
 
   startUpload() {
     var exitingproduct = localStorage.getItem("STORE_IMG_NAME");
     // The storage path
-    const path = `test/${Date.now()}_${this.file.name}`;
+    const path = `product_detail/${Date.now()}_${this.file.name}`;
 
     // Reference to storage bucket
     const ref = this.storage.ref(path);
-
+    console.log('path',path)
     // The main task
     this.task = this.storage.upload(path, this.file);
 
@@ -41,11 +42,18 @@ export class UploadTaskComponent implements OnInit {
       tap(console.log),
       // The file's download URL
       finalize( async() =>  {
-        this.downloadURL = await ref.getDownloadURL().toPromise();
+        this.ProdownloadURL  = await ref.getDownloadURL().toPromise();
+        console.log('ProdownloadURL',this.ProdownloadURL);   
+        
 
-      ///  this.db.collection('files').add( { downloadURL: this.downloadURL, path });
-     // console.log('exitingproduct',exitingproduct);
-        this.db.collection('files').doc(exitingproduct).set( { downloadURL: this.downloadURL, path , exitingproduct}, {merge: true});
+       
+          // this.db.collection('product_detail').doc(exitingproduct).set( { downloadURL : this.downloadURL}, {merge: true});
+          this.db.collection('product_detail').doc(exitingproduct).set( { ProdownloadURL : this.ProdownloadURL, path});
+      
+          
+        
+  
+       
       }),
     );
   }

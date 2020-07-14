@@ -12,6 +12,7 @@ import { ShareButtons } from '@ngx-share/core';
    
 })
 export class ProductDetailComponent implements OnInit {
+  selectedImages: any[];
   constructor(public share: ShareButtons, private productService: ProductService,
     private commonService: CommonService) {
     
@@ -20,6 +21,7 @@ export class ProductDetailComponent implements OnInit {
 @Input() selectedProduct;
   ngOnInit(): void {
     console.log("in open dialog box:", this.selectedProduct)
+  //this.selectedImages=this.selectedProduct?.proImages
   }
 
 }

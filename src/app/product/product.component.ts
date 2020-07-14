@@ -128,9 +128,12 @@ export class ProductComponent implements OnInit {
     productList: any[] = []
     productImgList: any[] = []
     selectedProduct: any;
+    selectedImages: any[];
     userLikedProducts: any[] = []
     currentUser;
+    
     subscription: Subscription;
+    responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
     constructor(private productService: ProductService, public share: ShareButtons,
         private _activatedRoute: ActivatedRoute, private commonService: CommonService,
         private router : Router) {
@@ -139,7 +142,25 @@ export class ProductComponent implements OnInit {
             this.genderId = params['genId']
            // console.log("in product by gender page:", this.genderId)
             this.getProductListByGender()           
-        })       
+        }),
+        this.responsiveOptions = [
+            {
+                breakpoint: '1024px',
+                numVisible: 3,
+                numScroll: 3
+            },
+            {
+                breakpoint: '768px',
+                numVisible: 2,
+                numScroll: 2
+            },
+            {
+                breakpoint: '560px',
+                numVisible: 1,
+                numScroll: 1
+            }
+        ];  
+
     }
 
     ngOnInit(): void {
@@ -149,6 +170,7 @@ export class ProductComponent implements OnInit {
         this.productService.getAllProductByGender(this.genderId).subscribe(data => {
             //    this.productService.getAllProductByGender('x0cLujwyq4SEVCGL8Ai5').subscribe(data => {
             this.productList = []
+            this.selectProduct
            //console.log("get ref products:", data)            
             data.map(e => {
                 var dt: any = e.payload.doc.data();
@@ -171,7 +193,9 @@ export class ProductComponent implements OnInit {
     //     this.router.navigate(['productdetail/', this.selectProduct ]);        
     //   }
       selectProduct(event, product) {
+       
         this.selectedProduct = product
+        this.selectedImages=this.selectedProduct?.proImages
         this.displayDialog = true;
     }
     

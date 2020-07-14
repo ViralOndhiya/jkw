@@ -12,9 +12,9 @@
         <div class="ui-g-12 ui-md-6 ui-lg-12">
             <div class="ui-g">
 
-                <div class="ui-g-12" style="text-align:center">
+                <!-- <div class="ui-g-12" style="text-align:center">
                     <input type="button" value="Add New" (click)="addNew()">
-                </div>
+                </div> -->
 
                 <div class="ui-g-4 ui-lg-6">
                     <h6>Gender :</h6>
@@ -82,8 +82,10 @@
                         <progress max="100" [value]="(uploadProgress | async)"></progress>
                     </div> -->
                 <div class="ui-g-12" style="text-align:center">
-                    <input type="button" value="Save" label="Save"
-                        (click)="selectedProduct?.id ? updateProduct() : saveProduct()">
+                   
+                       <button pButton type="button" label="Save" class="ui-button-rounded ui-button-success"
+                        (click)="selectedProduct?.id ? updateProduct() : saveProduct()"></button> 
+                       
                 </div>
 
                 <div class="ui-g-12" style="text-align:center">
@@ -143,15 +145,16 @@
                 <td>
 
                     <div class="ui-g">
-                        <div class="ui-g-6 ui-lg-12" style="text-align: -webkit-center; ">
-
-                            <button pButton type="button" class="ui-button-raised ui-button-secondary" label="Edit"
-                                (click)="editProduct(rowData)"></button>
+                        <div class="ui-g-6 ui-lg-12"  style="text-align: -webkit-center;">
+                            
+                            <button pButton type="button" label="Edit" class="ui-button-rounded ui-button-success"
+                            (click)="editProduct(rowData)"></button>
                         </div>
                         <div class="ui-g-6 ui-lg-12" style="text-align: -webkit-center;">
 
-                            <button pButton type="button" class="ui-button-raised ui-button-secondary" label="Delete"
-                                (click)="deleteProduct(rowData)"></button>
+                            <button pButton type="button" label="Delete" class="ui-button-rounded ui-button-danger"
+                            (click)="deleteProduct(rowData)"></button>
+                                
                         </div>
                     </div>
                 </td>

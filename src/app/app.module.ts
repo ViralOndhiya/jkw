@@ -50,6 +50,7 @@ import { PanelModule } from 'primeng/panel';
 import { ProductComponent } from './product/product.component';
 import {DialogModule} from 'primeng/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {ButtonModule} from 'primeng/button';
 // import {
 //   SocialLoginModule,
 //   AuthServiceConfig,
@@ -119,6 +120,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PanelModule,
     ShareModule,  
     FontAwesomeModule,
+    ButtonModule,
     ShareModule.forRoot(),
    // SocialLoginModule,
    DialogModule,

@@ -7,7 +7,7 @@
                     <div style="position:relative;">
                         <input type="search" pInputText placeholder="Search by name"
                             (keyup)="dv.filter($event.target.value)">
-                            <!-- <input type="text" icon="fa fa-search" pInputText size="20"
+                        <!-- <input type="text" icon="fa fa-search" pInputText size="20"
                              placeholder="Global Filter"
                             (input)="dt.filterGlobal($event.target.value, 'contains')" > -->
                     </div>
@@ -18,17 +18,110 @@
     <ng-template let-product pTemplate="gridItem">
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
             <p-panel>
-                <img [src]="product.mainImage ? product.mainImage : '../../../../assets/img/no_image_available.jpeg'" 
-                style="cursor: pointer; width: 200px; height:200px;" class="hide_all" 
-                (click)="selectProduct($event, product)">
+                <img [src]="product.mainImage ? product.mainImage : '../../../../assets/img/no_image_available.jpeg'"
+                    style="cursor: pointer; width: 200px; height:200px;" class="hide_all"
+                    (click)="selectProduct($event, product)">
                 <div class="car-detail">
                     <h3>{{product.product_name}} </h3>
                     <h3>Rs. {{product.price}} </h3>
-                </div>               
+                </div>
             </p-panel>
         </div>
     </ng-template>
 </p-dataView>
 <p-dialog header="Product Details" [(visible)]="displayDialog">
-    <app-productdetail [selectedProduct]="selectedProduct"></app-productdetail>
+    <!-- <app-productdetail [selectedProduct]="selectedProduct"></app-productdetail> -->
+    <style>
+        p {
+            text-decoration: none;
+            font-size: 15px;
+            color: black;
+            font-family: 'Segoe UI';
+            text-shadow: 1px 2px 4px grey;
+        }
+
+        h1 {
+            text-decoration: none;
+            font-size: 20px;
+            color: red;
+            font-family: 'Segoe UI';
+            text-shadow: 1px 2px 4px grey;
+
+
+        }
+    </style>
+
+    <div class="ui-g" *ngIf="selectedProduct">
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <div class="ui-g-12" style="text-align:center">
+                    <img [src]="selectedProduct.mainImage ? selectedProduct.mainImage : 'assets/img/no_image_available.jpeg'"
+                        width="350" height="500">
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
+                <div class="ui-g-12">
+                    <h1>{{selectedProduct.product_name}}</h1>
+                </div>
+                <div class="ui-g-4">
+                    <p>Price :</p>
+                </div>
+                <div class="ui-g-8">
+                    <p>{{selectedProduct.price}}</p>
+                </div>
+                <div class="ui-g-4">
+                    <p>Material :</p>
+                </div>
+                <div class="ui-g-8">
+                    <p>{{selectedProduct.material}}</p>
+                </div>
+
+
+
+
+                <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="1"
+                    [responsiveOptions]="responsiveOptions">
+                    <p-header>
+                        <h3>Color</h3>
+                    </p-header>
+                    <ng-template let-car pTemplate="item">
+                        <div class="car-details">
+                            <div class="p-grid p-nogutter">
+                                <div class="ui-g-12" style="overflow:hidden">
+                                    <img [src]=car class="imgresponsive" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+
+
+                <div class="ui-g-4">
+                    <p>share :</p>
+                </div>
+                <div class="ui-g-8">
+                    <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
+                        <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
+                    </button>
+                    <button mat-fab shareButton="whatsapp" [style.backgroundColor]="share.prop.whatsapp.color">
+                        <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
+                    </button>
+                    <button mat-fab shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
+                        <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
+                    </button>
+
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-6" style="margin-top: 20px; ">
+
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
 </p-dialog>
