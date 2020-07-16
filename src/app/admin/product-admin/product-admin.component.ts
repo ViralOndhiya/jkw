@@ -22,6 +22,7 @@ export class ProductAdminComponent implements OnInit {
   selectProduct: any;
   product_name = "";
   gender = "";
+  name="";
   price = "";
   material = "";
   selectedProduct: any;
@@ -30,7 +31,10 @@ export class ProductAdminComponent implements OnInit {
   isHovering: boolean;
   files: File[] = [];
   genders: any[] = [];
+  categories: any[] = [];
+  sizes: any[] = [];
   selectedGender: any;
+  selectedCategory: any;
 
   @Input() file: File;
   task: AngularFireUploadTask;
@@ -46,10 +50,31 @@ export class ProductAdminComponent implements OnInit {
       this.genders = []
       data.map(e => {
         var dt: any = e.payload.doc.data()
-        this.genders.push({id: e.payload.doc.id, gender: dt.gender })
+        this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
       });
 
-      //console.log("list of genders:", this.genders)
+      console.log("list of genders:", this.genders)
+    }),
+
+
+    this.productAdminService.getCategories().subscribe(data => {
+      this.categories = []
+      data.map(e => {
+        var dt: any = e.payload.doc.data()
+        this.categories.push({ id: e.payload.doc.id, name: dt.name })
+      });
+
+      console.log("list of category:", this.categories)
+    }),
+
+    this.productAdminService.getsizes().subscribe(data => {
+      this.sizes = []
+      data.map(e => {
+        var dt: any = e.payload.doc.data()
+        this.sizes.push({ id: e.payload.doc.id, size: dt.size })
+      });
+
+      console.log("list of size:", this.sizes)
     })
   }
 
@@ -57,6 +82,7 @@ export class ProductAdminComponent implements OnInit {
 
     this.cols = [
       { field: 'gender', header: 'Gender' },
+      { field: 'name', header: 'Category' },
       { field: 'product_name', header: 'Product Name' },
       { field: 'price', header: 'Price', columnWidth: '100px' },
       { field: 'material', header: 'Material' },
@@ -70,15 +96,20 @@ export class ProductAdminComponent implements OnInit {
     this.productAdminService.getProducts().subscribe(data => {
       this.productList = []
       data.map(e => {
-      //  console.log("in map data:", e.payload.doc.data())
+        //console.log("in map data:", e.payload.doc.data())
         var dt: any = e.payload.doc.data()
         this.productList.push({
           id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
-          material: dt.material, genderId: dt.gender.id,
-          gender: this.genders.find(e => e.id == dt.gender.id)? 
-          this.genders.find(e => e.id == dt.gender.id).gender : ''
+          material: dt.material,
+          genderId: dt.gender.id,
+          gender: this.genders.find(e => e.id == dt.gender.id) ?
+            this.genders.find(e => e.id == dt.gender.id).gender : '',
+            
+          categoryID: dt.name.id,
+          name: this.categories.find(e => e.id == dt.name.id) ?
+            this.categories.find(e => e.id == dt.name.id).name : ''
         })
-       // console.log("in map data  222:",  this.productList)
+       // console.log("in map data  222:", this.productList)
       });
     })
   }
@@ -86,6 +117,7 @@ export class ProductAdminComponent implements OnInit {
   addNew() {
     this.selectProduct = ""
     this.gender = ""
+    this.selectedCategory = ""
     this.product_name = ""
     this.price = ""
     this.material = ""
@@ -101,36 +133,36 @@ export class ProductAdminComponent implements OnInit {
   saveProduct() {
     var product = {
       product_name: this.product_name,
-      price: this.price, material: this.material, genderId: this.selectedGender.id }
-     console.log('save...',this.selectedGender.id);
+      price: this.price, material: this.material, 
+      genderId: this.selectedGender.id,
+      categoryID: this.selectedCategory.id
+    }
+   // console.log('save...', this.selectedGender.id);
     var id = this.productAdminService.createProduct(product)
-    console.log("saved obj:", id)
-    this.addNew() 
+   // console.log("saved obj:", id)
+    this.addNew()
   }
 
   editProduct(data) {
-   // console.log("data in edit pro....", data);
-    // this.productList = []
     this.selectedProduct = data
     this.selectedGender = this.genders.find(e => e.id === data.genderId)
+    this.selectedCategory = this.categories.find(e => e.id === data.categoryID)
     this.product_name = data.product_name
     this.price = data.price
     this.material = data.material
-    //console.log('update mode this.selectedProduct.id', this.selectedProduct.id);
+    console.log('update mode this.selectedProduct.id', this.selectedProduct.id);
     localStorage.setItem("STORE_IMG_NAME", this.selectedProduct.id)
-    //this.startUpload();
+
   }
 
   updateProduct() {
-  //  console.log('update mode this.selectedProduct.id', this.selectedProduct.id);
 
     this.productAdminService.updateProduct(this.selectedProduct.id, {
       product_name: this.product_name,
-      price: this.price, 
+      price: this.price,
       material: this.material,
       genderId: this.selectedGender.id
     })
-
     this.addNew()
   }
 
@@ -145,9 +177,4 @@ export class ProductAdminComponent implements OnInit {
     }
 
   }
-
-
-
-
-
 }

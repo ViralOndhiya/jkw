@@ -18,7 +18,7 @@
     <ng-template let-product pTemplate="gridItem">
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
             <p-panel>
-                <img [src]="product.mainImage ? product.mainImage : '../../../../assets/img/no_image_available.jpeg'"
+                <img [src]="product.ProdownloadURL ? product.ProdownloadURL : '../../../../assets/img/no_image_available.jpeg'"
                     style="cursor: pointer; width: 200px; height:200px;" class="hide_all"
                     (click)="selectProduct($event, product)">
                 <div class="car-detail">
@@ -53,13 +53,14 @@
 
     <div class="ui-g" *ngIf="selectedProduct">
         <div class="ui-g">
-            <div class="ui-g-12 ui-md-6 ui-lg-6">
+            <div class="ui-g-12 ui-md-6 ui-lg-5">
                 <div class="ui-g-12" style="text-align:center">
-                    <img [src]="selectedProduct.mainImage ? selectedProduct.mainImage : 'assets/img/no_image_available.jpeg'"
-                        width="350" height="500">
+                    
+                    <img [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
+                    style="cursor: pointer; width: 300px; height:400px;" class="hide_all"  >
                 </div>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-6">
+            <div class="ui-g-12 ui-md-6 ui-lg-7">
                 <div class="ui-g-12">
                     <h1>{{selectedProduct.product_name}}</h1>
                 </div>
@@ -79,16 +80,18 @@
 
 
 
-                <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="1"
+                <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="3"
                     [responsiveOptions]="responsiveOptions">
                     <p-header>
-                        <h3>Color</h3>
+                        <p>Color</p>
                     </p-header>
                     <ng-template let-car pTemplate="item">
                         <div class="car-details">
                             <div class="p-grid p-nogutter">
                                 <div class="ui-g-12" style="overflow:hidden">
-                                    <img [src]=car class="imgresponsive" />
+                                    <img [src]=car   
+                                    style="cursor: pointer; width: 100px; height:100px;" class="hide_all"
+                                    (mouseover)="onMouseOver($event, car)"/>
                                 </div>
 
                             </div>

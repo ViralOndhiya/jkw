@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewEncapsulation} from '@angular/core';
 import { ProductService } from './product.service';
 import { ShareButtons } from '@ngx-share/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+
 //import { NotifyService } from '../common/notify.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
+ 
   providers: [ProductService],   
     styles: [`      
   .filter-container {
@@ -116,7 +118,41 @@ import { Router } from '@angular/router';
           display: table-cell;
       }
   }
-`]
+
+  .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
+    border: 1px solid #b3c2ca;
+    border-radius: 3px;
+    margin: 0.3em;
+    text-align: center;
+    padding: 2em 0 2.25em 0;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 24px;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {
+    margin: 0.25em 0 2em 0;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button {
+    margin-left: 0.5em;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button:first-child {
+    margin-left: 0;
+}
+.carousel-demo .ui-carousel.custom-carousel .ui-carousel-dot-icon {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50%;
+}
+.carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
+    margin-left: 0.6em;
+}
+.carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
+    margin-right: 0.6em;
+}
+`],
+encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent implements OnInit {
 
@@ -129,6 +165,8 @@ export class ProductComponent implements OnInit {
     productImgList: any[] = []
     selectedProduct: any;
     selectedImages: any[];
+    selectchangeImage:any;
+    selectedchangeProduct:any;
     userLikedProducts: any[] = []
     currentUser;
     
@@ -176,27 +214,28 @@ export class ProductComponent implements OnInit {
                 var dt: any = e.payload.doc.data();
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
-                    material: dt.material, mainImage: dt.mainImage, pathImage: dt.pathImage,
+                    material: dt.material, ProdownloadURL: dt.ProdownloadURL, pathImage: dt.pathImage,
                     proImages: dt.proImages, 
                     gender: dt.gender.id
                 })
             });
-            console.log("Product list based on cat id:", this.productList);
+           // console.log("Product list based on cat id:", this.productList);
         })
     
     }
 
-    // openProduct(product){
-    //     //console.log("e. open proecut:", product)
-    //      this.selectProduct=product       
-    //      console.log("e. open proecut:", this.selectProduct)           
-    //     this.router.navigate(['productdetail/', this.selectProduct ]);        
-    //   }
+  
       selectProduct(event, product) {
-       
+       // console.log('product',product)
         this.selectedProduct = product
-        this.selectedImages=this.selectedProduct?.proImages
+        this.selectedImages=this.selectedProduct?.ProdownloadURL
+       // console.log('selectedImages',this.selectedImages);
         this.displayDialog = true;
+    }
+
+    onMouseOver(event, car)
+    {      
+        this.selectedchangeProduct = car        
     }
     
     }

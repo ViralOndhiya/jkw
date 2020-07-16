@@ -11,9 +11,10 @@ export class ProductAdminService {
 
     createProduct(product: any) {
       const genObj =this.firestore.doc('genders/' + product.genderId);
-//console.log('genObj',genObj);
+      const catObj =this.firestore.doc('category/' + product.categoryID);
         return this.firestore.collection('product_detail').add({
           gender: genObj.ref,
+          name:catObj.ref,
           product_name: product.product_name,
           price: product.price,
           material: product.material
@@ -25,8 +26,10 @@ export class ProductAdminService {
     
       updateProduct(id, product: any) {
         const genObj =this.firestore.doc('genders/' + product.genderId);
+        const catObj =this.firestore.doc('category/' + product.categoryID);
         this.firestore.doc('product_detail/' + id).update({
           gender: genObj.ref,
+          name:catObj.ref,
           product_name: product.product_name,
           price: product.price,
           material: product.material
@@ -64,6 +67,12 @@ export class ProductAdminService {
 
     getGenders() {
       return this.firestore.collection('genders').snapshotChanges();
+    }
+    getCategories() {
+      return this.firestore.collection('category').snapshotChanges();
+    }
+    getsizes() {
+      return this.firestore.collection('sizes').snapshotChanges();
     }
 
      

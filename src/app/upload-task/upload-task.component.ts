@@ -3,7 +3,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-
+import * as firebase from 'firebase/app';
 @Component({
   selector: 'upload-task',
   templateUrl: './upload-task.component.html',
@@ -26,6 +26,7 @@ export class UploadTaskComponent implements OnInit {
 
   startUpload() {
     var exitingproduct = localStorage.getItem("STORE_IMG_NAME");
+    console.log('exitingproduct',exitingproduct);
     // The storage path
     const path = `product_detail/${Date.now()}_${this.file.name}`;
 
@@ -47,8 +48,8 @@ export class UploadTaskComponent implements OnInit {
         
 
        
-          // this.db.collection('product_detail').doc(exitingproduct).set( { downloadURL : this.downloadURL}, {merge: true});
-          this.db.collection('product_detail').doc(exitingproduct).set( { ProdownloadURL : this.ProdownloadURL, path});
+           this.db.collection('product_detail').doc(exitingproduct).set( { ProdownloadURL : firebase.firestore.FieldValue.arrayUnion(this.ProdownloadURL)}, {merge: true});
+          //this.db.collection('product_detail').doc(exitingproduct).set( { ProdownloadURL : this.ProdownloadURL, path});
       
           
         
