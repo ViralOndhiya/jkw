@@ -33,6 +33,8 @@ export class ProductAdminComponent implements OnInit {
   genders: any[] = [];
   categories: any[] = [];
   sizes: any[] = [];
+  selectedSizes: any[] =[];
+  checked: boolean = false;
   selectedGender: any;
   selectedCategory: any;
 
@@ -107,7 +109,9 @@ export class ProductAdminComponent implements OnInit {
             
           categoryID: dt.name.id,
           name: this.categories.find(e => e.id == dt.name.id) ?
-            this.categories.find(e => e.id == dt.name.id).name : ''
+            this.categories.find(e => e.id == dt.name.id).name : '',
+
+         //   sizeId: dt.size.id
         })
        // console.log("in map data  222:", this.productList)
       });
@@ -118,6 +122,7 @@ export class ProductAdminComponent implements OnInit {
     this.selectProduct = ""
     this.gender = ""
     this.selectedCategory = ""
+    this.selectedSizes = []
     this.product_name = ""
     this.price = ""
     this.material = ""
@@ -133,13 +138,16 @@ export class ProductAdminComponent implements OnInit {
   saveProduct() {
     var product = {
       product_name: this.product_name,
-      price: this.price, material: this.material, 
+      price: this.price, 
+      material: this.material, 
       genderId: this.selectedGender.id,
-      categoryID: this.selectedCategory.id
+      categoryID: this.selectedCategory.id,
+      sizeId: this.selectedSizes
     }
-   // console.log('save...', this.selectedGender.id);
+    console.log('save...product', product);
     var id = this.productAdminService.createProduct(product)
-   // console.log("saved obj:", id)
+    console.log("saved obj:", id)
+   this.productAdminService.updatesize(id,product) 
     this.addNew()
   }
 

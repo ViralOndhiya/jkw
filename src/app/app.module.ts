@@ -51,7 +51,7 @@ import { ProductComponent } from './product/product.component';
 import {DialogModule} from 'primeng/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {ButtonModule} from 'primeng/button';
-
+import { CheckboxModule } from 'primeng/checkbox';
  // for image zoom
 // import {
 //   SocialLoginModule,
@@ -123,7 +123,7 @@ import {ButtonModule} from 'primeng/button';
     ShareModule,  
     FontAwesomeModule,
     ButtonModule,
-        
+    CheckboxModule,
     ShareModule.forRoot(),
    // SocialLoginModule,
    DialogModule,

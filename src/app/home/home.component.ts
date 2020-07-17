@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
                 id: e.payload.doc.id, mainImage: dt.mainImage, type: this.checkType(dt.mainImage) ? 'image' : 'video'
             })
       });
-     // console.log("slider on home page:", this.sliders)
+    
   })
 
   

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-
+import * as firebase from 'firebase/app';
 @Injectable()
 export class ProductAdminService {
     constructor(private http: HttpClient, private firestore: AngularFirestore,
@@ -10,6 +10,7 @@ export class ProductAdminService {
     }
 
     createProduct(product: any) {
+     
       const genObj =this.firestore.doc('genders/' + product.genderId);
       const catObj =this.firestore.doc('category/' + product.categoryID);
         return this.firestore.collection('product_detail').add({
@@ -17,10 +18,18 @@ export class ProductAdminService {
           name:catObj.ref,
           product_name: product.product_name,
           price: product.price,
-          material: product.material
+          material: product.material,
+          
         }).then(function(docRef) {
            // console.log("Document written with ID: ", docRef.id);
             return docRef.id;
+        });
+      }
+
+      updatesize(id, product: any) {
+       
+        this.firestore.doc('product_detail/' + id).update({
+          size : firebase.firestore.FieldValue.arrayUnion(product.sizeId)
         });
       }
     

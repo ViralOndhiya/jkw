@@ -1,18 +1,19 @@
-import { Component, OnInit , ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProductService } from './product.service';
 import { ShareButtons } from '@ngx-share/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { ProductAdminService } from '../admin/product-admin/product-admin.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 //import { NotifyService } from '../common/notify.service';
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
- 
-  providers: [ProductService],   
+    selector: 'app-product',
+    templateUrl: './product.component.html',
+    styleUrls: ['./product.component.css'],
+    providers: [ProductService, ProductAdminService],
     styles: [`      
   .filter-container {
       text-align: center;
@@ -152,7 +153,7 @@ import { Router } from '@angular/router';
     margin-right: 0.6em;
 }
 `],
-encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None
 })
 export class ProductComponent implements OnInit {
 
@@ -165,80 +166,95 @@ export class ProductComponent implements OnInit {
     productImgList: any[] = []
     selectedProduct: any;
     selectedImages: any[];
-    selectchangeImage:any;
-    selectedchangeProduct:any;
+    selectchangeImage: any;
+    selectedchangeProduct: any;
     userLikedProducts: any[] = []
     currentUser;
-    
+    name:""
+    categories: any[] = [];
+
     subscription: Subscription;
     responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
     constructor(private productService: ProductService, public share: ShareButtons,
         private _activatedRoute: ActivatedRoute, private commonService: CommonService,
-        private router : Router) {
-
+        private router: Router,
+        private productAdminService: ProductAdminService,
+        private firestore: AngularFirestore,
+    private storage: AngularFireStorage,
+    private db: AngularFirestore) {
+        this.productAdminService.getCategories().subscribe(data => {
+            this.categories = []
+            data.map(e => {
+              var dt: any = e.payload.doc.data()
+              this.categories.push({ cid: e.payload.doc.id, name: dt.name })
+            });
+      
+            console.log("list of category:", this.categories)
+          }),
         this._activatedRoute.params.subscribe((params: any) => {
-            this.genderId = params['genId']
-           // console.log("in product by gender page:", this.genderId)
-            this.getProductListByGender()           
+            this.genderId = params['genId']           
+            this.getProductListByGender()
         }),
-        this.responsiveOptions = [
-            {
-                breakpoint: '1024px',
-                numVisible: 3,
-                numScroll: 3
-            },
-            {
-                breakpoint: '768px',
-                numVisible: 2,
-                numScroll: 2
-            },
-            {
-                breakpoint: '560px',
-                numVisible: 1,
-                numScroll: 1
-            }
-        ];  
-
+       
+            this.responsiveOptions = [
+                {
+                    breakpoint: '1024px',
+                    numVisible: 3,
+                    numScroll: 3
+                },
+                {
+                    breakpoint: '768px',
+                    numVisible: 2,
+                    numScroll: 2
+                },
+                {
+                    breakpoint: '560px',
+                    numVisible: 1,
+                    numScroll: 1
+                }
+            ];           
     }
 
     ngOnInit(): void {
+        
     }
     getProductListByGender() {
         console.log('in getProductListByGender')
-        this.productService.getAllProductByGender(this.genderId).subscribe(data => {
-            //    this.productService.getAllProductByGender('x0cLujwyq4SEVCGL8Ai5').subscribe(data => {
+        this.productService.getAllProductByGender(this.genderId).subscribe(data => {           
             this.productList = []
             this.selectProduct
-           //console.log("get ref products:", data)            
+            //console.log("get ref products:", data)            
             data.map(e => {
                 var dt: any = e.payload.doc.data();
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, ProdownloadURL: dt.ProdownloadURL, pathImage: dt.pathImage,
                     proImages: dt.proImages, 
-                    gender: dt.gender.id
-                })
+                    gender: dt.gender.id,
+                    categoryID: dt.name.id,
+          name: this.categories.find(e => e.cid == dt.name.id) ?
+            this.categories.find(e => e.cid == dt.name.id).name : 'Not found'
+                })            
+                console.log("prodct list:",  this.productList)  
             });
-           // console.log("Product list based on cat id:", this.productList);
+              
         })
-    
+              
     }
 
-  
-      selectProduct(event, product) {
-       // console.log('product',product)
+
+    selectProduct(event, product) {
         this.selectedProduct = product
-        this.selectedImages=this.selectedProduct?.ProdownloadURL
-       // console.log('selectedImages',this.selectedImages);
+        console.log('selectProduct',this.selectedProduct)
+        this.selectedImages = this.selectedProduct?.ProdownloadURL
         this.displayDialog = true;
     }
 
-    onMouseOver(event, car)
-    {      
-        this.selectedchangeProduct = car        
+    onMouseOver(event, car) {
+        this.selectedchangeProduct = car
     }
-    
-    }
+
+}
 
 
 

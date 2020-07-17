@@ -29,7 +29,7 @@
         </div>
     </ng-template>
 </p-dataView>
-<p-dialog header="Product Details" [(visible)]="displayDialog">
+<p-dialog header="Product Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"  [modal]="true">
     <!-- <app-productdetail [selectedProduct]="selectedProduct"></app-productdetail> -->
     <style>
         p {
@@ -52,7 +52,7 @@
     </style>
 
     <div class="ui-g" *ngIf="selectedProduct">
-        <div class="ui-g">
+        <div class="ui-g ">
             <div class="ui-g-12 ui-md-6 ui-lg-5">
                 <div class="ui-g-12" style="text-align:center">
                     
@@ -63,6 +63,12 @@
             <div class="ui-g-12 ui-md-6 ui-lg-7">
                 <div class="ui-g-12">
                     <h1>{{selectedProduct.product_name}}</h1>
+                </div>
+                <div class="ui-g-4">
+                    <p>Category :</p>
+                </div>
+                <div class="ui-g-8">
+                    <p>{{selectedProduct.name}}</p>
                 </div>
                 <div class="ui-g-4">
                     <p>Price :</p>

@@ -62,11 +62,9 @@ ngOnInit(): void {
   });
  
 }
-gotoGenderof(itm){
-  //console.log('itm',itm);
+gotoGenderof(itm){  
   this.router.navigate(['app/', itm.id ]);
  
- // console.log('genObj.id',itm.id);
 }
 
 }

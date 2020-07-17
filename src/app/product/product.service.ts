@@ -11,7 +11,8 @@ export class ProductService {
 
     getAllProductByGender(genId) {
         const genObj = this.firestore.doc('genders/' + genId);
-        console.log('genObj in service', genObj)
+        
+        //console.log('genObj in service', genObj)
         return this.firestore.collection('product_detail', ref => ref.where('gender', '==', genObj.ref)).snapshotChanges()
     }  
 
