@@ -55,7 +55,7 @@ export class ProductAdminComponent implements OnInit {
         this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
       });
 
-      console.log("list of genders:", this.genders)
+     // console.log("list of genders:", this.genders)
     }),
 
 
@@ -66,7 +66,7 @@ export class ProductAdminComponent implements OnInit {
         this.categories.push({ id: e.payload.doc.id, name: dt.name })
       });
 
-      console.log("list of category:", this.categories)
+     // console.log("list of category:", this.categories)
     }),
 
     this.productAdminService.getsizes().subscribe(data => {
@@ -88,6 +88,7 @@ export class ProductAdminComponent implements OnInit {
       { field: 'product_name', header: 'Product Name' },
       { field: 'price', header: 'Price', columnWidth: '100px' },
       { field: 'material', header: 'Material' },
+      { field: 'size', header: 'Size' },
     ];
 
     this.getAllProducts();
@@ -98,22 +99,28 @@ export class ProductAdminComponent implements OnInit {
     this.productAdminService.getProducts().subscribe(data => {
       this.productList = []
       data.map(e => {
-        //console.log("in map data:", e.payload.doc.data())
+        console.log("in map data:", e.payload.doc.data())
         var dt: any = e.payload.doc.data()
         this.productList.push({
-          id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
+          id: e.payload.doc.id, 
+          product_name: dt.product_name, 
+          price: dt.price,
           material: dt.material,
           genderId: dt.gender.id,
           gender: this.genders.find(e => e.id == dt.gender.id) ?
-            this.genders.find(e => e.id == dt.gender.id).gender : '',
+          this.genders.find(e => e.id == dt.gender.id).gender : '',
             
           categoryID: dt.name.id,
           name: this.categories.find(e => e.id == dt.name.id) ?
-            this.categories.find(e => e.id == dt.name.id).name : '',
+          this.categories.find(e => e.id == dt.name.id).name : '',
 
-         //   sizeId: dt.size.id
+            sizeId: dt.size.id,
+            size: this.sizes.find(e => e.id == dt.size.id) ?
+            this.sizes.find(e => e.id == dt.size.id).size : '',
+
+         
         })
-       // console.log("in map data  222:", this.productList)
+        console.log("in product.....list:", this.productList)
       });
     })
   }
@@ -122,7 +129,7 @@ export class ProductAdminComponent implements OnInit {
     this.selectProduct = ""
     this.gender = ""
     this.selectedCategory = ""
-    this.selectedSizes = []
+   // this.selectedSizes = []
     this.product_name = ""
     this.price = ""
     this.material = ""
@@ -144,10 +151,11 @@ export class ProductAdminComponent implements OnInit {
       categoryID: this.selectedCategory.id,
       sizeId: this.selectedSizes
     }
-    console.log('save...product', product);
+    //console.log('save...product', product);
     var id = this.productAdminService.createProduct(product)
     console.log("saved obj:", id)
-   this.productAdminService.updatesize(id,product) 
+   //this.productAdminService.setsize(product) 
+   //this.productAdminService.setsize(product)
     this.addNew()
   }
 
@@ -155,6 +163,7 @@ export class ProductAdminComponent implements OnInit {
     this.selectedProduct = data
     this.selectedGender = this.genders.find(e => e.id === data.genderId)
     this.selectedCategory = this.categories.find(e => e.id === data.categoryID)
+    this.selectedSizes = this.sizes.find(e => e.id === data.sizeId)
     this.product_name = data.product_name
     this.price = data.price
     this.material = data.material
@@ -169,7 +178,9 @@ export class ProductAdminComponent implements OnInit {
       product_name: this.product_name,
       price: this.price,
       material: this.material,
-      genderId: this.selectedGender.id
+      genderId: this.selectedGender.id,
+      categoryID:this.selectedCategory.id, 
+      sizeId: this.selectedSizes,
     })
     this.addNew()
   }

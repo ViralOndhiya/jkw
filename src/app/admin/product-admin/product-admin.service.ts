@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 @Injectable()
 export class ProductAdminService {
@@ -13,35 +15,41 @@ export class ProductAdminService {
      
       const genObj =this.firestore.doc('genders/' + product.genderId);
       const catObj =this.firestore.doc('category/' + product.categoryID);
+      //const sizeObj  =this.firestore.doc('sizes/' + product.sizeId);
+
         return this.firestore.collection('product_detail').add({
           gender: genObj.ref,
           name:catObj.ref,
           product_name: product.product_name,
           price: product.price,
-          material: product.material,
-          
+          material: product.material,          
         }).then(function(docRef) {
            // console.log("Document written with ID: ", docRef.id);
             return docRef.id;
-        });
+        });       
       }
+     
 
-      updatesize(id, product: any) {
+      setsize(product: any) {
        
-        this.firestore.doc('product_detail/' + id).update({
+        this.firestore.collection('product_detail/').doc(product.id).update({
           size : firebase.firestore.FieldValue.arrayUnion(product.sizeId)
         });
       }
     
       updateProduct(id, product: any) {
+      
         const genObj =this.firestore.doc('genders/' + product.genderId);
         const catObj =this.firestore.doc('category/' + product.categoryID);
+        const sizeObj = this.firestore.doc('sizes/' + product.sizeId);
         this.firestore.doc('product_detail/' + id).update({
           gender: genObj.ref,
           name:catObj.ref,
           product_name: product.product_name,
           price: product.price,
-          material: product.material
+          material: product.material,
+          size  :  firebase.firestore.FieldValue.arrayUnion(sizeObj.ref),
+         
         });
       }
 
