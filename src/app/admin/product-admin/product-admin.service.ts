@@ -22,7 +22,8 @@ export class ProductAdminService {
           name:catObj.ref,
           product_name: product.product_name,
           price: product.price,
-          material: product.material,          
+          material: product.material, 
+          size: product.size,         
         }).then(function(docRef) {
            // console.log("Document written with ID: ", docRef.id);
             return docRef.id;
@@ -33,7 +34,7 @@ export class ProductAdminService {
       setsize(product: any) {
        
         this.firestore.collection('product_detail/').doc(product.id).update({
-          size : firebase.firestore.FieldValue.arrayUnion(product.sizeId)
+          size : firebase.firestore.FieldValue.arrayUnion(product.size)
         });
       }
     

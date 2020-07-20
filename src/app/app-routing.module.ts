@@ -19,9 +19,9 @@ const routes: Routes = [
   { path: 'app/:genId', component: ProductComponent},
   //{ path: 'productdetail/:proId', component: ProductDetailComponent},
 ];
-export const appRouting = RouterModule.forRoot(routes);
+//export const appRouting = RouterModule.forRoot(routes);
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [CommonModule, RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule],
   declarations: []
 })

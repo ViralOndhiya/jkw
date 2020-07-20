@@ -166,12 +166,14 @@ export class ProductComponent implements OnInit {
     productImgList: any[] = []
     selectedProduct: any;
     selectedImages: any[];
+    selectedSizes: any[];
     selectchangeImage: any;
     selectedchangeProduct: any;
     userLikedProducts: any[] = []
     currentUser;
-    name:""
+    name: ""
     categories: any[] = [];
+    sizes: any[] = [];
 
     subscription: Subscription;
     responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
@@ -180,22 +182,37 @@ export class ProductComponent implements OnInit {
         private router: Router,
         private productAdminService: ProductAdminService,
         private firestore: AngularFirestore,
-    private storage: AngularFireStorage,
-    private db: AngularFirestore) {
+        private storage: AngularFireStorage,
+        private db: AngularFirestore) {
         this.productAdminService.getCategories().subscribe(data => {
             this.categories = []
             data.map(e => {
-              var dt: any = e.payload.doc.data()
-              this.categories.push({ cid: e.payload.doc.id, name: dt.name })
+                var dt: any = e.payload.doc.data()
+                this.categories.push({ cid: e.payload.doc.id, name: dt.name })
             });
-      
+
             console.log("list of category:", this.categories)
-          }),
-        this._activatedRoute.params.subscribe((params: any) => {
-            this.genderId = params['genId']           
-            this.getProductListByGender()
         }),
-       
+
+            this.productAdminService.getsizes().subscribe(data => {
+                this.sizes = []
+                data.map(e => {
+                    var dt: any = e.payload.doc.data()
+                    this.sizes.push({ sid: e.payload.doc.id, size: dt.size })
+                });
+
+                console.log("list of size:", this.sizes)
+            }),
+
+            this._activatedRoute.params.subscribe((params: any) => {
+                this.genderId = params['genId']
+                this.getProductListByGender()
+            }),
+
+
+
+
+
             this.responsiveOptions = [
                 {
                     breakpoint: '1024px',
@@ -212,42 +229,54 @@ export class ProductComponent implements OnInit {
                     numVisible: 1,
                     numScroll: 1
                 }
-            ];           
+            ];
     }
 
     ngOnInit(): void {
-        
+
     }
     getProductListByGender() {
         console.log('in getProductListByGender')
-        this.productService.getAllProductByGender(this.genderId).subscribe(data => {           
+        this.productService.getAllProductByGender(this.genderId).subscribe((data: any) => {
             this.productList = []
             this.selectProduct
-            //console.log("get ref products:", data)            
+            // CONSOLE.LOG
+            // console.log("get ref products:", data.payload.doc.data())  
+            console.log("data before map:", data)          
             data.map(e => {
                 var dt: any = e.payload.doc.data();
+               
+                // dt.size.forEach(element => {
+                //     console.log("size payload:", element.payload.doc.data(), element.payload.doc)
+                //     // sizeAry.push({id: element.payload.doc.id, name: element.payload.doc.})
+                    
+                // });
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, ProdownloadURL: dt.ProdownloadURL, pathImage: dt.pathImage,
-                    proImages: dt.proImages, 
+                    proImages: dt.proImages,
                     gender: dt.gender.id,
                     categoryID: dt.name.id,
-          name: this.categories.find(e => e.cid == dt.name.id) ?
-            this.categories.find(e => e.cid == dt.name.id).name : 'Not found'
-                })            
-                console.log("prodct list:",  this.productList)  
+                    name: this.categories.find(e => e.cid == dt.name.id) ?
+                        this.categories.find(e => e.cid == dt.name.id).name : 'Not found Category',
+                                       size: dt.size
+                      
+                })
+                console.log("prodct list:", this.productList)
             });
-              
+
         })
-              
+
     }
 
 
     selectProduct(event, product) {
         this.selectedProduct = product
-        console.log('selectProduct',this.selectedProduct)
+        console.log('selectProduct', this.selectedProduct)
         this.selectedImages = this.selectedProduct?.ProdownloadURL
+        this.selectedSizes = this.selectedProduct?.size
         this.displayDialog = true;
+        console.log('selectedSizes',this.selectedSizes)
     }
 
     onMouseOver(event, car) {

@@ -114,9 +114,9 @@ export class ProductAdminComponent implements OnInit {
           name: this.categories.find(e => e.id == dt.name.id) ?
           this.categories.find(e => e.id == dt.name.id).name : '',
 
-            sizeId: dt.size.id,
-            size: this.sizes.find(e => e.id == dt.size.id) ?
-            this.sizes.find(e => e.id == dt.size.id).size : '',
+            // sizeId: dt.size.id,
+            // size: this.sizes.find(e => e.id == dt.size.id) ?
+            // this.sizes.find(e => e.id == dt.size.id).size : '',
 
          
         })
@@ -149,7 +149,7 @@ export class ProductAdminComponent implements OnInit {
       material: this.material, 
       genderId: this.selectedGender.id,
       categoryID: this.selectedCategory.id,
-      sizeId: this.selectedSizes
+      size: this.selectedSizes
     }
     //console.log('save...product', product);
     var id = this.productAdminService.createProduct(product)
@@ -163,7 +163,7 @@ export class ProductAdminComponent implements OnInit {
     this.selectedProduct = data
     this.selectedGender = this.genders.find(e => e.id === data.genderId)
     this.selectedCategory = this.categories.find(e => e.id === data.categoryID)
-    this.selectedSizes = this.sizes.find(e => e.id === data.sizeId)
+   // this.selectedSizes = this.sizes.find(e => e.id === data.sizeId)
     this.product_name = data.product_name
     this.price = data.price
     this.material = data.material
@@ -180,7 +180,7 @@ export class ProductAdminComponent implements OnInit {
       material: this.material,
       genderId: this.selectedGender.id,
       categoryID:this.selectedCategory.id, 
-      sizeId: this.selectedSizes,
+    //  sizeId: this.selectedSizes,
     })
     this.addNew()
   }

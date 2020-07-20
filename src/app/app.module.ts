@@ -52,6 +52,7 @@ import {DialogModule} from 'primeng/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {ButtonModule} from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
  // for image zoom
 // import {
 //   SocialLoginModule,
@@ -146,7 +147,7 @@ import { CheckboxModule } from 'primeng/checkbox';
   // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
   //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   providers: [
-    AngularFirestore, AngularFireStorage, CommonService],
+    AngularFirestore, AngularFireStorage, CommonService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

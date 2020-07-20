@@ -57,7 +57,7 @@
     <div class="p-col-12"><p-checkbox name="group1" value="San Francisco" label="San Francisco" [(ngModel)]="sizes" inputId="sf"></p-checkbox></div>
     <div class="p-col-12"><p-checkbox name="group1" value="Los Angeles" label="Los Angeles" [(ngModel)]="sizes" inputId="la"></p-checkbox></div> -->
     <div class="p-col-12" *ngFor="let item of sizes let i = index">
-        <p-checkbox name="group1" value="{{item.id}}" label="{{item.size}}"  [(ngModel)]="selectedSizes" inputId="item.id"></p-checkbox>
+        <p-checkbox name="group1" value="{{item.size}}" label="{{item.size}}"  [(ngModel)]="selectedSizes" inputId="item.size"></p-checkbox>
     </div>
 </div>
 Selected Sizes: <span *ngFor="let size of selectedSizes" style="margin-right:10px">{{size}}</span>
