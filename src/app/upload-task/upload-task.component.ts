@@ -26,13 +26,13 @@ export class UploadTaskComponent implements OnInit {
 
   startUpload() {
     var exitingproduct = localStorage.getItem("STORE_IMG_NAME");
-    console.log('exitingproduct',exitingproduct);
+   // console.log('exitingproduct',exitingproduct);
     // The storage path
     const path = `product_detail/${Date.now()}_${this.file.name}`;
 
     // Reference to storage bucket
     const ref = this.storage.ref(path);
-    console.log('path',path)
+    //console.log('path',path)
     // The main task
     this.task = this.storage.upload(path, this.file);
 
@@ -44,7 +44,7 @@ export class UploadTaskComponent implements OnInit {
       // The file's download URL
       finalize( async() =>  {
         this.ProdownloadURL  = await ref.getDownloadURL().toPromise();
-        console.log('ProdownloadURL',this.ProdownloadURL);   
+     //   console.log('ProdownloadURL',this.ProdownloadURL);   
         
 
        

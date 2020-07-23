@@ -29,13 +29,15 @@
         </div>
     </ng-template>
 </p-dataView>
-<p-dialog header="Product Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"  [modal]="true">
-    <!-- <app-productdetail [selectedProduct]="selectedProduct"></app-productdetail> -->
+
+<p-dialog header="Product Details" [(visible)]="displayDialog" 
+[responsive]="true"  [modal]="true" styleClass="mydialog" [style]="{width: '1300px'}"  >
+ 
     <style>
         p {
             text-decoration: none;
             font-size: 15px;
-            color: black;
+            /* color: black; */
             font-family: 'Segoe UI';
             text-shadow: 1px 2px 4px grey;
         }
@@ -53,64 +55,74 @@
 
     <div class="ui-g" *ngIf="selectedProduct  &&  selectedSizes">
         <div class="ui-g ">
+
             <div class="ui-g-12 ui-md-6 ui-lg-5">
                 <div class="ui-g-12" style="text-align:center">
-                    
-                    <img [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
-                    style="cursor: pointer; width: 300px; height:400px;" class="hide_all"  >
+
+                    <img [hidden]="isShow"
+                        [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
+                        style="cursor: -webkit-zoom-in; width: 510px; height:680px;" class="hide_all"
+                        (click)=toggleDisplay() >
+
+                        <app-zoom [hidden]="!isShow"
+                        [img]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
+                        class="hide_all" [zoom]="2" [lenSize]="20" [imgWidth]="510" 
+                        style="height: 680px; cursor: -webkit-zoom-out"                       
+                        [divZoomed]="divZoomed"  (click)="toggleDisplay()" ></app-zoom>
+                        <!-- (mouseleave)="toggleDisplay()" -->
                 </div>
             </div>
+
+           
+            <div #divZoomed [hidden]="!isShow" class="img-zoom-result"></div>
             <div class="ui-g-12 ui-md-6 ui-lg-7">
                 <div class="ui-g-12">
                     <h1>{{selectedProduct.product_name}}</h1>
                 </div>
-                <div class="ui-g-4">
+                <div class="ui-g-2">
                     <p>Category :</p>
                 </div>
-                <div class="ui-g-8">
-                    <p>{{selectedProduct.name}}</p>
+                <div class="ui-g-10">
+                    <p>{{selectedProduct.name}} </p>
                 </div>
-                <div class="ui-g-4">
+                <div class="ui-g-2">
                     <p>Price :</p>
                 </div>
-                <div class="ui-g-8">
+                <div class="ui-g-10">
                     <p>{{selectedProduct.price}}</p>
                 </div>
-                <div class="ui-g-4">
+                <div class="ui-g-2">
                     <p>Material :</p>
                 </div>
-                <div class="ui-g-8">
+                <div class="ui-g-10">
                     <p>{{selectedProduct.material}}</p>
                 </div>
-                <div class="ui-g-4">
+                <div class="ui-g-2">
                     <p>Size :</p>
                 </div>
-                <div class="ui-g-8" style="display: flex;">
+                <div class="ui-g-10" style="display: flex;">
                     <p *ngFor="let size of selectedSizes" style="margin-left: 5px;">{{size}}</p>
                 </div>
 
-
-
-
-                <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="3"
-                    [responsiveOptions]="responsiveOptions">
-                    <p-header>
-                        <p>Color</p>
-                    </p-header>
-                    <ng-template let-car pTemplate="item">
-                        <div class="car-details">
+                <div class="ui-g-2">
+                    <p>Color</p>
+                </div>
+                <div class="ui-g-10">
+                    <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="3"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template let-car pTemplate="item">
+                            <!-- <div class="car-details"> -->
                             <div class="p-grid p-nogutter">
-                                <div class="ui-g-12" style="overflow:hidden">
-                                    <img [src]=car   
-                                    style="cursor: pointer; width: 100px; height:100px;" class="hide_all"
-                                    (mouseover)="onMouseOver($event, car)"/>
-                                </div>
+                                <!-- <div class="ui-g-12" style="overflow:hidden"> -->
+                                <img [src]=car style="cursor: pointer; width: 100px; height:100px;" class="hide_all"
+                                    (mouseover)="onMouseOver($event, car)" />
+                                <!-- </div> -->
 
                             </div>
-                        </div>
-                    </ng-template>
-                </p-carousel>
-
+                            <!-- </div> -->
+                        </ng-template>
+                    </p-carousel>
+                </div>
 
                 <div class="ui-g-4">
                     <p>Share :</p>
@@ -128,15 +140,14 @@
 
                 </div>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-6" style="margin-top: 20px; ">
 
-
-
-
-            </div>
 
 
 
         </div>
     </div>
+    <script>
+        // Initiate zoom effect:
+        imageZoom("myimage", "myresult");
+    </script>
 </p-dialog>

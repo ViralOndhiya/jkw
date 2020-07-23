@@ -76,7 +76,7 @@ export class ProductAdminComponent implements OnInit {
         this.sizes.push({ id: e.payload.doc.id, size: dt.size })
       });
 
-      console.log("list of size:", this.sizes)
+      //console.log("list of size:", this.sizes)
     })
   }
 
@@ -99,7 +99,7 @@ export class ProductAdminComponent implements OnInit {
     this.productAdminService.getProducts().subscribe(data => {
       this.productList = []
       data.map(e => {
-        console.log("in map data:", e.payload.doc.data())
+      //  console.log("in map data:", e.payload.doc.data())
         var dt: any = e.payload.doc.data()
         this.productList.push({
           id: e.payload.doc.id, 
@@ -120,7 +120,7 @@ export class ProductAdminComponent implements OnInit {
 
          
         })
-        console.log("in product.....list:", this.productList)
+       // console.log("in product.....list:", this.productList)
       });
     })
   }
@@ -153,7 +153,7 @@ export class ProductAdminComponent implements OnInit {
     }
     //console.log('save...product', product);
     var id = this.productAdminService.createProduct(product)
-    console.log("saved obj:", id)
+   // console.log("saved obj:", id)
    //this.productAdminService.setsize(product) 
    //this.productAdminService.setsize(product)
     this.addNew()
@@ -167,7 +167,7 @@ export class ProductAdminComponent implements OnInit {
     this.product_name = data.product_name
     this.price = data.price
     this.material = data.material
-    console.log('update mode this.selectedProduct.id', this.selectedProduct.id);
+  //  console.log('update mode this.selectedProduct.id', this.selectedProduct.id);
     localStorage.setItem("STORE_IMG_NAME", this.selectedProduct.id)
 
   }

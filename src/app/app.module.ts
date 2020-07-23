@@ -39,7 +39,7 @@ import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { ShareModule } from '@ngx-share/core';
 
-import { ProductDetailComponent } from './productdetail/productdetail.component';
+
 import { DropzoneDirective } from './dropzone.directive';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
@@ -53,6 +53,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {ButtonModule} from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { ZoomComponent } from '../app/product/zoom.component';
  // for image zoom
 // import {
 //   SocialLoginModule,
@@ -93,11 +95,12 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ContactusComponent,
     FooterComponent,
     
-    ProductDetailComponent,
+    
     DropzoneDirective,
     UploaderComponent,
     UploadTaskComponent,
-    ProductComponent
+    ProductComponent,
+    ZoomComponent
   ],
   imports: [
     BrowserModule,
@@ -125,9 +128,11 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     FontAwesomeModule,
     ButtonModule,
     CheckboxModule,
+    
     ShareModule.forRoot(),
    // SocialLoginModule,
    DialogModule,
+   NgxImageZoomModule, // <-- Add this line
    AgmCoreModule.forRoot({
     apiKey: 'AIzaSyCYTFor6RFV5hofjBPrk3NEgsV-1o1b8HQ'
   }),
@@ -147,7 +152,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
   //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   providers: [
-    AngularFirestore, AngularFireStorage, CommonService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+    AngularFirestore, AngularFireStorage, CommonService,{provide: LocationStrategy, useClass: HashLocationStrategy}, ZoomComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

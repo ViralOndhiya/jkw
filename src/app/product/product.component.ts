@@ -152,6 +152,8 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 .carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
     margin-right: 0.6em;
 }
+
+
 `],
     encapsulation: ViewEncapsulation.None
 })
@@ -159,6 +161,7 @@ export class ProductComponent implements OnInit {
 
     cols: any[];
     displayDialog: boolean = false;
+    displayzoom: boolean = false;
     genderId: any;
     productId: any;
     //selectProduct: any;
@@ -174,7 +177,8 @@ export class ProductComponent implements OnInit {
     name: ""
     categories: any[] = [];
     sizes: any[] = [];
-
+    displayZoom: boolean = false;
+   
     subscription: Subscription;
     responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
     constructor(private productService: ProductService, public share: ShareButtons,
@@ -191,7 +195,7 @@ export class ProductComponent implements OnInit {
                 this.categories.push({ cid: e.payload.doc.id, name: dt.name })
             });
 
-            console.log("list of category:", this.categories)
+          //  console.log("list of category:", this.categories)
         }),
 
             this.productAdminService.getsizes().subscribe(data => {
@@ -201,7 +205,7 @@ export class ProductComponent implements OnInit {
                     this.sizes.push({ sid: e.payload.doc.id, size: dt.size })
                 });
 
-                console.log("list of size:", this.sizes)
+             //   console.log("list of size:", this.sizes)
             }),
 
             this._activatedRoute.params.subscribe((params: any) => {
@@ -226,31 +230,24 @@ export class ProductComponent implements OnInit {
                 },
                 {
                     breakpoint: '560px',
-                    numVisible: 1,
-                    numScroll: 1
+                    numVisible: 3,
+                    numScroll: 3
                 }
             ];
     }
 
     ngOnInit(): void {
-
+        
     }
     getProductListByGender() {
-        console.log('in getProductListByGender')
+     
         this.productService.getAllProductByGender(this.genderId).subscribe((data: any) => {
             this.productList = []
             this.selectProduct
-            // CONSOLE.LOG
-            // console.log("get ref products:", data.payload.doc.data())  
-            console.log("data before map:", data)          
+                   
             data.map(e => {
-                var dt: any = e.payload.doc.data();
+                var dt: any = e.payload.doc.data();               
                
-                // dt.size.forEach(element => {
-                //     console.log("size payload:", element.payload.doc.data(), element.payload.doc)
-                //     // sizeAry.push({id: element.payload.doc.id, name: element.payload.doc.})
-                    
-                // });
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, ProdownloadURL: dt.ProdownloadURL, pathImage: dt.pathImage,
@@ -259,29 +256,32 @@ export class ProductComponent implements OnInit {
                     categoryID: dt.name.id,
                     name: this.categories.find(e => e.cid == dt.name.id) ?
                         this.categories.find(e => e.cid == dt.name.id).name : 'Not found Category',
-                                       size: dt.size
-                      
-                })
-                console.log("prodct list:", this.productList)
+                                       size: dt.size                      
+                })           
             });
-
         })
-
     }
 
 
     selectProduct(event, product) {
-        this.selectedProduct = product
-        console.log('selectProduct', this.selectedProduct)
+       
+        this.selectedProduct = product     
         this.selectedImages = this.selectedProduct?.ProdownloadURL
         this.selectedSizes = this.selectedProduct?.size
-        this.displayDialog = true;
-        console.log('selectedSizes',this.selectedSizes)
+        this.displayDialog = true;   
     }
 
     onMouseOver(event, car) {
         this.selectedchangeProduct = car
-    }
+    }  
+
+    isShow = false;
+ 
+    toggleDisplay() {
+      this.isShow = !this.isShow;
+      console.log('this.isShow',this.isShow)
+    }   
+  
 
 }
 

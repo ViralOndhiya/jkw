@@ -7,7 +7,6 @@ import { ProductAdminComponent } from './admin/product-admin/product-admin.compo
 import { ContactusComponent } from './contactus/contactus.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { ProductComponent } from './product/product.component';
-import { ProductDetailComponent } from './productdetail/productdetail.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,7 +16,7 @@ const routes: Routes = [
   { path: 'uploader', component: UploaderComponent},
   { path: 'product', component: ProductComponent},
   { path: 'app/:genId', component: ProductComponent},
-  //{ path: 'productdetail/:proId', component: ProductDetailComponent},
+ 
 ];
 //export const appRouting = RouterModule.forRoot(routes);
 @NgModule({
