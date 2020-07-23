@@ -113,7 +113,7 @@ export class ProductAdminComponent implements OnInit {
           categoryID: dt.name.id,
           name: this.categories.find(e => e.id == dt.name.id) ?
           this.categories.find(e => e.id == dt.name.id).name : '',
-
+           size: dt.size, 
             // sizeId: dt.size.id,
             // size: this.sizes.find(e => e.id == dt.size.id) ?
             // this.sizes.find(e => e.id == dt.size.id).size : '',

@@ -1,15 +1,12 @@
-<p-dataView #dv [value]="productList" filterBy="name" layout="grid">
+<p-dataView #dv [value]="productList" filterBy="product_name" layout="grid">
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
 
-                <div class="ui-g-6 ui-md-4 filter-container">
-                    <div style="position:relative;">
-                        <input type="search" pInputText placeholder="Search by name"
-                            (keyup)="dv.filter($event.target.value)">
-                        <!-- <input type="text" icon="fa fa-search" pInputText size="20"
-                             placeholder="Global Filter"
-                            (input)="dt.filterGlobal($event.target.value, 'contains')" > -->
+                <div class="p-col-6 p-md-12 filter-container">
+                    <div style="position:relative">
+                        <input type="search" pInputText placeholder="Search by Product Name"
+                         (input)="dv.filter($event.target.value)">
                     </div>
                 </div>
             </div>
@@ -19,11 +16,11 @@
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
             <p-panel>
                 <img [src]="product.ProdownloadURL ? product.ProdownloadURL : '../../../../assets/img/no_image_available.jpeg'"
-                    style="cursor: pointer; width: 200px; height:200px;" class="hide_all"
+                    style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
                     (click)="selectProduct($event, product)">
                 <div class="car-detail">
                     <h3>{{product.product_name}} </h3>
-                    <h3>Rs. {{product.price}} </h3>
+                    <h3>&#8377; {{product.price}} </h3>
                 </div>
             </p-panel>
         </div>
@@ -89,7 +86,7 @@
                     <p>Price :</p>
                 </div>
                 <div class="ui-g-10">
-                    <p>{{selectedProduct.price}}</p>
+                    <p>&#8377; {{selectedProduct.price}}</p>
                 </div>
                 <div class="ui-g-2">
                     <p>Material :</p>
