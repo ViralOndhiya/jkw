@@ -1,4 +1,9 @@
-<p-dataView #dv [value]="productList" filterBy="product_name" layout="grid">
+<!-- <section fxLayout="column" fxFlexAlign="stretch">
+  
+    <img src="assets/img/child_sl.jpg"  height="400px" class="center"  />
+   
+  </section> -->
+<p-dataView #dv [value]="productList" filterBy="product_name" layout="grid" >
     <p-header>
         <div class="ui-helper-clearfix">
             <div class="ui-g">
@@ -6,13 +11,15 @@
                 <div class="p-col-6 p-md-12 filter-container">
                     <div style="position:relative">
                         <input type="search" pInputText placeholder="Search by Product Name"
-                         (input)="dv.filter($event.target.value)">
+                            (input)="dv.filter($event.target.value)">
                     </div>
                 </div>
             </div>
         </div>
     </p-header>
+   
     <ng-template let-product pTemplate="gridItem">
+        
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
             <p-panel>
                 <img [src]="product.ProdownloadURL ? product.ProdownloadURL : '../../../../assets/img/no_image_available.jpeg'"
@@ -20,6 +27,7 @@
                     (click)="selectProduct($event, product)">
                 <div class="car-detail">
                     <h3>{{product.product_name}} </h3>
+                    {{product.gendername}}
                     <h3>&#8377; {{product.price}} </h3>
                 </div>
             </p-panel>
@@ -27,9 +35,9 @@
     </ng-template>
 </p-dataView>
 
-<p-dialog header="Product Details" [(visible)]="displayDialog" 
-[responsive]="true"  [modal]="true" styleClass="mydialog" [style]="{width: '1300px'}"  >
- 
+<p-dialog header="Product Details" [(visible)]="displayDialog" [responsive]="true" [modal]="true"
+    [style]="{width: '1300px'}" >
+
     <style>
         p {
             text-decoration: none;
@@ -52,79 +60,75 @@
 
     <div class="ui-g" *ngIf="selectedProduct  &&  selectedSizes">
         <div class="ui-g ">
-
-            <div class="ui-g-12 ui-md-6 ui-lg-5">
+            <div class="ui-g-12 ui-md-6 ui-lg-6">
                 <div class="ui-g-12" style="text-align:center">
 
                     <img [hidden]="isShow"
                         [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
-                        style="cursor: -webkit-zoom-in; width: 510px; height:680px;" class="hide_all"
-                        (click)=toggleDisplay() >
+                        style="cursor: -webkit-zoom-in; width: 410px; height:680px;" (click)=toggleDisplay()>
 
-                        <app-zoom [hidden]="!isShow"
+                    <app-zoom [hidden]="!isShow"
                         [img]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
-                        class="hide_all" [zoom]="2" [lenSize]="20" [imgWidth]="510" 
-                        style="height: 680px; cursor: -webkit-zoom-out"                       
-                        [divZoomed]="divZoomed"  (click)="toggleDisplay()" ></app-zoom>
-                        <!-- (mouseleave)="toggleDisplay()" -->
+                        class="hide_all" [zoom]="2" [lenSize]="100" [imgWidth]="410"
+                        style=" height: 780px; cursor: -webkit-zoom-out" [divZoomed]="divZoomed"
+                        (mouseleave)="toggleDisplay()"></app-zoom>
+
                 </div>
             </div>
 
-           
-            <div #divZoomed [hidden]="!isShow" class="img-zoom-result"></div>
-            <div class="ui-g-12 ui-md-6 ui-lg-7">
-                <div class="ui-g-12">
+            <div class="ui-g-12 ui-md-6 ui-lg-6" [hidden]="!isShow">
+                <div #divZoomed class="img-zoom-result"></div>
+            </div>
+
+            <div class="ui-g-12 ui-md-6 ui-lg-6" [hidden]="isShow">
+                <div class="ui-g-12 ui-md-12 ui-lg-12">
                     <h1>{{selectedProduct.product_name}}</h1>
                 </div>
-                <div class="ui-g-2">
+                <div class="ui-g-3 ui-md-2 ui-lg-3">
                     <p>Category :</p>
                 </div>
-                <div class="ui-g-10">
+                <div class="ui-g-9 ui-md-4 ui-lg-9">
                     <p>{{selectedProduct.name}} </p>
                 </div>
-                <div class="ui-g-2">
+
+                <div class="ui-g-3 ui-md-2 ui-lg-3">
                     <p>Price :</p>
                 </div>
-                <div class="ui-g-10">
+                <div class="ui-g-9 ui-md-4 ui-lg-9">
                     <p>&#8377; {{selectedProduct.price}}</p>
                 </div>
-                <div class="ui-g-2">
+                <div class="ui-g-3 ui-md-2 ui-lg-3">
                     <p>Material :</p>
                 </div>
-                <div class="ui-g-10">
+                <div class="ui-g-9 ui-md-4 ui-lg-9">
                     <p>{{selectedProduct.material}}</p>
                 </div>
-                <div class="ui-g-2">
+                <div class="ui-g-3 ui-md-2 ui-lg-3">
                     <p>Size :</p>
                 </div>
-                <div class="ui-g-10" style="display: flex;">
+                <div class="ui-g-9 ui-md-4 ui-lg-9" style="display: flex;">
                     <p *ngFor="let size of selectedSizes" style="margin-left: 5px;">{{size}}</p>
                 </div>
 
-                <div class="ui-g-2">
+                <div class="ui-g-3 ui-md-2 ui-lg-3">
                     <p>Color</p>
                 </div>
-                <div class="ui-g-10">
-                    <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="3"
+                <div class="ui-g-9 ui-md-4 ui-lg-9">
+                    <p-carousel [value]="selectedImages" [numVisible]="2" [numScroll]="2"
                         [responsiveOptions]="responsiveOptions">
                         <ng-template let-car pTemplate="item">
-                            <!-- <div class="car-details"> -->
                             <div class="p-grid p-nogutter">
-                                <!-- <div class="ui-g-12" style="overflow:hidden"> -->
-                                <img [src]=car style="cursor: pointer; width: 100px; height:100px;" class="hide_all"
+                                <img [src]=car style="cursor: pointer; width: 80px; height:80px;" class="hide_all"
                                     (mouseover)="onMouseOver($event, car)" />
-                                <!-- </div> -->
-
                             </div>
-                            <!-- </div> -->
                         </ng-template>
                     </p-carousel>
                 </div>
 
-                <div class="ui-g-4">
+                <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Share :</p>
                 </div>
-                <div class="ui-g-8">
+                <div class="ui-g-9 ui-md-6 ui-lg-9">
                     <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
                         <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
                     </button>
@@ -137,10 +141,6 @@
 
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
     <script>

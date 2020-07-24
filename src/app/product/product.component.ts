@@ -230,8 +230,8 @@ export class ProductComponent implements OnInit {
                 },
                 {
                     breakpoint: '560px',
-                    numVisible: 3,
-                    numScroll: 3
+                    numVisible: 2,
+                    numScroll: 2
                 }
             ];
     }
@@ -252,7 +252,7 @@ export class ProductComponent implements OnInit {
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, ProdownloadURL: dt.ProdownloadURL, pathImage: dt.pathImage,
                     proImages: dt.proImages,
-                    gender: dt.gender.id,
+                    gender: dt.gender.id,                    
                     categoryID: dt.name.id,
                     name: this.categories.find(e => e.cid == dt.name.id) ?
                         this.categories.find(e => e.cid == dt.name.id).name : 'Not found Category',

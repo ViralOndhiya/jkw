@@ -2,11 +2,14 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* html, body { margin: 0; height: 100%; } */
-body {  font-family: "Helvetica Neue", sans-serif; }
+body {  font-family: "Helvetica Neue", sans-serif;}
    /* in image slider make responsive sliderr */
   .imgresponsive {
     max-width: 100%;
     height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;      
   }
 /* START FOLLOWING TAG USE FOR DROPZONE */
 .dropzone { 
