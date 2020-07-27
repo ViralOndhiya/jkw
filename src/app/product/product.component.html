@@ -95,6 +95,23 @@
                     <h1>{{selectedProduct.product_name}}</h1>
                 </div>
                 <div class="ui-g-3 ui-md-2 ui-lg-3">
+                    <p>Color</p>
+                </div>
+                <div class="ui-g-9 ui-md-4 ui-lg-9">
+                    <p-carousel [value]="selectedImages" [numVisible]="2" [numScroll]="2"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template let-car pTemplate="item">
+                            <div class="p-grid p-nogutter">
+                                <img [src]=car style="cursor: pointer; width: 80px; height:80px;" class="hide_all"
+                                    (mouseover)="onMouseOver($event, car)" />
+                            </div>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+
+
+
+                <div class="ui-g-3 ui-md-2 ui-lg-3">
                     <p>Category :</p>
                 </div>
                 <div class="ui-g-9 ui-md-4 ui-lg-9">
@@ -120,21 +137,8 @@
                     <p *ngFor="let size of selectedSizes" style="margin-left: 5px;">{{size}}</p>
                 </div>
 
-                <div class="ui-g-3 ui-md-2 ui-lg-3">
-                    <p>Color</p>
-                </div>
-                <div class="ui-g-9 ui-md-4 ui-lg-9">
-                    <p-carousel [value]="selectedImages" [numVisible]="2" [numScroll]="2"
-                        [responsiveOptions]="responsiveOptions">
-                        <ng-template let-car pTemplate="item">
-                            <div class="p-grid p-nogutter">
-                                <img [src]=car style="cursor: pointer; width: 80px; height:80px;" class="hide_all"
-                                    (mouseover)="onMouseOver($event, car)" />
-                            </div>
-                        </ng-template>
-                    </p-carousel>
-                </div>
-
+               
+               
                 <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Share :</p>
                 </div>
