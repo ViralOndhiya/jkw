@@ -22,7 +22,7 @@
         
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
             <p-panel>
-                <img [src]="product.ProdownloadURL ? product.ProdownloadURL : '../../../../assets/img/no_image_available.jpeg'"
+                <img [src]="product.ProURL ? product.ProURL : '../../../../assets/img/no_image_available.jpeg'"
                     style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
                     (click)="selectProduct($event, product)">
                 <div class="car-detail">
@@ -64,21 +64,31 @@
                 <div class="ui-g-12" style="text-align:center">
 
                     <img [hidden]="isShow"
-                        [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
+                        [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProURL"
                         style="cursor: -webkit-zoom-in; width: 410px; height:680px;" (click)=toggleDisplay()>
 
-                    <app-zoom [hidden]="!isShow"
+                        <div class="ui-g-4 ui-md-6 ui-lg-4" [hidden]="!isShow" >
+                            <p-carousel [value]="selectedImages" [numVisible]="1" [numScroll]="1"
+                                [responsiveOptions]="responsiveOptions" (mouseleave)="toggleDisplay()">
+                                <ng-template let-car pTemplate="item">
+                                    <div class="p-grid p-nogutter">
+                                        <img [src]=car style="cursor: pointer;"/>
+                                    </div>
+                                </ng-template>
+                            </p-carousel>
+                        </div>
+                    <!-- <app-zoom [hidden]="!isShow"
                         [img]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
-                        class="hide_all" [zoom]="2" [lenSize]="100" [imgWidth]="410"
-                        style=" height: 780px; cursor: -webkit-zoom-out" [divZoomed]="divZoomed"
-                        (mouseleave)="toggleDisplay()"></app-zoom>
+                        class="hide_all" [zoom]="2" [lenSize]="100" 
+                        style="cursor: -webkit-zoom-out" [divZoomed]="divZoomed"
+                        (mouseleave)="toggleDisplay()"></app-zoom> -->
 
                 </div>
             </div>
 
-            <div class="ui-g-12 ui-md-6 ui-lg-6" [hidden]="!isShow">
+            <!-- <div class="ui-g-12 ui-md-6 ui-lg-6" [hidden]="!isShow">
                 <div #divZoomed class="img-zoom-result"></div>
-            </div>
+            </div> -->
 
             <div class="ui-g-12 ui-md-6 ui-lg-6" [hidden]="isShow">
                 <div class="ui-g-12 ui-md-12 ui-lg-12">

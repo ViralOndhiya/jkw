@@ -48,7 +48,7 @@ export class UploadTaskComponent implements OnInit {
         
 
        
-           this.db.collection('product_detail').doc(exitingproduct).set( { ProdownloadURL : firebase.firestore.FieldValue.arrayUnion(this.ProdownloadURL)}, {merge: true});
+           this.db.collection('product_detail').doc(exitingproduct).set( { ProURL : firebase.firestore.FieldValue.arrayUnion(this.ProdownloadURL),  ProPath : firebase.firestore.FieldValue.arrayUnion(path)}, {merge: true});
           //this.db.collection('product_detail').doc(exitingproduct).set( { ProdownloadURL : this.ProdownloadURL, path});
       
           

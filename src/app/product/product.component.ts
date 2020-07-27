@@ -250,7 +250,7 @@ export class ProductComponent implements OnInit {
                
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
-                    material: dt.material, ProdownloadURL: dt.ProdownloadURL, pathImage: dt.pathImage,
+                    material: dt.material, ProURL: dt.ProURL, ProPath: dt.ProPath,
                     proImages: dt.proImages,
                     gender: dt.gender.id,                    
                     categoryID: dt.name.id,
@@ -267,7 +267,7 @@ export class ProductComponent implements OnInit {
         this.selectedProduct = ''
 
         this.selectedProduct = product     
-        this.selectedImages = this.selectedProduct?.ProdownloadURL
+        this.selectedImages = this.selectedProduct?.ProURL
         this.selectedSizes = this.selectedProduct?.size
         this.displayDialog = true;   
     }
