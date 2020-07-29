@@ -67,11 +67,12 @@
                         [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProURL"
                         style="cursor: -webkit-zoom-in; width: 410px; height:680px;" (click)=toggleDisplay()>
 
-                        <div class="ui-g-4 ui-md-6 ui-lg-4" [hidden]="!isShow" >
+                        <div  [hidden]="!isShow" >
                             <p-carousel [value]="selectedImages" [numVisible]="1" [numScroll]="1"
-                                [responsiveOptions]="responsiveOptions" (mouseleave)="toggleDisplay()">
+                                [responsiveOptions]="responsiveOptions" >
+                                <!-- (mouseleave)="toggleDisplay()" -->
                                 <ng-template let-car pTemplate="item">
-                                    <div class="p-grid p-nogutter">
+                                    <div >
                                         <img [src]=car style="cursor: pointer;"/>
                                     </div>
                                 </ng-template>
@@ -157,8 +158,8 @@
             </div>
         </div>
     </div>
-    <script>
+    <!-- <script>
         // Initiate zoom effect:
         imageZoom("myimage", "myresult");
-    </script>
+    </script> -->
 </p-dialog>
