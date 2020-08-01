@@ -26,8 +26,7 @@
                     style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
                     (click)="selectProduct($event, product)">
                 <div class="car-detail">
-                    <h3>{{product.product_name}} </h3>
-                    {{product.gendername}}
+                    <h3>{{product.product_name}} </h3>                   
                     <h3>&#8377; {{product.price}} </h3>
                 </div>
             </p-panel>
@@ -72,7 +71,7 @@
                                 [responsiveOptions]="responsiveOptions" >
                                 <!-- (mouseleave)="toggleDisplay()" -->
                                 <ng-template let-car pTemplate="item">
-                                    <div >
+                                    <div>
                                         <img [src]=car style="cursor: pointer;"/>
                                     </div>
                                 </ng-template>
@@ -99,7 +98,7 @@
                     <p>Color</p>
                 </div>
                 <div class="ui-g-9 ui-md-4 ui-lg-9">
-                    <p-carousel [value]="selectedImages" [numVisible]="2" [numScroll]="2"
+                    <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="2"
                         [responsiveOptions]="responsiveOptions">
                         <ng-template let-car pTemplate="item">
                             <div class="p-grid p-nogutter">

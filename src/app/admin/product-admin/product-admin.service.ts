@@ -13,13 +13,16 @@ export class ProductAdminService {
 
     createProduct(product: any) {
      
-      const genObj =this.firestore.doc('genders/' + product.genderId);
-      const catObj =this.firestore.doc('category/' + product.categoryID);
-      //const sizeObj  =this.firestore.doc('sizes/' + product.sizeId);
+     // const genObj =this.firestore.doc('genders/' + product.genderId);
+    //  const catObj =this.firestore.doc('category/' + product.categoryID);
+     
 
         return this.firestore.collection('product_detail').add({
-          gender: genObj.ref,
-          name:catObj.ref,
+          //gender: genObj.ref,
+          //name:catObj.ref,
+
+          gender: product.genderId,
+          name: product.categoryID,
           product_name: product.product_name,
           price: product.price,
           material: product.material, 
@@ -31,12 +34,12 @@ export class ProductAdminService {
       }
      
 
-      setsize(product: any) {
+      // setsize(product: any) {
        
-        this.firestore.collection('product_detail/').doc(product.id).update({
-          size : firebase.firestore.FieldValue.arrayUnion(product.size)
-        });
-      }
+      //   this.firestore.collection('product_detail/').doc(product.id).update({
+      //     size : firebase.firestore.FieldValue.arrayUnion(product.size)
+      //   });
+      // }
     
       updateProduct(id, product: any) {
       
@@ -49,15 +52,13 @@ export class ProductAdminService {
           product_name: product.product_name,
           price: product.price,
           material: product.material,
-          size  :  firebase.firestore.FieldValue.arrayUnion(sizeObj.ref),
+          size:  firebase.firestore.FieldValue.arrayUnion(sizeObj.ref),
          
         });
       }
 
       deleteMainImage(url, proId) {
-       // console.log("in delete product do:", url, proId)
         this.storage.storage.refFromURL(url).delete();
-        //this.updateCategoryMainImagePath(catId)
       }
     
       updateCategoryMainImagePath(proId){
@@ -79,13 +80,22 @@ export class ProductAdminService {
 
       getAllProductByid(proId) {
         const proObj = this.firestore.doc('product_detail/' + proId);
-        //return this.firestore.collection('products', ref => ref.where('category', '==', proObj.ref)).snapshotChanges()
         return this.firestore.collection('product_detail').snapshotChanges()
     }
+
+   
+      getAllProductBygid(genderName) {
+      
+      const genObj = this.firestore.doc('product_detail/' + genderName);
+      return this.firestore.collection('product_detail').snapshotChanges()
+  }
 
     getGenders() {
       return this.firestore.collection('genders').snapshotChanges();
     }
+
+   
+
     getCategories() {
       return this.firestore.collection('category').snapshotChanges();
     }

@@ -163,6 +163,7 @@ export class ProductComponent implements OnInit {
     displayDialog: boolean = false;
     displayzoom: boolean = false;
     genderId: any;
+   
     productId: any;
     //selectProduct: any;
     productList: any[] = []
@@ -178,11 +179,13 @@ export class ProductComponent implements OnInit {
     categories: any[] = [];
     sizes: any[] = [];
     displayZoom: boolean = false;
-   
+    productListbyCategory: any[] = []
+    categoryName: any;
+
     subscription: Subscription;
     responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
     constructor(private productService: ProductService, public share: ShareButtons,
-        private _activatedRoute: ActivatedRoute, private commonService: CommonService,
+        private _activatedRoute1: ActivatedRoute,private _activatedRoute: ActivatedRoute, private commonService: CommonService,
         private router: Router,
         private productAdminService: ProductAdminService,
         private firestore: AngularFirestore,
@@ -195,7 +198,7 @@ export class ProductComponent implements OnInit {
                 this.categories.push({ cid: e.payload.doc.id, name: dt.name })
             });
 
-          //  console.log("list of category:", this.categories)
+            //  console.log("list of category:", this.categories)
         }),
 
             this.productAdminService.getsizes().subscribe(data => {
@@ -205,17 +208,19 @@ export class ProductComponent implements OnInit {
                     this.sizes.push({ sid: e.payload.doc.id, size: dt.size })
                 });
 
-             //   console.log("list of size:", this.sizes)
+                //   console.log("list of size:", this.sizes)
             }),
 
             this._activatedRoute.params.subscribe((params: any) => {
-                this.genderId = params['genId']
+              
+                this.genderId = params['genderName']
                 this.getProductListByGender()
+
+                this.categoryName = params['categoryName']
+                this.getProductListByCategory()
+          
             }),
-
-
-
-
+           
 
             this.responsiveOptions = [
                 {
@@ -237,52 +242,73 @@ export class ProductComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        
+
     }
     getProductListByGender() {
-     
+
         this.productService.getAllProductByGender(this.genderId).subscribe((data: any) => {
             this.productList = []
-            this.selectProduct
-                   
+          //  this.selectProduct
+
             data.map(e => {
-                var dt: any = e.payload.doc.data();               
-               
+                var dt: any = e.payload.doc.data();
+
                 this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, ProURL: dt.ProURL, ProPath: dt.ProPath,
                     proImages: dt.proImages,
-                    gender: dt.gender.id,                    
-                    categoryID: dt.name.id,
-                    name: this.categories.find(e => e.cid == dt.name.id) ?
-                        this.categories.find(e => e.cid == dt.name.id).name : 'Not found Category',
-                                       size: dt.size                      
-                })           
+                    gender: dt.gender.id,
+                    categoryID: dt.name.id,                   
+                    name: dt.name,
+                    size: dt.size
+                })
             });
         })
     }
 
+    getProductListByCategory() {
 
+        this.productService.getProductByCategory(this.categoryName).subscribe((data: any) => {
+            this.productListbyCategory = []
+         
+      
+            data.map(e => {
+                var dt: any = e.payload.doc.data();
+      
+                this.productListbyCategory.push({
+                    id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
+                    material: dt.material, ProURL: dt.ProURL, ProPath: dt.ProPath,
+                    proImages: dt.proImages,
+                    gender: dt.gender.id,
+                    categoryID: dt.name.id,              
+                    name: dt.name,
+                    size: dt.size
+                })
+            });
+            console.log(this.productListbyCategory);
+        })
+      }
+      
     selectProduct(event, product) {
         this.selectedProduct = ''
 
-        this.selectedProduct = product     
+        this.selectedProduct = product
         this.selectedImages = this.selectedProduct?.ProURL
         this.selectedSizes = this.selectedProduct?.size
-        this.displayDialog = true;   
+        this.displayDialog = true;
     }
 
     onMouseOver(event, car) {
         this.selectedchangeProduct = car
-    }  
+    }
 
     isShow = false;
- 
+
     toggleDisplay() {
-      this.isShow = !this.isShow;
-     // console.log('this.isShow',this.isShow)
-    }   
-  
+        this.isShow = !this.isShow;
+        // console.log('this.isShow',this.isShow)
+    }
+
 
 }
 

@@ -1,8 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { ProductAdminService } from './admin/product-admin/product-admin.service';
-import { ProductService } from './product/product.service';
+
 
 
 @Component({
@@ -23,48 +22,47 @@ export class AppComponent {
       this.genders = []
       data.map(e => {
         var dt: any = e.payload.doc.data()
-        this.genders.push({id: e.payload.doc.id, gender: dt.gender })
+        this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
       });
 
-    //  console.log("list of genders:", this.genders)
+      //  console.log("list of genders:", this.genders)
     })
 
-    this.navLinks = [
-        {
-            label: 'Female',
-            link: './product',              
-            index: 0
-        }, {
-            label: 'Men',
-            link: './second',
-            index: 1
-        },    {
-          label: 'Kids',
-          link: './admin/product',
-          index: 2
-      }, {
-        label: 'Others',
-        link: './uploader',
-        index: 3
-    },  
-        {
-            label: 'Contact us',
-            link: './contactus',
-            index: 4
-        }, 
-    ];
+    // this.navLinks = [
+    //   {
+    //     label: 'Female',
+    //     link: './product',
+    //     index: 0
+    //   }, {
+    //     label: 'Men',
+    //     link: './second',
+    //     index: 1
+    //   }, {
+    //     label: 'Kids',
+    //     link: './admin/product',
+    //     index: 2
+    //   }, {
+    //     label: 'Others',
+    //     link: './uploader',
+    //     index: 3
+    //   },
+    //   {
+    //     label: 'Contact us',
+    //     link: './contactus',
+    //     index: 4
+    //   },
+    // ];
 
-   
-}
-ngOnInit(): void {
-  this.router.events.subscribe((res) => {
-      this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
-  });
- 
-}
-gotoGenderof(itm){  
-  this.router.navigate(['app/', itm.id ]);
- 
-}
+
+  }
+  ngOnInit(): void {
+    // this.router.events.subscribe((res) => {
+    //   this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
+    // });
+
+  }
+  gotoGenderof(itm) {
+    this.router.navigate(['app/', itm.gender]);
+  }
 
 }

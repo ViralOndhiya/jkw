@@ -48,9 +48,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
 import { PanelModule } from 'primeng/panel';
 import { ProductComponent } from './product/product.component';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
@@ -152,7 +152,8 @@ import { ZoomComponent } from '../app/product/zoom.component';
   // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
   //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   providers: [
-    AngularFirestore, AngularFireStorage, CommonService,{provide: LocationStrategy, useClass: HashLocationStrategy}, ZoomComponent],
-  bootstrap: [AppComponent]
+    AngularFirestore, AngularFireStorage, CommonService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}, ZoomComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

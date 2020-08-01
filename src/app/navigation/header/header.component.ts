@@ -1,5 +1,5 @@
 import { Component, OnInit , Output, EventEmitter } from '@angular/core';
-
+import {CardModule} from 'primeng/card';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

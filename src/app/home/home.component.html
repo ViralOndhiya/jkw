@@ -1,51 +1,59 @@
 <section fxLayout="column" fxFlexAlign="stretch">
-   
 
 
-    <!-- <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
-        <mat-tab label="Women"> 
-          <p>Women Cloths !</p> 
-        </mat-tab>
-        <mat-tab label="Men">
-           <p>Men Cloths !</p>
-          </mat-tab>
-        <mat-tab label="Kids">
-           <p>Kids Cloth !</p>
-          </mat-tab>
-           
-            <mat-tab label="Contact Us"  >
-           </mat-tab>
-      </mat-tab-group> -->
-
-     
-
-    
- 
     <!--20200312 START LOGIC PORTION FOR IMAGE AND VIDEO SLIDER -->
-   
-    <p-carousel [value]="sliders" styleClass="custom-carousel" [numVisible]="1" 
-    [numScroll]="1" [circular]="true" [autoplayInterval]="6000">
-   
-    <ng-template let-car pTemplate="item">
-        <div class="car-details">            
-            <div class="p-grid p-nogutter">
-                <div class="p-col-12 p-md-6 p-lg-3" style="overflow:hidden">
-                    <img src="{{car.mainImage}}" class="imgresponsive" *ngIf="car.type === 'image'"/>
-                  
-                    <video autoplay loop *ngIf="car.type !== 'image'"  class="imgresponsive" >
-                        <source src="{{car.mainImage}}" type="video/mp4">  
-                    </video>
-                </div>  
-            </div>
-        </div>
-    </ng-template>
-   </p-carousel>
-   
-  <div fxFlexAlign="center">
-      <p>JALIYAN</p>
-      <h1 class="subheading">KIDZS WEAR</h1>
-    </div>  
-   
-   <!-- <p>In this application we are going to work with:</p> -->
 
-  </section>
+    <p-carousel [value]="sliders" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true"
+        [autoplayInterval]="6000">
+
+        <ng-template let-car pTemplate="item">
+            <div class="car-details">
+                <div class="p-grid p-nogutter">
+                    <div class="p-col-12 p-md-6 p-lg-3" style="overflow:hidden">
+                        <img src="{{car.mainImage}}" class="imgresponsive" *ngIf="car.type === 'image'" />
+
+                        <video autoplay loop *ngIf="car.type !== 'image'" class="imgresponsive">
+                            <source src="{{car.mainImage}}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+
+    <div fxFlexAlign="center">
+        <p>JALIYAN</p>
+        <h1 class="subheading">KIDZS WEAR</h1>
+    </div>
+
+    <!-- <p>In this application we are going to work with:</p> -->
+
+
+    <div class="content" fxLayout="row wrap" fxLayoutGap="1px grid" style="padding-bottom: 10px;">
+        <div fxFlex="60%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of genders">
+           
+                <p-card  >
+                    <p-header>
+                        <p>{{item.gender}}</p>
+                    </p-header>
+                    <div *ngFor="let category of productList">
+                    <div *ngIf="item.gender == 'Boy' && category.gender =='Boy' " >
+                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    </div>
+                    <div *ngIf="item.gender == 'Girl' && category.gender =='Girl' ">
+                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    </div>
+                    <div *ngIf="item.gender == 'Men' && category.gender =='Men'">
+                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    </div>
+                    <div *ngIf="item.gender == 'Women' && category.gender =='Women'">
+                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    </div> 
+                    <div *ngIf="item.gender == 'Born Baby' && category.gender =='Born Baby'">
+                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    </div> 
+                </div>
+                </p-card>            
+        </div>
+    </div>
+</section>

@@ -11,7 +11,7 @@
       <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
       <main>
 
-        <nav mat-tab-nav-bar>
+        <nav mat-tab-nav-bar fxHide.xs>
           <a mat-tab-link *ngFor="let item of genders" (click)="gotoGenderof(item)">
             {{item.gender}}
           </a>
