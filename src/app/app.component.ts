@@ -62,7 +62,7 @@ export class AppComponent {
 
   }
   gotoGenderof(itm) {
-    this.router.navigate(['app/', itm.gender]);
+    this.router.navigate(['app/', {genderName:itm.gender}]);
   }
 
 }

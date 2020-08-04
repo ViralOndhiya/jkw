@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [ProductService,SliderAdminService],
+  providers: [ProductService, SliderAdminService],
   styles: [`
           .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
               border: 1px solid #b3c2ca;
@@ -54,89 +54,91 @@ export class HomeComponent implements OnInit {
   responsiveOptions; // // FOR SLIDER IMAGE 20200312
   genders: any[] = [];
   productList: any[] = []
- 
+  selectedProduct: any;
+  selectedCategory: any;
   categories: any[] = [];
 
-  constructor( private router: Router, private sliderService: SliderAdminService,
+  constructor(private router: Router, private sliderService: SliderAdminService,
     public share: ShareButtons, private productAdminService: ProductAdminService,
     private productService: ProductService,
-    private _activatedRoute: ActivatedRoute) { 
+    private _activatedRoute: ActivatedRoute) {
 
-        this.productAdminService.getCategories().subscribe(data => {
-            this.categories = []
-            data.map(e => {
-                var dt: any = e.payload.doc.data()
-                this.categories.push({ cid: e.payload.doc.id, name: dt.name })
-            });
+    this.productAdminService.getCategories().subscribe(data => {
+      this.categories = []
+      data.map(e => {
+        var dt: any = e.payload.doc.data()
+        this.categories.push({ cid: e.payload.doc.id, name: dt.name })
+      });
 
-          //  console.log("list of category:", this.categories)
-        }),
-    
-        this.productAdminService.getGenders().subscribe(data => {
-            this.genders = []
-            data.map(e => {
-              var dt: any = e.payload.doc.data()
-              this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
-            });
-      
-             // console.log("list of genders:", this.genders)
-          }),
+      //  console.log("list of category:", this.categories)
+    }),
 
-       
+      this.productAdminService.getGenders().subscribe(data => {
+        this.genders = []
+        data.map(e => {
+          var dt: any = e.payload.doc.data()
+          this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
+        });
 
-     this.responsiveOptions = [
-    
-      {
+        // console.log("list of genders:", this.genders)
+      }),
+
+
+
+      this.responsiveOptions = [
+
+        {
           breakpoint: '1024px',
           numVisible: 1,
           numScroll: 1
-      },
-      {
+        },
+        {
           breakpoint: '768px',
           numVisible: 1,
           numScroll: 1
-      }, 
-      {
+        },
+        {
           breakpoint: '560px',
           numVisible: 1,
           numScroll: 1
-      }
-  ];
- 
+        }
+      ];
+
   }
 
   ngOnInit(): void {
     this.sliderService.getAllSliders().subscribe(data => {
       this.sliders = []
       data.map(e => {
-          var dt: any = e.payload.doc.data()
-          if(dt.mainImage)
-            this.sliders.push({
-                id: e.payload.doc.id, mainImage: dt.mainImage, type: this.checkType(dt.mainImage) ? 'image' : 'video'
-            })
+        var dt: any = e.payload.doc.data()
+        if (dt.mainImage)
+          this.sliders.push({
+            id: e.payload.doc.id, mainImage: dt.mainImage, type: this.checkType(dt.mainImage) ? 'image' : 'video'
+          })
       });
-    
-  })  
-  this.getAllProducts()
+
+    })
+    this.getAllProducts()
   }
 
   getAllProducts() {
     this.productAdminService.getProducts().subscribe(data => {
       this.productList = []
       data.map(e => {
-      
+
         var dt: any = e.payload.doc.data()
-        this.productList.push({       
+        this.productList.push({
+
           // name: this.categories.find(e => e.id == dt.name.id) ?
           // this.categories.find(e => e.id == dt.name.id).name : '',
-          gender : this.genders.find(e => e.gender == dt.gender) ?
-          this.genders.find(e => e.gender == dt.gender).gender : '' ,
+
+          gender: this.genders.find(e => e.gender == dt.gender) ?
+            this.genders.find(e => e.gender == dt.gender).gender : '',
 
           name: this.categories.find(e => e.name == dt.name) ?
-          this.categories.find(e => e.name == dt.name).name : '' ,
-          
-         
-          
+            this.categories.find(e => e.name == dt.name).name : '',
+
+
         })
         //console.log("in product.....list:", this.productList)
       });
@@ -149,17 +151,22 @@ export class HomeComponent implements OnInit {
     console.log(event);
   }
 
-  
 
 
-private checkType(url){
-  var arr = [ "jpeg", "jpg", "gif", "png", "tiff", "bmp" ];
-  // console.log("ig::;...", url.substring(url.lastIndexOf('.')+1, url.lastIndexOf('?')))
-  return arr.indexOf(url.substring(url.lastIndexOf('.')+1, url.lastIndexOf('?'))) > -1
-}
 
-openProductByCategory(itm1) {  
-  this.router.navigate(['app/', itm1.name]);  
-}
+  private checkType(url) {
+    var arr = ["jpeg", "jpg", "gif", "png", "tiff", "bmp"];
+    // console.log("ig::;...", url.substring(url.lastIndexOf('.')+1, url.lastIndexOf('?')))
+    return arr.indexOf(url.substring(url.lastIndexOf('.') + 1, url.lastIndexOf('?'))) > -1
+  }
+
+  openProductByCategory(itm1) {
+     this.router.navigate(['app/',{categoryName: itm1?.name}]);  
+     
+    // this.selectedProduct = ''
+    // this.selectedProduct = itm1;
+    // this.selectedCategory = this.selectedProduct?.name
+    // localStorage.setItem("DASHBOARD_ZERO_SPEED", this.selectedCategory)
+  }
 
 }

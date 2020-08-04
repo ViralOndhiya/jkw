@@ -212,12 +212,14 @@ export class ProductComponent implements OnInit {
             }),
 
             this._activatedRoute.params.subscribe((params: any) => {
-              
+              console.log(params,'params')
                 this.genderId = params['genderName']
-                this.getProductListByGender()
-
-                this.categoryName = params['categoryName']
-                this.getProductListByCategory()
+                this.categoryName=params['categoryName'];
+                console.log(this.genderId);
+                if(this.genderId)this.getProductListByGender()
+if(this.categoryName)this.getProductListByCategory()
+                // this.categoryName =  localStorage.getItem("DASHBOARD_ZERO_SPEED")
+                // this.getProductListByCategory()
           
             }),
            
@@ -242,7 +244,8 @@ export class ProductComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.categoryName =  localStorage.getItem("DASHBOARD_ZERO_SPEED")
+        this.getProductListByCategory()
     }
     getProductListByGender() {
 
@@ -269,7 +272,7 @@ export class ProductComponent implements OnInit {
     getProductListByCategory() {
 
         this.productService.getProductByCategory(this.categoryName).subscribe((data: any) => {
-            this.productListbyCategory = []
+            // this.productListbyCategory = []
          
       
             data.map(e => {

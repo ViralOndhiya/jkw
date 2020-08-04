@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'uploader', component: UploaderComponent},
   { path: 'product', component: ProductComponent},
   //{ path: 'app/:genId', component: ProductComponent},
-  { path: 'app/:genderName', component: ProductComponent},
-  { path: 'app/:categoryName', component: ProductComponent},
+ /*  { path: 'app/:genderName', component: ProductComponent}, */
+  { path: 'app', component: ProductComponent},
  
 ];
 //export const appRouting = RouterModule.forRoot(routes);
