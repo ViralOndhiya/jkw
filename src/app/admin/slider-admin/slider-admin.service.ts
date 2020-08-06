@@ -24,7 +24,7 @@ export class SliderAdminService {
   // }
 
   deleteMainImage(url, sliderId) {
-    console.log("in delete product do:", url, sliderId)
+    //console.log("in delete product do:", url, sliderId)
     this.storage.storage.refFromURL(url).delete();
     this.updateSliderMainImagePath(sliderId, '', '')
   }

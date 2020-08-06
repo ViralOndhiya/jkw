@@ -32,25 +32,25 @@
     <div class="content" fxLayout="row wrap" fxLayoutGap="1px grid" style="padding-bottom: 10px;">
         <div fxFlex="60%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of genders">
            
-                <p-card  >
+                <p-card>
                     <p-header>
                         <p>{{item.gender}}</p>
                     </p-header>
                     <div *ngFor="let category of productList">
-                    <div *ngIf="item.gender == 'Boy' && category.gender =='Boy' " >
-                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    <div *ngIf="item.gender == 'Boy' && category.gender =='Boy'" >
+                        <h3><div (click)="openProductByCategory(category)"><p>{{category.name}}</p></div></h3>
                     </div>
-                    <div *ngIf="item.gender == 'Girl' && category.gender =='Girl' ">
-                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                    <div *ngIf="item.gender == 'Girl' && category.gender =='Girl'">
+                        <h3><div (click)="openProductByCategory(category)"><p>{{category.name}}</p></div></h3>
                     </div>
                     <div *ngIf="item.gender == 'Men' && category.gender =='Men'">
-                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                        <h3><div (click)="openProductByCategory(category)"><p>{{category.name}}</p></div></h3>
                     </div>
                     <div *ngIf="item.gender == 'Women' && category.gender =='Women'">
-                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                        <h3><div (click)="openProductByCategory(category)"><p>{{category.name}}</p></div></h3>
                     </div> 
                     <div *ngIf="item.gender == 'Born Baby' && category.gender =='Born Baby'">
-                        <h3 ><div (click)="openProductByCategory(category)">{{category.name}}</div></h3>
+                        <h3><div (click)="openProductByCategory(category)"><p>{{category.name}}</p></div></h3>
                     </div> 
                 </div>
                 </p-card>            

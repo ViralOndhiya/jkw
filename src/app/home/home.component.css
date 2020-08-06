@@ -1,17 +1,32 @@
-section div p{
-    color: #ff0028;
+ div p{
+    color: red;
     font-size: 80px;
-    text-shadow: 2px 3px 5px grey;
+    text-shadow: 2px 3px 5px maroon;
     margin: 30px 0;
     font-family: Algerian;
 }
+
+p-header p{
+    color: blueviolet;
+    font-size: 30px;
+    text-shadow: 2px 3px 5px blue;
+    margin: 30px 0;
+    font-family: Algerian;
+} 
+
+h3 div p{
+    color: red;
+    font-size: 16px;
+    text-shadow: 2px 3px 5px maroon;
+    /* margin: 30px 0;     */
+    font-family: sans-serif;
+} 
  
 section div + p{
     color: blueviolet;
     font-weight: bold;
     font-size: 20px;
-    padding-bottom: 20px;
-  
+    padding-bottom: 20px;  
 }
 
 

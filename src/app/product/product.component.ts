@@ -163,7 +163,7 @@ export class ProductComponent implements OnInit {
     displayDialog: boolean = false;
     displayzoom: boolean = false;
     genderId: any;
-   
+
     productId: any;
     //selectProduct: any;
     productList: any[] = []
@@ -185,7 +185,7 @@ export class ProductComponent implements OnInit {
     subscription: Subscription;
     responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
     constructor(private productService: ProductService, public share: ShareButtons,
-        private _activatedRoute1: ActivatedRoute,private _activatedRoute: ActivatedRoute, private commonService: CommonService,
+        private _activatedRoute1: ActivatedRoute, private _activatedRoute: ActivatedRoute, private commonService: CommonService,
         private router: Router,
         private productAdminService: ProductAdminService,
         private firestore: AngularFirestore,
@@ -212,17 +212,17 @@ export class ProductComponent implements OnInit {
             }),
 
             this._activatedRoute.params.subscribe((params: any) => {
-              console.log(params,'params')
+               // console.log(params, 'params')
                 this.genderId = params['genderName']
-                this.categoryName=params['categoryName'];
-                console.log(this.genderId);
-                if(this.genderId)this.getProductListByGender()
-if(this.categoryName)this.getProductListByCategory()
-                // this.categoryName =  localStorage.getItem("DASHBOARD_ZERO_SPEED")
-                // this.getProductListByCategory()
-          
-            }),
+                this.categoryName = params['categoryName'];
+               // console.log(this.genderId);
+               // console.log(this.categoryName);
+                if (this.genderId) this.getProductListByGender()
+                if (this.categoryName) this.getProductListByCategory()
            
+
+            }),
+
 
             this.responsiveOptions = [
                 {
@@ -244,14 +244,13 @@ if(this.categoryName)this.getProductListByCategory()
     }
 
     ngOnInit(): void {
-        this.categoryName =  localStorage.getItem("DASHBOARD_ZERO_SPEED")
-        this.getProductListByCategory()
+       
     }
     getProductListByGender() {
 
         this.productService.getAllProductByGender(this.genderId).subscribe((data: any) => {
             this.productList = []
-          //  this.selectProduct
+            //  this.selectProduct
 
             data.map(e => {
                 var dt: any = e.payload.doc.data();
@@ -261,7 +260,7 @@ if(this.categoryName)this.getProductListByCategory()
                     material: dt.material, ProURL: dt.ProURL, ProPath: dt.ProPath,
                     proImages: dt.proImages,
                     gender: dt.gender.id,
-                    categoryID: dt.name.id,                   
+                    categoryID: dt.name.id,
                     name: dt.name,
                     size: dt.size
                 })
@@ -272,26 +271,24 @@ if(this.categoryName)this.getProductListByCategory()
     getProductListByCategory() {
 
         this.productService.getProductByCategory(this.categoryName).subscribe((data: any) => {
-            // this.productListbyCategory = []
-         
-      
+             this.productList = []
+
             data.map(e => {
                 var dt: any = e.payload.doc.data();
-      
-                this.productListbyCategory.push({
+                this.productList.push({
                     id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
                     material: dt.material, ProURL: dt.ProURL, ProPath: dt.ProPath,
                     proImages: dt.proImages,
                     gender: dt.gender.id,
-                    categoryID: dt.name.id,              
+                    categoryID: dt.name.id,
                     name: dt.name,
                     size: dt.size
                 })
             });
-            console.log(this.productListbyCategory);
+            //console.log(this.productListbyCategory);
         })
-      }
-      
+    }
+
     selectProduct(event, product) {
         this.selectedProduct = ''
 

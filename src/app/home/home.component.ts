@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   sliders: any[]; // // FOR SLIDER IMAGE 20200312
   responsiveOptions; // // FOR SLIDER IMAGE 20200312
   genders: any[] = [];
-  productList: any[] = []
+  productList: any[] = [];
   selectedProduct: any;
   selectedCategory: any;
   categories: any[] = [];
@@ -79,11 +79,35 @@ export class HomeComponent implements OnInit {
           var dt: any = e.payload.doc.data()
           this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
         });
-
-        // console.log("list of genders:", this.genders)
+         console.log("list of genders:", this.genders)
       }),
 
+      this.productAdminService.getProducts().subscribe(data => {
+        this.productList = []
+      data.map(e => {  
+          var dt: any = e.payload.doc.data()             
+          this.productList.push({gender : dt.gender,  name: dt.name })
+          
+        }
+        );
+        const result = [];
+const map = new Map();
+for (const item of this.productList) {
+    if(!map.has(item.name)){
+        map.set(item.name, true);    // set any value to Map
+        result.push({gender : item.gender,  name: item.name });
+    }
+}
+this.productList=[...result]
+/*        const names = [...new Set(this.productList.map(data => data.name))]
+       console.log(names,"names")
+      this.productList=[...this.productList.filter(f=>!names.includes(f.name))]
+console.log(this.productList) */
+        
+      }),
 
+      //const uniqueArr = [... new Set(students.map(data => data.name))]
+     // console.log(uniqueArr)
 
       this.responsiveOptions = [
 
@@ -103,7 +127,7 @@ export class HomeComponent implements OnInit {
           numScroll: 1
         }
       ];
-
+     
   }
 
   ngOnInit(): void {
@@ -118,41 +142,13 @@ export class HomeComponent implements OnInit {
       });
 
     })
-    this.getAllProducts()
+   
   }
 
-  getAllProducts() {
-    this.productAdminService.getProducts().subscribe(data => {
-      this.productList = []
-      data.map(e => {
-
-        var dt: any = e.payload.doc.data()
-        this.productList.push({
-
-          // name: this.categories.find(e => e.id == dt.name.id) ?
-          // this.categories.find(e => e.id == dt.name.id).name : '',
-
-          gender: this.genders.find(e => e.gender == dt.gender) ?
-            this.genders.find(e => e.gender == dt.gender).gender : '',
-
-          name: this.categories.find(e => e.name == dt.name) ?
-            this.categories.find(e => e.name == dt.name).name : '',
-
-
-        })
-        //console.log("in product.....list:", this.productList)
-      });
-    })
-  }
-
-
-
+  
   public executeSelectedChange = (event) => {
     console.log(event);
   }
-
-
-
 
   private checkType(url) {
     var arr = ["jpeg", "jpg", "gif", "png", "tiff", "bmp"];
@@ -161,12 +157,7 @@ export class HomeComponent implements OnInit {
   }
 
   openProductByCategory(itm1) {
-     this.router.navigate(['app/',{categoryName: itm1?.name}]);  
-     
-    // this.selectedProduct = ''
-    // this.selectedProduct = itm1;
-    // this.selectedCategory = this.selectedProduct?.name
-    // localStorage.setItem("DASHBOARD_ZERO_SPEED", this.selectedCategory)
+    this.router.navigate(['app/', { categoryName: itm1?.name }]);   
   }
 
 }
