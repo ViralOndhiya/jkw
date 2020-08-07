@@ -1,8 +1,4 @@
-<!-- <section fxLayout="column" fxFlexAlign="stretch">
-  
-    <img src="assets/img/child_sl.jpg"  height="400px" class="center"  />
-   
-  </section> -->
+
 <p-dataView #dv [value]="productList" filterBy="product_name" layout="grid" >
     <p-header>
         <div class="ui-helper-clearfix">
@@ -35,7 +31,7 @@
 </p-dataView>
 
 <p-dialog header="Product Details" [(visible)]="displayDialog" [responsive]="true" [modal]="true"
-    [style]="{width: '1300px'}" >
+    [style]="{width: '1300px'}" resizable="true" (onHide)="toggleDisplay()">
 
     <style>
         p {
@@ -64,16 +60,20 @@
 
                     <img [hidden]="isShow"
                         [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProURL"
-                        style="cursor: -webkit-zoom-in; width: 410px; height:680px;" (click)=toggleDisplay()>
+                        style="cursor: -webkit-zoom-in; width: 410px; height:680px;" 
+                        (click)=toggleDisplay()>
 
-                        <div  [hidden]="!isShow" >
-                            <p-carousel [value]="selectedImages" [numVisible]="1" [numScroll]="1"
-                                [responsiveOptions]="responsiveOptions" >
-                                <!-- (mouseleave)="toggleDisplay()" -->
+                       
+
+                        <div [hidden]="!isShow" class="ui-g-12 ui-md-12 ui-lg-12">
+                            <p-carousel [value]="selectedImages"
+                             [numVisible]="1" [numScroll]="1"
+                                [responsiveOptions]="responsiveOptions">
                                 <ng-template let-car pTemplate="item">
-                                    <div>
-                                        <img [src]=car style="cursor: pointer;"/>
-                                    </div>
+                                    <!-- <div class="p-grid p-nogutter"> -->
+                                        <img [src]=car style=" width: 80px; height:80px;" class="hide_all"
+                                       />
+                                    <!-- </div> -->
                                 </ng-template>
                             </p-carousel>
                         </div>

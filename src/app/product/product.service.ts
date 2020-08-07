@@ -12,8 +12,8 @@ export class ProductService {
     getAllProductByGender(genderName) {        
       return this.firestore.collection('product_detail', ref => ref.where('gender', '==', genderName)).snapshotChanges()
     }
-    getProductByCategory(categoryName) {     
-      return this.firestore.collection('product_detail', ref => ref.where('name', '==', categoryName)).snapshotChanges()
+    getProductByCategory(genderName,categoryName) {     
+      return this.firestore.collection('product_detail', ref => ref.where('name', '==', categoryName).where('gender', '==', genderName)).snapshotChanges()
     }
 
   

@@ -79,35 +79,29 @@ export class HomeComponent implements OnInit {
           var dt: any = e.payload.doc.data()
           this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
         });
-         console.log("list of genders:", this.genders)
+        //console.log("list of genders:", this.genders)
       }),
 
       this.productAdminService.getProducts().subscribe(data => {
         this.productList = []
-      data.map(e => {  
-          var dt: any = e.payload.doc.data()             
-          this.productList.push({gender : dt.gender,  name: dt.name })
-          
+        data.map(e => {
+          var dt: any = e.payload.doc.data()
+          this.productList.push({ gender: dt.gender, name: dt.name })
         }
         );
         const result = [];
-const map = new Map();
-for (const item of this.productList) {
-    if(!map.has(item.name)){
-        map.set(item.name, true);    // set any value to Map
-        result.push({gender : item.gender,  name: item.name });
-    }
-}
-this.productList=[...result]
-/*        const names = [...new Set(this.productList.map(data => data.name))]
-       console.log(names,"names")
-      this.productList=[...this.productList.filter(f=>!names.includes(f.name))]
-console.log(this.productList) */
-        
+        const map = new Map();
+        for (const item of this.productList) {
+          if (!map.has(item.gender) || !map.has(item.name)) {
+            map.set(item.name, true);   
+            map.set(item.gender, true);    // set any value to Map
+            result.push({ gender: item.gender, name: item.name });
+          }
+        }
+        this.productList = [...result]
       }),
 
-      //const uniqueArr = [... new Set(students.map(data => data.name))]
-     // console.log(uniqueArr)
+
 
       this.responsiveOptions = [
 
@@ -127,7 +121,7 @@ console.log(this.productList) */
           numScroll: 1
         }
       ];
-     
+
   }
 
   ngOnInit(): void {
@@ -142,10 +136,10 @@ console.log(this.productList) */
       });
 
     })
-   
+
   }
 
-  
+
   public executeSelectedChange = (event) => {
     console.log(event);
   }
@@ -156,8 +150,8 @@ console.log(this.productList) */
     return arr.indexOf(url.substring(url.lastIndexOf('.') + 1, url.lastIndexOf('?'))) > -1
   }
 
-  openProductByCategory(itm1) {
-    this.router.navigate(['app/', { categoryName: itm1?.name }]);   
+  openProductByCategory(itm, itm1) {
+    this.router.navigate(['app/', { genderName: itm?.gender, categoryName: itm1?.name }]);
   }
 
 }

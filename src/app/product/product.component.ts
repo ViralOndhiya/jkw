@@ -181,6 +181,7 @@ export class ProductComponent implements OnInit {
     displayZoom: boolean = false;
     productListbyCategory: any[] = []
     categoryName: any;
+    genderName: any;
 
     subscription: Subscription;
     responsiveOptions: { breakpoint: string; numVisible: number; numScroll: number; }[];
@@ -215,10 +216,11 @@ export class ProductComponent implements OnInit {
                // console.log(params, 'params')
                 this.genderId = params['genderName']
                 this.categoryName = params['categoryName'];
+                this.genderName = params['genderName'];
                // console.log(this.genderId);
                // console.log(this.categoryName);
                 if (this.genderId) this.getProductListByGender()
-                if (this.categoryName) this.getProductListByCategory()
+                if (this.categoryName && this.genderName) this.getProductListByCategory()
            
 
             }),
@@ -270,7 +272,7 @@ export class ProductComponent implements OnInit {
 
     getProductListByCategory() {
 
-        this.productService.getProductByCategory(this.categoryName).subscribe((data: any) => {
+        this.productService.getProductByCategory(this.genderName,this.categoryName).subscribe((data: any) => {
              this.productList = []
 
             data.map(e => {
@@ -285,7 +287,7 @@ export class ProductComponent implements OnInit {
                     size: dt.size
                 })
             });
-            //console.log(this.productListbyCategory);
+            console.log('test',this.productListbyCategory);
         })
     }
 
