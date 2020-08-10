@@ -293,7 +293,7 @@ export class ProductComponent implements OnInit {
 
     selectProduct(event, product) {
         this.selectedProduct = ''
-
+        this.selectedchangeProduct = ''
         this.selectedProduct = product
         this.selectedImages = this.selectedProduct?.ProURL
         this.selectedSizes = this.selectedProduct?.size
@@ -307,11 +307,12 @@ export class ProductComponent implements OnInit {
     isShow = false;
 
     toggleDisplay() {
-        this.isShow = !this.isShow;
-        // console.log('this.isShow',this.isShow)
+        this.isShow = !this.isShow;        
+        console.log('this.isShow',this.isShow)
     }
+    
 
-
+    
 }
 
 

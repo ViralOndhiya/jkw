@@ -38,23 +38,23 @@
                     </p-header>
                     <div *ngFor="let category of productList">
                     <div *ngIf="item.gender == 'Boy' && category.gender =='Boy'" >                                                    
-                            <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger"
-                     (click)="openProductByCategory(item, category)"></button>                         
+                            <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                     (click)="openProductByCategory(item, category)"></button> <br>                        
                     </div>
                     <div *ngIf="item.gender == 'Girl' && category.gender =='Girl'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
                      (click)="openProductByCategory(item, category)"></button> 
                     </div>
                     <div *ngIf="item.gender == 'Men' && category.gender =='Men'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
                      (click)="openProductByCategory(item, category)"></button> 
                     </div>
                     <div *ngIf="item.gender == 'Women' && category.gender =='Women'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger"
-                     (click)="openProductByCategory(item, category)"></button> 
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                     (click)="openProductByCategory(item, category)"></button>  
                     </div> 
                     <div *ngIf="item.gender == 'Born Baby' && category.gender =='Born Baby'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
                         (click)="openProductByCategory(item, category)"></button> 
                     </div> 
                 </div>

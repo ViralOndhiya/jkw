@@ -16,7 +16,7 @@
    
     <ng-template let-product pTemplate="gridItem">
         
-        <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-3">
+        <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-12 ui-lg-3">
             <p-panel>
                 <img [src]="product.ProURL ? product.ProURL : '../../../../assets/img/no_image_available.jpeg'"
                     style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
@@ -31,7 +31,7 @@
 </p-dataView>
 
 <p-dialog header="Prouct Details" [(visible)]="displayDialog" [responsive]="true" [modal]="true"
-    [style]="{width: '1100px'}" resizable="true" (onHide)="toggleDisplay()">
+ resizable="true" >
 
     <style>
         p {
@@ -55,7 +55,7 @@
 
     <div class="ui-g" *ngIf="selectedProduct  &&  selectedSizes">
         <div class="ui-g ">
-            <div class="ui-g-12 ui-md-6 ui-lg-6">
+            <div class="ui-g-12 ui-md-12 ui-lg-6">
                 <div class="ui-g-12" style="text-align:center">
 
                     <img [hidden]="isShow"
@@ -65,19 +65,19 @@
 
                        
 
-                        <div [hidden]="!isShow" class="ui-g-12 ui-md-12 ui-lg-12">
+                        <div  [hidden]="!isShow" class="ui-g-12 ui-md-12 ui-lg-12">
                             <p-carousel [value]="selectedImages"
                              [numVisible]="1" [numScroll]="1"
-                                [responsiveOptions]="responsiveOptions">
+                                [responsiveOptions]="responsiveOptions" (mouseleave)=toggleDisplay()>
                                 <ng-template let-car pTemplate="item">
-                                    <!-- <div class="p-grid p-nogutter"> -->
-                                        <img [src]=car style=" width: 300px; height:300px;" 
-                                        class="hide_all"
-                                       />
-                                    <!-- </div> -->
+                                    <div class="p-grid p-nogutter">
+                                        <img [src]=car style="width: 410px; height:680px;" 
+                                        class="hide_all" />
+                                    </div>
                                 </ng-template>
                             </p-carousel>
                         </div>
+                        
                     <!-- <app-zoom [hidden]="!isShow"
                         [img]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProdownloadURL"
                         class="hide_all" [zoom]="2" [lenSize]="100" 
@@ -91,14 +91,14 @@
                 <div #divZoomed class="img-zoom-result"></div>
             </div> -->
 
-            <div class="ui-g-12 ui-md-6 ui-lg-6" [hidden]="isShow">
+            <div class="ui-g-12 ui-md-12 ui-lg-6" [hidden]="isShow">
                 <div class="ui-g-12 ui-md-12 ui-lg-12">
                     <h1>{{selectedProduct.product_name}}</h1>
                 </div>
-                <div class="ui-g-3 ui-md-2 ui-lg-3">
+                <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Color</p>
                 </div>
-                <div class="ui-g-9 ui-md-4 ui-lg-9">
+                <div class="ui-g-9 ui-md-6 ui-lg-9">
                     <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="2"
                         [responsiveOptions]="responsiveOptions">
                         <ng-template let-car pTemplate="item">
@@ -112,29 +112,29 @@
 
 
 
-                <div class="ui-g-3 ui-md-2 ui-lg-3">
+                <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Category :</p>
                 </div>
-                <div class="ui-g-9 ui-md-4 ui-lg-9">
+                <div class="ui-g-9 ui-md-6 ui-lg-9">
                     <p>{{selectedProduct.name}} </p>
                 </div>
 
-                <div class="ui-g-3 ui-md-2 ui-lg-3">
+                <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Price :</p>
                 </div>
-                <div class="ui-g-9 ui-md-4 ui-lg-9">
+                <div class="ui-g-9 ui-md-6 ui-lg-9">
                     <p>&#8377; {{selectedProduct.price}}</p>
                 </div>
-                <div class="ui-g-3 ui-md-2 ui-lg-3">
+                <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Material :</p>
                 </div>
-                <div class="ui-g-9 ui-md-4 ui-lg-9">
+                <div class="ui-g-9 ui-md-6 ui-lg-9">
                     <p>{{selectedProduct.material}}</p>
                 </div>
-                <div class="ui-g-3 ui-md-2 ui-lg-3">
+                <div class="ui-g-3 ui-md-6 ui-lg-3">
                     <p>Size :</p>
                 </div>
-                <div class="ui-g-9 ui-md-4 ui-lg-9" style="display: flex;">
+                <div class="ui-g-9 ui-md-6 ui-lg-9" style="display: flex;">
                     <p *ngFor="let size of selectedSizes" style="margin-left: 5px;">{{size}}</p>
                 </div>
 

@@ -46,3 +46,10 @@ mat-tab-group p {
     font-family: Algerian;
     text-align: center;
 }
+.subheading1 {
+    text-decoration-color: white ;
+    font-size: 16px;   
+    font-family:sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
