@@ -20,7 +20,7 @@ import { ActivatedRoute } from '@angular/router';
           }
           .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
               font-weight: 700;
-              font-size: 20px;
+              font-size: 1.2em;
               margin-top: 24px;
           }
           .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {

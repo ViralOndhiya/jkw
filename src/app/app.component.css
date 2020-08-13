@@ -1,9 +1,13 @@
-a{
-  
-    
-    color:red;
-    font-size: 15px;
-    font-family: 'Segoe UI';
-    text-shadow: 1px 2px 4px grey;
-  
-}
+
+
+/* @media only screen and (min-width: 768px) {
+    a.mat-tab-link.mat-focus-indicator.ng-star-inserted {
+        
+      
+        font-size: 100%!important;
+        font-weight: 500;
+        
+        
+     }
+
+   } */

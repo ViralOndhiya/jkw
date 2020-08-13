@@ -55,6 +55,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { ZoomComponent } from '../app/product/zoom.component';
+
  // for image zoom
 // import {
 //   SocialLoginModule,

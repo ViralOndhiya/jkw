@@ -39,7 +39,7 @@
                     <div *ngFor="let category of productList">
                     <div *ngIf="item.gender == 'Boy' && category.gender =='Boy'" >                                                    
                             <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
-                     (click)="openProductByCategory(item, category)"></button> <br>                        
+                     (click)="openProductByCategory(item, category)"></button>                         
                     </div>
                     <div *ngIf="item.gender == 'Girl' && category.gender =='Girl'">
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"

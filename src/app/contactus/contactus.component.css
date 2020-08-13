@@ -1,5 +1,5 @@
 agm-map {
-    height:400px;     
+    height:100px;     
     margin-right: 20%; 
     margin-left: 20%;
     
@@ -8,8 +8,7 @@ agm-map {
 h2{
     margin-left: 13%;
     color:black;
-    font-size: 25px;
-    font-family: 'Segoe UI';
+    font-size: 2em;    
     text-shadow: 1px 2px 4px grey;
    
 }
@@ -18,8 +17,7 @@ th{
     text-align: left;
     margin-left: 20%;
     color:red;
-    font-size: 15px;
-    font-family: 'Segoe UI';
+    /* font-size: 15px;     */
     text-shadow: 1px 2px 4px grey;
     margin: 30px 0;
 }
@@ -27,9 +25,30 @@ td{
     text-align: left;
     margin-left: 20%;
     color:red;
-    font-size: 13px;
-    font-family: 'Segoe UI';
+    /* font-size: 13px;     */
     text-shadow: 1px 2px 4px grey;
     margin: 30px 0;
 }
 
+@media only screen and (min-width: 768px) {
+    table , th {
+        
+            text-align: left;
+            margin-left: 20%;
+            color:red;
+            font-size: 1.3em;    
+            text-shadow: 1px 2px 4px grey;
+            margin: 30px 0;
+        
+     }
+     table , td {
+        
+        text-align: left;
+    margin-left: 20%;
+    color:red;
+    font-size: 1.2em;    
+    text-shadow: 1px 2px 4px grey;
+    margin: 30px 0;
+    
+ }
+   }

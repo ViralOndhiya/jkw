@@ -45,7 +45,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
       border-bottom: 1px solid #191919;
   }
   
-  @media (max-width: 1024px) {
+  @media (min-width: 1024px) {
       .car-details img {
            width: 75px;
       }
@@ -129,7 +129,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 }
 .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.2em;
     margin-top: 24px;
 }
 .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {

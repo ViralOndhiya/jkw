@@ -9,15 +9,13 @@ footer {
       }
       th{  
         color:red;
-        font-size: 13px;
-        font-family: 'Segoe UI';
+        font-size: 1em;      
         text-shadow: 1px 2px 4px grey;
         margin: 30px 0;
     }
     td{  
         color:blue;
-        font-size: 13px;
-        font-family: 'Segoe UI';
+        font-size: 1em;
         text-shadow: 1px 2px 4px grey;
         margin: 30px 0;
     }
