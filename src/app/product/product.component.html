@@ -31,12 +31,12 @@
 </p-dataView>
 
 <p-dialog header="Prouct Details" [(visible)]="displayDialog"  [responsive]="true"  
-showEffect="fade" [modal]="true" styleClass="mydialog">
+showEffect="fade" [modal]="true" styleClass="mydialog" >
 
     <style>
         p {
             text-decoration: none;
-            font-size: 1em;
+            
             /* color: black; */            
             text-shadow: 1px 2px 4px grey;
         }
@@ -58,18 +58,17 @@ showEffect="fade" [modal]="true" styleClass="mydialog">
 
                     <img [hidden]="isShow"
                         [src]="selectedchangeProduct ? selectedchangeProduct : selectedProduct.ProURL"
-                        style="cursor: -webkit-zoom-in; width: 410px; height:680px;" 
+                        style="cursor: -webkit-zoom-in;"  class="ImgPro" 
                         (click)=toggleDisplay()>
 
                        
 
-                        <div  [hidden]="!isShow" class="ui-g-12 ui-md-12 ui-lg-12">
+                        <div  [hidden]="!isShow" >
                             <p-carousel [value]="selectedImages"
-                             [numVisible]="1" [numScroll]="1"
-                                [responsiveOptions]="responsiveOptions" (mouseleave)=toggleDisplay()>
+                             styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" (mouseleave)=toggleDisplay()>
                                 <ng-template let-car pTemplate="item">
                                     <div class="p-grid p-nogutter">
-                                        <img [src]=car style="width: 410px; height:680px;" 
+                                        <img [src]=car style="width: 810px; height:680px;" 
                                         class="hide_all" />
                                     </div>
                                 </ng-template>
@@ -90,13 +89,13 @@ showEffect="fade" [modal]="true" styleClass="mydialog">
             </div> -->
 
             <div class="ui-g-12 ui-md-12 ui-lg-6" [hidden]="isShow">
-                <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center;">
                     <h1>{{selectedProduct.product_name}}</h1>
                 </div>
-                <div class="ui-g-3 ui-md-6 ui-lg-3">
-                    <p>Color</p>
+                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                    <p>Color :</p>
                 </div>
-                <div class="ui-g-9 ui-md-6 ui-lg-9">
+                <div class="ui-g-12 ui-md-6 ui-lg-9">
                     <p-carousel [value]="selectedImages" [numVisible]="3" [numScroll]="2"
                         [responsiveOptions]="responsiveOptions">
                         <ng-template let-car pTemplate="item">
@@ -110,42 +109,42 @@ showEffect="fade" [modal]="true" styleClass="mydialog">
 
 
 
-                <div class="ui-g-3 ui-md-6 ui-lg-3">
+                <div class="ui-g-4 ui-md-6 ui-lg-3">
                     <p>Category :</p>
                 </div>
-                <div class="ui-g-9 ui-md-6 ui-lg-9">
+                <div class="ui-g-8 ui-md-6 ui-lg-9">
                     <p>{{selectedProduct.name}} </p>
                 </div>
 
-                <div class="ui-g-3 ui-md-6 ui-lg-3">
+                <div class="ui-g-4 ui-md-6 ui-lg-3">
                     <p>Price :</p>
                 </div>
-                <div class="ui-g-9 ui-md-6 ui-lg-9">
+                <div class="ui-g-8 ui-md-6 ui-lg-9">
                     <p>&#8377; {{selectedProduct.price}}</p>
                 </div>
-                <div class="ui-g-3 ui-md-6 ui-lg-3">
+                <div class="ui-g-4 ui-md-6 ui-lg-3">
                     <p>Material :</p>
                 </div>
-                <div class="ui-g-9 ui-md-6 ui-lg-9">
+                <div class="ui-g-8 ui-md-6 ui-lg-9">
                     <p>{{selectedProduct.material}}</p>
                 </div>
-                <div class="ui-g-3 ui-md-6 ui-lg-3">
+                <div class="ui-g-4 ui-md-6 ui-lg-3">
                     <p>Size :</p>
                 </div>
-                <div class="ui-g-9 ui-md-6 ui-lg-9" style="display: flex;">
+                <div class="ui-g-8 ui-md-6 ui-lg-9" style="display: flex;">
                     <p *ngFor="let size of selectedSizes" style="margin-left: 5px;">{{size}}</p>
                 </div>
 
                
                
-                <div class="ui-g-3 ui-md-6 ui-lg-3">
-                    <p>Share :</p>
+                <div class="ui-g-12 ui-md-6 ui-lg-12">
+                    <p>Share the Product  :</p>
                 </div>
-                <div class="ui-g-9 ui-md-6 ui-lg-9">
-                    <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
+                <div class="ui-g-12 ui-md-6 ui-lg-12" style="text-align: center;">
+                    <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color" class="margin_right">
                         <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
                     </button>
-                    <button mat-fab shareButton="whatsapp" [style.backgroundColor]="share.prop.whatsapp.color">
+                    <button mat-fab shareButton="whatsapp" [style.backgroundColor]="share.prop.whatsapp.color" class="margin_right">
                         <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
                     </button>
                     <button mat-fab shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">

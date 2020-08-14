@@ -5,16 +5,14 @@
 html
 body{
     height: 100%;
-    margin: 0;   
-    font-family: verdana !important;
-    font-size: 13px; 
+    margin: 0;    
 } 
   
 
 
    /* in image slider make responsive sliderr */
   .imgresponsive {
-    max-width: 100%;
+    max-width: 100%;    
     height: auto;
     display: block;
     margin-left: auto;
@@ -50,25 +48,15 @@ progress::-webkit-progress-value {
 }
   /* END FOLLOWING TAG USE FOR DROPZONE */
 
-h6{ 
-  font-size: 1.1em!important;
+h6{   
   color: black; 
   text-align: right;    
 }
 
-h5{  
-  font-size: 1.1em!important;
+h5{    
   color: black; 
   text-align: left;    
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-//  @media only screen and  (max-width: 300px) {
-//   a, nav {   
-//     flex-direction: column;
-//   }
-//   body {
-//     background-color: lightblue;
-//   }
-//}
+
 

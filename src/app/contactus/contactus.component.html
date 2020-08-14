@@ -1,41 +1,40 @@
 <div>
-    <section fxLayout="column" fxFlexAlign="stretch">
-  
-      <img src="assets/img/contactus1.jpg" class="imgresponsive" width="100%" height="800"/>
-     
-    </section>
-  
-  
-  
-    <h2>Shop</h2>
-    <hr>
-  
-    <table style="margin-left: 13%;">
-      <tr>
-        <th>JALIYAN KIDS WEAR - The Family Shop</th>
-      </tr>
-      <tr>
-        <td>B - 9, SECOND FLOOR, SUMERU CITY MALL,</td>
-      </tr>
-      <tr>
-        <td>OPPOSITE KRUSHNA TOWNSHIP, SUDAMA CHOCK,</td>
-      </tr>
-      <tr>
-        <td>MOTA VARACHHA, SURAT - 395006</td>
-      </tr>
-      <tr>
-        <td>Mobile No. 7048484866, 9426223705</td>
-      </tr>
-      <!-- <tr>
-        <td> <a href="http://www.goodimc.com" target="_blank">www.goodimc.com</a></td>
-      </tr> -->
-    </table>
+  <section fxLayout="column" fxFlexAlign="stretch">
+    <img src="assets/img/contactus1.jpg" class="imgresponsive" />
+  </section>
 
-    <div class="ui-g">  
-      <div class="ui-g-12 ui-md-12 ui-lg-12">
-        <agm-map [latitude]="latitude" [longitude]="longitude">
-          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-        </agm-map>
+  <div class="ui-g" style="overflow: auto; padding: 10px;">
+    <div class="ui-g-12 ui-md-12 ui-lg-12">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-12 ui-lg-4">
+          <h2>Address</h2>
+
+
+          <table style="margin-left: 13%;">
+            <tr>
+              <th>JALIYAN KIDS WEAR - The Family Shop</th>
+            </tr>
+            <tr>
+              <td>B - 9, SECOND FLOOR, SUMERU CITY MALL,</td>
+            </tr>
+            <tr>
+              <td>OPPOSITE KRUSHNA TOWNSHIP, SUDAMA CHOCK,</td>
+            </tr>
+            <tr>
+              <td>MOTA VARACHHA, SURAT - 395006</td>
+            </tr>
+            <tr>
+              <td>Mobile No. 7048484866, 9426223705</td>
+            </tr>
+          </table>
+
+        </div>
+        <div class="ui-g-12 ui-md-12 ui-lg-8" style="margin-bottom: 10px;">
+          <agm-map [latitude]="latitude" [longitude]="longitude">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+          </agm-map>
+        </div>
       </div>
     </div>
   </div>
+</div>
