@@ -28,7 +28,7 @@ app-zoom:hover div.only-show-on-hover  {
   width: 50%;
 }
 .mydialog {
-  width: 55vw;
+  width: 65vw;
 }
 
 @media screen and (max-width: 40em) {
@@ -38,12 +38,13 @@ app-zoom:hover div.only-show-on-hover  {
 }
 
 .ImgPro {
-  width: 410px; height:680px;
+  /* width: 410px; height:680px; */
+  width: 290px; height:385px
 }
 
 @media screen and (max-width: 40em) {
   .ImgPro {
-    width: 300px; height:680px;
+    width: 290px; height:385px;
   }
 }
 

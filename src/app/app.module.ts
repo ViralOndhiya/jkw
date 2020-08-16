@@ -53,7 +53,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { NgxImageZoomModule } from 'ngx-image-zoom';
+//import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { ZoomComponent } from '../app/product/zoom.component';
 
  // for image zoom
@@ -133,7 +133,7 @@ import { ZoomComponent } from '../app/product/zoom.component';
     ShareModule.forRoot(),
    // SocialLoginModule,
    DialogModule,
-   NgxImageZoomModule, // <-- Add this line
+   //NgxImageZoomModule, // <-- Add this line
    AgmCoreModule.forRoot({
     apiKey: 'AIzaSyCYTFor6RFV5hofjBPrk3NEgsV-1o1b8HQ'
   }),

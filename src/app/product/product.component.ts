@@ -230,17 +230,17 @@ export class ProductComponent implements OnInit {
                 {
                     breakpoint: '1024px',
                     numVisible: 3,
-                    numScroll: 3
+                    numScroll: 1
                 },
                 {
-                    breakpoint: '768px',
+                    breakpoint: '40em',
                     numVisible: 2,
-                    numScroll: 2
+                    numScroll: 1
                 },
                 {
                     breakpoint: '560px',
-                    numVisible: 2,
-                    numScroll: 2
+                    numVisible: 1,
+                    numScroll: 1
                 }
             ];
     }
