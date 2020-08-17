@@ -57,6 +57,10 @@
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
                         (click)="openProductByCategory(item, category)"></button> 
                     </div> 
+                    <div *ngIf="item.gender == 'Handloom' && category.gender =='Handloom'">
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                        (click)="openProductByCategory(item, category)"></button> 
+                    </div> 
                 </div>
                 </p-card>            
         </div>

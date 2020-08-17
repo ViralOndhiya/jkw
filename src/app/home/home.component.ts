@@ -92,13 +92,18 @@ export class HomeComponent implements OnInit {
         const result = [];
         const map = new Map();
         for (const item of this.productList) {
-          if (!map.has(item.gender) || !map.has(item.name)) {
-            map.set(item.name, true);   
-            map.set(item.gender, true);    // set any value to Map
+          if (!map.has(item.gender + item.name)) {
+          //  console.log('concate',item.gender + item.name)
+          //  map.set(item.name, true);   
+            map.set(item.gender+item.name, true);    // set any value to Map
+
+            // map.set(item.name, true);   
+            // map.set(item.gender, true);    // set any value to Map
             result.push({ gender: item.gender, name: item.name });
           }
         }
         this.productList = [...result]
+        //console.log("this.productList",this.productList);
       }),
 
 
