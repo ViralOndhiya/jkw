@@ -53,8 +53,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-//import { NgxImageZoomModule } from 'ngx-image-zoom';
-import { ZoomComponent } from '../app/product/zoom.component';
+
+// Import the library
+
 
  // for image zoom
 // import {
@@ -101,7 +102,7 @@ import { ZoomComponent } from '../app/product/zoom.component';
     UploaderComponent,
     UploadTaskComponent,
     ProductComponent,
-    ZoomComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -129,7 +130,7 @@ import { ZoomComponent } from '../app/product/zoom.component';
     FontAwesomeModule,
     ButtonModule,
     CheckboxModule,
-    
+   
     ShareModule.forRoot(),
    // SocialLoginModule,
    DialogModule,
@@ -150,11 +151,12 @@ import { ZoomComponent } from '../app/product/zoom.component';
     ]),
     
   ],
+ 
   // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
   //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   providers: [
     AngularFirestore, AngularFireStorage, CommonService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}, ZoomComponent],
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,35 +30,36 @@
 
 
     <div class="content" fxLayout="row wrap" fxLayoutGap="10px grid" style="padding-bottom: 10px;">
-        <div fxFlex="50%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of genders">
+        <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of genders">
            
                 <p-card>
                     <p-header>
                         <p>{{item.gender}}</p>
                     </p-header>
                     <div *ngFor="let category of productList">
-                    <div *ngIf="item.gender == 'Boy' && category.gender =='Boy'" >                                                    
-                            <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
-                     (click)="openProductByCategory(item, category)"></button>                         
+                    <div *ngIf="item.gender == 'Boy' && category.gender =='Boy'">                                                    
+                            <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
+                     (click)="openProductByCategory(item, category)"></button>
+                                          
                     </div>
                     <div *ngIf="item.gender == 'Girl' && category.gender =='Girl'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
                      (click)="openProductByCategory(item, category)"></button> 
                     </div>
                     <div *ngIf="item.gender == 'Men' && category.gender =='Men'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
                      (click)="openProductByCategory(item, category)"></button> 
                     </div>
                     <div *ngIf="item.gender == 'Women' && category.gender =='Women'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
                      (click)="openProductByCategory(item, category)"></button>  
                     </div> 
                     <div *ngIf="item.gender == 'Born Baby' && category.gender =='Born Baby'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
                         (click)="openProductByCategory(item, category)"></button> 
                     </div> 
                     <div *ngIf="item.gender == 'Handloom' && category.gender =='Handloom'">
-                        <button pButton type="button" label={{category.name}} class="ui-button-rounded ui-button-danger subheading1"
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
                         (click)="openProductByCategory(item, category)"></button> 
                     </div> 
                 </div>

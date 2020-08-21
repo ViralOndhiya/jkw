@@ -1,62 +1,43 @@
  div p{
-    color: red;
-    font-size: 4em;   ;
-    text-shadow: 2px 3px 5px maroon;
-    margin: 50px 0;
+    color:black;
+    font-size: 4em;
+    text-shadow: 2px 3px 5px grey;
+    margin: 10px 0;
     font-family: Algerian;
+    text-align: center;
 }
 
 p-header p{
-    color: blueviolet;
-    font-size: 2em;   
-    text-shadow: 2px 3px 5px red;
-    margin: 30px 0;
-    font-family: Algerian;
-    padding: 10px;
+    color: black;
+    font-size: 1.3em;   
+    text-shadow: 2px 1px 2px gray;    
+    font-family: Algerian;    
 } 
-
-h3 div p{
-    color: red;
-    font-size: 1em;
-    text-shadow: 2px 3px 5px greenyellow;
-    /* margin: 30px 0;     */
-    font-family: sans-serif;
-} 
- 
-section div + p{
-    color: blueviolet;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding-bottom: 20px;  
-}
-
 
 mat-tab-group {
     text-align: center;
-}
- 
+} 
 mat-tab-group p {
     padding-top: 20px;
 }
-
 .subheading {
-    color:#1400c6;
-    font-size: 1.2em;
+    color: black;
+    font-size: 2.2em;
     text-shadow: 2px 3px 5px grey;
     margin: 30px 0;
     font-family: Algerian;
     text-align: center;
 }
-.subheading1 {
-    /* text-decoration-color: white ;
-    font-size: 1.2em;   
-    font-family:sans-serif;
-    text-align: center;
-    margin-bottom: 10px; */
-   
-   
-    color:red;
-    font-size: 20px;    
-    text-shadow: 1px 2px 4px greenyellow;
-    margin: 5px 0;
+.subheading1 {  
+    float: left;
+    position: relative;
+    bottom: 23px;
+    margin: 0px 3px;
+
+
+
+    
 }
+
+  
+
