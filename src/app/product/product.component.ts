@@ -287,17 +287,25 @@ export class ProductComponent implements OnInit {
                     size: dt.size
                 })
             });
-            console.log('test',this.productListbyCategory);
+            
         })
     }
 
-    selectProduct(event, product) {
+    // selectProduct(event, product) {
+    //     this.selectedProduct = ''
+    //     this.selectedchangeProduct = ''
+    //     this.selectedProduct = product
+    //     this.selectedImages = this.selectedProduct?.ProURL
+    //     this.selectedSizes = this.selectedProduct?.size
+    //     this.displayDialog = true;
+    // }
+        selectProduct(event, product) {
         this.selectedProduct = ''
         this.selectedchangeProduct = ''
         this.selectedProduct = product
         this.selectedImages = this.selectedProduct?.ProURL
         this.selectedSizes = this.selectedProduct?.size
-        this.displayDialog = true;
+        this.router.navigate(['productdetail/', {productName:this.selectedProduct?.product_name}]);
     }
 
     onMouseOver(event, car) {

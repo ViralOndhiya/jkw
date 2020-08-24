@@ -7,6 +7,7 @@ import { ProductAdminComponent } from './admin/product-admin/product-admin.compo
 import { ContactusComponent } from './contactus/contactus.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { ProductComponent } from './product/product.component';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   //{ path: 'app/:genId', component: ProductComponent},
  /*  { path: 'app/:genderName', component: ProductComponent}, */
   { path: 'app', component: ProductComponent},
+  { path: 'productdetail', component: ProductdetailComponent},
  
 ];
 //export const appRouting = RouterModule.forRoot(routes);

@@ -53,6 +53,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
 
 // Import the library
 
@@ -102,6 +103,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     UploaderComponent,
     UploadTaskComponent,
     ProductComponent,
+    ProductdetailComponent,
   
   ],
   imports: [
@@ -147,6 +149,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
       { path: 'contactus', component: ContactusComponent},
       { path: 'uploader', component: UploaderComponent},
       { path: 'product', component: ProductComponent},
+      { path: 'productdetail', component: ProductdetailComponent},
       
     ]),
     
