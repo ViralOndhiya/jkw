@@ -6,6 +6,7 @@ html
 body{
     height: 100%;
     margin: 0;    
+    font-family: "Avenir Next","Lato",sans-serif;
 } 
   
 
@@ -57,6 +58,16 @@ h5{
   color: black; 
   text-align: left;    
 }
+
+ .ui-card{
+  // background-color: #99ccff !important;
+  // color:white !important;
+  //background-image: radial-gradient(circle,#1fb2ff,#0089d1);
+  background-image: radial-gradient(circle,#fe92b6 , #ff69b4 ,#fd4684);
+  //background-image: radial-gradient(circle,#fe92b6 90%,#fd4684 1% #ff69b4);
+}
+
+
 
 
 

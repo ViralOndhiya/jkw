@@ -1,10 +1,19 @@
+
+<mat-toolbar color="primary" style="justify-content: center; align-items: center;">Menu</mat-toolbar>
+<div  style="display: flex;justify-content: center; align-items: center;" >
+<span>
+    <img src="favicon.ico" width="150px" height="150px" />
+    </span>
+</div>
 <mat-nav-list>
     <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
-         <span class="nav-caption">Home</span>
+        <i class="fa fa-home" style="font-size:20px;color:red;" aria-hidden="true"></i>  <span class="nav-caption">Home</span>
     </a>
+   
     <a mat-list-item routerLink="/contactus" (click)="onSidenavClose()">
-       <span class="nav-caption">Contact us</span>
+        <i class="fa fa-mobile" style="font-size:20px;color:red;" aria-hidden="true"></i><span class="nav-caption">Contact us</span>
     </a>
+    
      <!-- <a mat-list-item routerLink="/admin/slider" (click)="onSidenavClose()">
         <mat-icon>slider</mat-icon> <span class="nav-caption">Slider Admin</span>   
     </a>

@@ -1,0 +1,18 @@
+
+
+.ImgProd {
+    /* width: 410px; height:680px; */
+    width: 800px; height:800px;
+    margin-top: 5px;
+  }
+  
+  @media only screen and (max-width: 40em) {
+    .ImgProd {
+      width: 400px; height:400px;
+      margin-top: 5px;
+    }
+  }
+  .margin_right {
+ 
+    margin-right: 10px;
+  }

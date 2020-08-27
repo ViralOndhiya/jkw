@@ -27,41 +27,41 @@
 
 
 
-        <div class="ui-g-12 ui-md-12 ui-lg-12">
-            <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center;">
-                <h1>{{pd.product_name}}</h1>
+        <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center;">
+            <div class="ui-g-12 ui-md-12 ui-lg-12" >
+                <h1>{{pd.product_name | uppercase}}</h1>
             </div>
 
-            <div class="ui-g-4 ui-md-12 ui-lg-3">
-                <p>Category :</p>
+            <div class="ui-g-4 ui-md-12 ui-lg-6" style="text-align: right;">
+                <p style="font-style: italic; font-weight: bold;">Category :</p>
             </div>
-            <div class="ui-g-8 ui-md-6 ui-lg-9">
+            <div class="ui-g-8 ui-md-6 ui-lg-6" style="text-align: left;">
                 <p>{{pd.name}} </p>
             </div>
 
-            <div class="ui-g-4 ui-md-6 ui-lg-3">
-                <p>Price :</p>
+            <div class="ui-g-4 ui-md-6 ui-lg-6" style="text-align: right;">
+                <p style="font-style: italic; font-weight: bold;">Price :</p>
             </div>
-            <div class="ui-g-8 ui-md-6 ui-lg-9">
+            <div class="ui-g-8 ui-md-6 ui-lg-6" style="text-align: left;">
                 <p>&#8377; {{pd.price}}</p>
             </div>
-            <div class="ui-g-4 ui-md-6 ui-lg-3">
-                <p>Material :</p>
+            <div class="ui-g-4 ui-md-6 ui-lg-6" style="text-align: right;">
+                <p style="font-style: italic; font-weight: bold;">Material :</p>
             </div>
-            <div class="ui-g-8 ui-md-6 ui-lg-9">
+            <div class="ui-g-8 ui-md-6 ui-lg-6" style="text-align: left;">
                 <p>{{pd.material}}</p>
             </div>
-            <div class="ui-g-4 ui-md-6 ui-lg-3">
-                <p>Size :</p>
+            <div class="ui-g-4 ui-md-6 ui-lg-6" style="text-align: right;">
+                <p style="font-style: italic; font-weight: bold;">Size :</p>
             </div>
-            <div class="ui-g-8 ui-md-6 ui-lg-9" style="display: flex;">
+            <div class="ui-g-8 ui-md-6 ui-lg-6" style="display: flex; text-align: left;">
                 <p style="margin-left: 5px;">{{pd.size}}</p>
             </div>
 
 
 
             <div class="ui-g-12 ui-md-12 ui-lg-12">
-                <p>Share the Product :</p>
+                <p style="font-style: italic; font-weight: bold;">Share the Product :</p>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-12" style="text-align: center;">
                 <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
@@ -78,18 +78,16 @@
 
             </div>
 
-            <div class="ui-g-12 ui-md-12 ui-lg-3">
-                <p>Color :</p>
+            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <p style="font-style: italic; font-weight: bold;">Color :</p>
             </div>
-<div *ngFor="let pdImg of productList">
-            <div class="ui-g-12 ui-md-12 ui-lg-9">
-                
-                    <img [src]="pdImg.ProURL">
-                
-               
-            </div> 
+            <div class="ui-g-12 ui-md-12 ui-lg-12">
+            <div *ngFor="let img of pd.ProURL;let i=index" 
+            style="display: flex;justify-content: center; align-items: center;flex-wrap: wrap;">
+                <img class="ImgProd" [src]="img">
+               </div>
+            </div>
         </div>
-    </div>
 
     </div>
 </div>

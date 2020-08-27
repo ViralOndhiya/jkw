@@ -1,25 +1,28 @@
 <mat-toolbar color="primary">
     <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav()">
-            <mat-icon >menu</mat-icon>
+            <mat-icon style="font-style: italic; font-weight: bold;">menu</mat-icon>
         </button>
     </div>
     <div fxHide.xs>
+        
         <section fxLayout="row" fxFlexAlign="stretch">
+            <!-- <span >
+                <a routerLink="/home" class="links"><img src="assets/icons/icon-256x256.ico" width="60px" height="60px"    /></a>
+                </span> -->
             <button mat-button [routerLink]="['./home']">
-                <p>HOME</p>
+                <p style="font-style: italic; font-weight: bold;">HOME</p>
             </button>
             <button mat-button [routerLink]="['./contactus']">
-                <p>CONTACT US</p>
+                <p style="font-style: italic; font-weight: bold;">CONTACT US</p>
             </button>
 
             <!-- <button mat-button [routerLink]="['./admin/slider']">
-                <p>SLIDER ADMIN</p>
-            </button>
-
-            <button mat-button [routerLink]="['./admin/product']">
-                <p>PRODUCT ADMIN</p>
-            </button>  -->
+                <p style="font-style: italic; font-weight: bold;">SLIDER ADMIN</p>
+            </button> -->
+ <!-- <button mat-button [routerLink]="['./admin/product']">
+                <p style="font-style: italic; font-weight: bold;">PRODUCT ADMIN</p>
+            </button>   -->
             
 </section>
         <!-- <a routerLink="/home">HOME</a> -->

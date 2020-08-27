@@ -2,16 +2,16 @@
     color:black;
     font-size: 4em;
     text-shadow: 2px 3px 5px grey;
-    margin: 10px 0;
-    font-family: Algerian;
+    margin: 10px 0;   
     text-align: center;
 }
 
-p-header p{
-    color: black;
-    font-size: 1.3em;   
-    text-shadow: 2px 1px 2px gray;    
-    font-family: Algerian;    
+p-footer p{
+    color: white;
+    font-size: 1.8em;   
+    text-shadow: 2px 1px 2px gray;  
+   
+    margin-left: 5px;  
 } 
 
 mat-tab-group {
@@ -24,20 +24,20 @@ mat-tab-group p {
     color: black;
     font-size: 2.2em;
     text-shadow: 2px 3px 5px grey;
-    margin: 30px 0;
-    font-family: Algerian;
+    margin: 30px 0;   
     text-align: center;
 }
 .subheading1 {  
     float: left;
-    position: relative;
-    bottom: 23px;
-    margin: 0px 3px;
-
-
-
-    
+    position: relative;    
+    margin: 1px 3px;   
 }
+
+
+.margin_right {
+ 
+    margin-right: 10px;
+  }
 
   
 

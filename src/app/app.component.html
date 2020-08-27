@@ -11,8 +11,11 @@
       <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
       <main>
         <!-- fxHide.xs -->
+        
         <nav mat-tab-nav-bar >
-          <a mat-tab-link *ngFor="let item of genders" (click)="gotoGenderof(item)">
+            
+          <a mat-tab-link *ngFor="let item of genders" (click)="gotoGenderof(item)" title="Click me"
+          style="font-style: italic; font-weight: bold; color: black;" >
             {{item.gender}}
           </a>
         </nav>

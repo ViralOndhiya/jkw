@@ -22,8 +22,8 @@
                     style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
                     (click)="selectProduct($event, product)">
                 <!-- <div class="car-detail"> -->
-                    <h1>{{product.product_name}} </h1>                   
-                    <h1>&#8377; {{product.price}} </h1>
+                    <h1 style="font-style: italic; font-weight: bold;">{{product.product_name  | uppercase }} </h1>                   
+                    <h1 style="font-style: italic; font-weight: bold;">&#8377; {{product.price}} </h1>
                 <!-- </div> -->
             </p-panel>
         </div>
@@ -35,8 +35,7 @@ showEffect="fade" [modal]="true" styleClass="mydialog" >
 
     <style>
         p {
-            text-decoration: none;
-            
+            text-decoration: none;            
             /* color: black; */            
             text-shadow: 1px 2px 4px grey;
         }
