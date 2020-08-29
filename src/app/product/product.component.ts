@@ -316,7 +316,7 @@ export class ProductComponent implements OnInit {
 
     toggleDisplay() {
         this.isShow = !this.isShow;        
-        console.log('this.isShow',this.isShow)
+      //  console.log('this.isShow',this.isShow)
     }
     
 

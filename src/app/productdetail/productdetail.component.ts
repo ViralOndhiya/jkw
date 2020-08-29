@@ -55,7 +55,7 @@ export class ProductdetailComponent implements OnInit {
           size: dt.size
         })
       });
-      console.log(this.productList)
+      //console.log(this.productList)
       //console.log('this.selectedImages', this.selectedImages)
     })
 

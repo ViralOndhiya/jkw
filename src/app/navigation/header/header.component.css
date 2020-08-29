@@ -1,7 +1,9 @@
-a {
+section button p{
     text-decoration: none;
     color: white;
-
+    font-size: 1em !important;
+       
+        text-align: center;
 }
  
 a:hover, a:active{

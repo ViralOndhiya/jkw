@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { SliderAdminService } from '../admin/slider-admin/slider-admin.service';
 import { ShareButtons } from '@ngx-share/core';
 import { ProductAdminService } from '../admin/product-admin/product-admin.service';
 import { ProductService } from '../product/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { HomeService } from './home.service';
+import { MessagingService } from '../service/messaging.service';
+
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [ProductService, SliderAdminService],
+  providers: [ProductService, SliderAdminService, HomeService],
+  encapsulation: ViewEncapsulation.None,
   styles: [`
           .carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
               border: 1px solid #b3c2ca;
@@ -58,20 +64,32 @@ export class HomeComponent implements OnInit {
   selectedCategory: any;
   categories: any[] = [];
 
+
+ 
+  selectedImages: any[];
+  selectedSizes: any[];
+  selectchangeImage: any;
+  selectedchangeProduct: any;
+
+  title = 'push-notification';
+message;
+
   constructor(private router: Router, private sliderService: SliderAdminService,
     public share: ShareButtons, private productAdminService: ProductAdminService,
+    private homeService: HomeService,
     private productService: ProductService,
-    private _activatedRoute: ActivatedRoute) {
+    private _activatedRoute: ActivatedRoute,
+    private messagingService: MessagingService) {
 
-    this.productAdminService.getCategories().subscribe(data => {
-      this.categories = []
-      data.map(e => {
-        var dt: any = e.payload.doc.data()
-        this.categories.push({ cid: e.payload.doc.id, name: dt.name })
-      });
+    // this.productAdminService.getCategories().subscribe(data => {
+    //   this.categories = []
+    //   data.map(e => {
+    //     var dt: any = e.payload.doc.data()
+    //     this.categories.push({ cid: e.payload.doc.id, name: dt.name })
+    //   });
 
-      //  console.log("list of category:", this.categories)
-    }),
+    //   //  console.log("list of category:", this.categories)
+    // }),
 
       this.productAdminService.getGenders().subscribe(data => {
         this.genders = []
@@ -79,21 +97,21 @@ export class HomeComponent implements OnInit {
           var dt: any = e.payload.doc.data()
           this.genders.push({ id: e.payload.doc.id, gender: dt.gender })
         });
-        //console.log("list of genders:", this.genders)
+       // console.log("list of genders:", this.genders)
       }),
 
       this.productAdminService.getProducts().subscribe(data => {
-        this.productList = []
+        this.categories = []
         data.map(e => {
           var dt: any = e.payload.doc.data()
-          this.productList.push({ gender: dt.gender, name: dt.name })
+          this.categories.push({ gender: dt.gender, name: dt.name })
         }
         );
         const result = [];
         const map = new Map();
-        for (const item of this.productList) {
+        for (const item of this.categories) {
           if (!map.has(item.gender + item.name)) {
-          //  console.log('concate',item.gender + item.name)
+           // console.log('concate',item.gender + item.name)
           //  map.set(item.name, true);   
             map.set(item.gender+item.name, true);    // set any value to Map
 
@@ -102,7 +120,7 @@ export class HomeComponent implements OnInit {
             result.push({ gender: item.gender, name: item.name });
           }
         }
-        this.productList = [...result]
+        this.categories = [...result]
         //console.log("this.productList",this.productList);
       }),
 
@@ -140,7 +158,31 @@ export class HomeComponent implements OnInit {
           })
       });
 
-    })
+    }),
+
+
+    
+
+      this.homeService.getAllProduct().subscribe((data: any) => {
+          this.productList = []         
+          data.map(e => {
+              var dt: any = e.payload.doc.data();
+
+              this.productList.push({
+                  id: e.payload.doc.id, product_name: dt.product_name, price: dt.price,
+                  material: dt.material, ProURL: dt.ProURL, ProPath: dt.ProPath,
+                  proImages: dt.proImages,
+                  gender: dt.gender.id,
+                  categoryID: dt.name.id,
+                  name: dt.name,
+                  size: dt.size
+              })
+          });
+      })
+ 
+      this.messagingService.requestPermission()
+      this.messagingService.receiveMessage()
+      this.message = this.messagingService.currentMessage
 
   }
 
@@ -159,4 +201,13 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['app/', { genderName: itm?.gender, categoryName: itm1?.name }]);
   }
 
+  selectProduct(event, product) {
+    this.selectedProduct = ''
+    this.selectedchangeProduct = ''
+    this.selectedProduct = product
+    this.selectedImages = this.selectedProduct?.ProURL
+    this.selectedSizes = this.selectedProduct?.size
+    this.router.navigate(['productdetail/', {productName:this.selectedProduct?.product_name}]);
+
+}
 }

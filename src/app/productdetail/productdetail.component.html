@@ -15,7 +15,7 @@
 
     }
 </style>
-<div *ngFor="let pd of productList">
+<div *ngFor="let pd of productList" class="proDetail">
     <div class="ui-g">
         <!-- 
     <div class="ui-g-12 ui-md-12 ui-lg-6">
@@ -63,7 +63,7 @@
             <div class="ui-g-12 ui-md-12 ui-lg-12">
                 <p style="font-style: italic; font-weight: bold;">Share the Product :</p>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-12" style="text-align: center;">
+            <div class="ui-g-12 ui-md-6 ui-lg-12" style="text-align: center; margin-bottom: 20px;">
                 <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
                     class="margin_right">
                     <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>

@@ -6,6 +6,7 @@
   "start_url":  "/index.html",
   "scope": ".", 
   "display": "standalone",
+  "gcm_sender_id": "AAAAANkPuKA:APA91bGbA76gZrjTNYKmsjP7W9K9UIZjkbnXY3QRwpqJLPqdsUpg4g5KudJV7se08gOve90d3H2XoT0qLGRNOEgXkbl-ho6LWFta4cwk8dwBskzT8kg-n25A2VrvhikbxVdws_NBnDjz",
   "icons": [
     {
       "src": "assets/icons/android-icon-72x72.png",
@@ -34,4 +35,6 @@
     }
    
   ]
+  
+ 
 }

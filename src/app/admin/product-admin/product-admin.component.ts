@@ -8,6 +8,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
+
+
+
 @Component({
   selector: 'app-product-admin',
   templateUrl: './product-admin.component.html',
@@ -37,6 +40,9 @@ export class ProductAdminComponent implements OnInit {
   checked: boolean = false;
   selectedGender: any;
   selectedCategory: any;
+
+  title = 'push-notification';
+  message;
 
   @Input() file: File;
   task: AngularFireUploadTask;
@@ -92,6 +98,8 @@ export class ProductAdminComponent implements OnInit {
     ];
 
     this.getAllProducts();
+
+  
 
   }
 

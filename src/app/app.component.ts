@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation ,Compiler} from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductAdminService } from './admin/product-admin/product-admin.service';
-
+// import { RuntimeCompiler} from '@angular/compiler';
 
 
 @Component({
@@ -12,11 +12,13 @@ import { ProductAdminService } from './admin/product-admin/product-admin.service
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+  
   title = 'Jaliyan Kids Wear';
   navLinks: any[];
   activeLinkIndex = -1;
   genders: any[] = [];
-  constructor(private router: Router, private productAdminService: ProductAdminService) {
+  constructor(private router: Router, private productAdminService: ProductAdminService,
+    private _runtimeCompiler: Compiler) {
 
     this.productAdminService.getGenders().subscribe(data => {
       this.genders = []
@@ -59,6 +61,7 @@ export class AppComponent {
     // this.router.events.subscribe((res) => {
     //   this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
     // });
+    this._runtimeCompiler.clearCache();
 
   }
   gotoGenderof(itm) {

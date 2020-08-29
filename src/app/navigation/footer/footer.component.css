@@ -31,3 +31,11 @@ footer {
         color:red;
         background-color:red;
       } 
+
+      td a p{
+        color:blue;
+        font-size: 1em !important;
+        text-shadow: 2px 3px 5px grey;
+        margin: 10px 0;   
+        text-align: center;
+    }

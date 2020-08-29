@@ -54,7 +54,7 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
-
+import { MessagingService } from './service/messaging.service';
 // Import the library
 
 
@@ -158,7 +158,7 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
   // providers: [{ provide: AuthServiceConfig, useFactory: provideConfig },
   //   AngularFirestore, AngularFireStorage, NotifyService, CommonService],
   providers: [
-    AngularFirestore, AngularFireStorage, CommonService,
+    AngularFirestore, AngularFireStorage, CommonService, MessagingService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}],
     bootstrap: [AppComponent]
 })

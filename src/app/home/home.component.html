@@ -21,68 +21,90 @@
         </ng-template>
     </p-carousel>
 
-    <div fxFlexAlign="center">
-        <p>JALIYAN</p>
+    <div fxFlexAlign="center" style="margin-top: 20px;">
+        <p class="jaliyan">JALIYAN</p>
         <h1 class="subheading">KIDZS WEAR</h1>
     </div>
+    <!-- =========================================================== -->
 
-    <!-- <p>In this application we are going to work with:</p> -->
+    
+<p-dataView #dv [value]="productList" filterBy="product_name" layout="grid" >
+    <p-header>
+      
+    </p-header>
+   
+    <ng-template let-product pTemplate="gridItem">
+        
+        <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-12 ui-lg-3">
+            <p-panel>
+                <img [src]="product.ProURL ? product.ProURL : '../../../../assets/img/no_image_available.jpeg'"
+                    style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
+                    (click)="selectProduct($event, product)">              
+                    <h1 >{{product.product_name  | uppercase }} </h1>                   
+                    <h1>&#8377; {{product.price}} </h1>
+               
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>
+
+    <!-- ===== GENDER AND CATEGORY WISE SHARE CODING ===== -->
 
 
-    <div class="content" fxLayout="row wrap" fxLayoutGap="5px grid" style="padding-bottom: 5px;">
+    <div class="content" fxLayout="row wrap" fxLayoutGap="5px grid" style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px;">
         <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of genders">
-           
-                <p-card>
-                    <!-- <p-header>
+
+            <p-card>
+                <!-- <p-header>
                         <p>{{item.gender}}</p>
                     </p-header> -->
-                    <div *ngFor="let category of productList">
-                    <div  *ngIf="item.gender == 'Boy' && category.gender == 'Boy'">                                                    
-                            <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
-                     (click)="openProductByCategory(item, category)"></button>
-                     
-                                          
+                <div *ngFor="let category of categories">
+                    <div *ngIf="item.gender == 'Boy' && category.gender == 'Boy'">
+                        <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
+                            (click)="openProductByCategory(item, category)"></button>
+
+
                     </div>
                     <div *ngIf="item.gender == 'Girl' && category.gender =='Girl'">
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
-                     (click)="openProductByCategory(item, category)"></button> 
+                            (click)="openProductByCategory(item, category)"></button>
                     </div>
                     <div *ngIf="item.gender == 'Men' && category.gender =='Men'">
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
-                     (click)="openProductByCategory(item, category)"></button> 
+                            (click)="openProductByCategory(item, category)"></button>
                     </div>
                     <div *ngIf="item.gender == 'Women' && category.gender =='Women'">
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
-                     (click)="openProductByCategory(item, category)"></button>  
-                    </div> 
+                            (click)="openProductByCategory(item, category)"></button>
+                    </div>
                     <div *ngIf="item.gender == 'Born Baby' && category.gender =='Born Baby'">
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
-                        (click)="openProductByCategory(item, category)"></button> 
-                    </div> 
-                    <div *ngIf="item.gender == 'Handloom' && category.gender =='Handloom'" >
+                            (click)="openProductByCategory(item, category)"></button>
+                    </div>
+                    <div *ngIf="item.gender == 'Handloom' && category.gender =='Handloom'">
                         <button pButton type="button" label={{category.name}} class="ui-button-rounded subheading1"
-                        (click)="openProductByCategory(item, category)"></button> 
-                    </div> 
+                            (click)="openProductByCategory(item, category)"></button>
+                    </div>
                 </div>
                 <p-footer>
                     <p>{{item.gender}}</p>
                 </p-footer>
-                </p-card>            
+            </p-card>
         </div>
     </div>
+    <!-- ===== GENDER AND CATEGORY WISE SHARE CODING ===== -->
+    <!-- ===== WEBSITE SHARE CODING ===== -->
     <div class="ui-g-12 ui-md-6 ui-lg-12" style="text-align: center;">
         <h1 class="subheading">SHARE TO OTHER</h1>
-        <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color"
-            class="margin_right">
+        <button mat-fab shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color" class="margin_right">
             <fa-icon [icon]="share.prop.facebook.icon" size="lg"></fa-icon>
         </button>
-        <button mat-fab shareButton="whatsapp" [style.backgroundColor]="share.prop.whatsapp.color"
-            class="margin_right">
+        <button mat-fab shareButton="whatsapp" [style.backgroundColor]="share.prop.whatsapp.color" class="margin_right">
             <fa-icon [icon]="share.prop.whatsapp.icon" size="lg"></fa-icon>
         </button>
         <button mat-fab shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
             <fa-icon [icon]="share.prop.twitter.icon" size="lg"></fa-icon>
         </button>
-
     </div>
+    <!-- ===== WEBSITE SHARE CODING ===== -->
 </section>
