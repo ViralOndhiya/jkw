@@ -9,6 +9,7 @@ import { ProductAdminService } from '../admin/product-admin/product-admin.servic
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 //import { NotifyService } from '../common/notify.service';
+
 @Component({
     selector: 'app-product',
     templateUrl: './product.component.html',
@@ -191,7 +192,8 @@ export class ProductComponent implements OnInit {
         private productAdminService: ProductAdminService,
         private firestore: AngularFirestore,
         private storage: AngularFireStorage,
-        private db: AngularFirestore) {
+        private db: AngularFirestore
+        ) {
         this.productAdminService.getCategories().subscribe(data => {
             this.categories = []
             data.map(e => {
@@ -248,6 +250,8 @@ export class ProductComponent implements OnInit {
     ngOnInit(): void {
        
     }
+
+
     getProductListByGender() {
 
         this.productService.getAllProductByGender(this.genderId).subscribe((data: any) => {
@@ -264,7 +268,8 @@ export class ProductComponent implements OnInit {
                     gender: dt.gender.id,
                     categoryID: dt.name.id,
                     name: dt.name,
-                    size: dt.size
+                    size: dt.size,
+                    discount : dt.discount
                 })
             });
         })

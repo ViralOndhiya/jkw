@@ -55,6 +55,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
 import { MessagingService } from './service/messaging.service';
+import { MatCardModule } from '@angular/material/card';
 // Import the library
 
 
@@ -132,7 +133,7 @@ import { MessagingService } from './service/messaging.service';
     FontAwesomeModule,
     ButtonModule,
     CheckboxModule,
-   
+    MatCardModule,
     ShareModule.forRoot(),
    // SocialLoginModule,
    DialogModule,

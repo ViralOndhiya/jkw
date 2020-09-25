@@ -175,7 +175,8 @@ message;
                   gender: dt.gender.id,
                   categoryID: dt.name.id,
                   name: dt.name,
-                  size: dt.size
+                  size: dt.size,
+                  discount: dt.discount
               })
           });
       })

@@ -37,12 +37,17 @@
         
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-12 ui-lg-3">
             <p-panel>
+                <mat-card>
+                    <mat-card-content>
                 <img [src]="product.ProURL ? product.ProURL : '../../../../assets/img/no_image_available.jpeg'"
                     style="cursor: pointer; width: 290px; height:385px;" class="hide_all"
-                    (click)="selectProduct($event, product)">              
+                    (click)="selectProduct($event, product)">  
+                    </mat-card-content>  
+                </mat-card>          
                     <h1 >{{product.product_name  | uppercase }} </h1>                   
                     <h1>&#8377; {{product.price}} </h1>
-               
+                    <h1 [ngClass]="product.discount == null ? 'hidden'  : 'disocuntFont' ">Discount : {{product.discount}}</h1>
+                    
             </p-panel>
         </div>
     </ng-template>

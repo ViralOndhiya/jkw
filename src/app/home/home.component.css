@@ -49,3 +49,13 @@ mat-tab-group p {
 
   
 
+  .mat-drawer-content {
+    overflow: hidden !important;
+}
+.hidden {
+    visibility: hidden;
+    display: none;
+    }
+    .disocuntFont{
+        color:red;
+       } 
