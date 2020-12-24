@@ -17,7 +17,7 @@
     <ng-template let-product pTemplate="gridItem">
         
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-12 ui-lg-3">
-            <p-panel>
+            <!-- <p-panel> -->
                 <mat-card style="margin-top: 30px;">
                     <mat-card-content>
                 <img [src]="product.ProURL ? product.ProURL : '../../../../assets/img/no_image_available.jpeg'"
@@ -30,7 +30,7 @@
                     <h1 style="font-style: italic; font-weight: bold;">&#8377; {{product.price}} </h1>
                     <h1 [ngClass]="product.discount == null ? 'hidden'  : 'disocuntFont' ">Discount : {{product.discount}}</h1>
                 <!-- </div> -->
-            </p-panel>
+            <!-- </p-panel> -->
         </div>
     </ng-template>
 </p-dataView>

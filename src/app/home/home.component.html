@@ -23,7 +23,7 @@
 
     <div fxFlexAlign="center" style="margin-top: 20px;">
         <p class="jaliyan">JALIYAN</p>
-        <h1 class="subheading">KIDZS WEAR</h1>
+        <h1 class="subheading">COLLECTION</h1>
     </div>
     <!-- =========================================================== -->
 
@@ -36,7 +36,7 @@
     <ng-template let-product pTemplate="gridItem">
         
         <div style="padding: .5em; text-align: center;" class="ui-g-12 ui-md-12 ui-lg-3">
-            <p-panel>
+            <!-- <p-panel> -->
                 <mat-card>
                     <mat-card-content>
                 <img [src]="product.ProURL ? product.ProURL : '../../../../assets/img/no_image_available.jpeg'"
@@ -48,7 +48,7 @@
                     <h1>&#8377; {{product.price}} </h1>
                     <h1 [ngClass]="product.discount == null ? 'hidden'  : 'disocuntFont' ">Discount : {{product.discount}}</h1>
                     
-            </p-panel>
+            <!-- </p-panel> -->
         </div>
     </ng-template>
 </p-dataView>
